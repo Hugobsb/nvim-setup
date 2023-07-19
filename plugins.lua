@@ -31,14 +31,14 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "nvim-telescope/telescope.nvim",
-  --
-  --   config = function()
-  --     require "plugins.configs.telescope"
-  --     require "custom.configs.telescope"
-  --   end,
-  -- }
+  {
+    "nvim-telescope/telescope.nvim",
+
+    config = function()
+      require "plugins.configs.telescope"
+      require "custom.configs.telescope"
+    end,
+  }
 }
 
 return plugins

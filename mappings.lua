@@ -1,6 +1,11 @@
 local M = {}
 
-M.disabled = {}
+M.disabled = {
+  n = {
+    ["<leader>gt"] = "",
+    ["<leader>cm"] = ""
+  }
+}
 
 -- Lazy Git
 

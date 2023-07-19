@@ -1,50 +1,46 @@
-local previewers = require("telescope.previewers")
-local builtin = require("telescope.builtin")
+local previewers = require('telescope.previewers')
+local builtin = require('telescope.builtin')
 
-local delta_bcommits = previewers.new_termopen_previewer({
-	get_command = function(entry)
-		return {
-			"git",
-			"-c",
-			"core.pager=delta",
-			"-c",
-			"delta.side-by-side=false",
-			"diff",
-			entry.value .. "^!",
-			"--",
-			entry.current_file,
-		}
-	end,
-})
+local delta = previewers.new_termopen_previewer {
+  get_command = function(entry)
+    -- this is for status
+    -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
+    -- just do an if and return a different command
+    if entry.status == '??' or 'A ' then
+      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value }
+    end
 
-local delta = previewers.new_termopen_previewer({
-	get_command = function(entry)
-		return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.value .. "^!" }
-	end,
-})
+    -- note we can't use pipes
+    -- this command is for git_commits and git_bcommits
+    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
 
-Delta_git_commits = function(opts)
-	opts = opts or {}
-	opts.previewer = {
-		delta,
-		previewers.git_commit_message.new(opts),
-		previewers.git_commit_diff_as_was.new(opts),
-	}
-	builtin.git_commits(opts)
+  end
+}
+
+Delta_my_git_commits = function(opts)
+  opts = opts or {}
+  opts.previewer = delta
+
+  builtin.git_commits(opts)
 end
 
-Delta_git_bcommits = function(opts)
-	opts = opts or {}
-	opts.previewer = {
-		delta_bcommits,
-		previewers.git_commit_message.new(opts),
-		previewers.git_commit_diff_as_was.new(opts),
-	}
-	builtin.git_bcommits(opts)
+Delta_my_git_bcommits = function(opts)
+  opts = opts or {}
+  opts.previewer = delta
+
+  builtin.git_bcommits(opts)
 end
 
-vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua Delta_git_commits()<CR>", {})
-vim.api.nvim_set_keymap("n", "<F6>", "<cmd>lua Delta_git_bcommits()<CR>", {})
+Delta_my_git_status = function(opts)
+  opts = opts or {}
+  opts.previewer = delta
+
+  builtin.git_status(opts)
+end
+
+vim.api.nvim_set_keymap("n", "<leader>cm", "<cmd>lua Delta_my_git_commits()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>cbm", "<cmd>lua Delta_my_git_bcommits()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gt", "<cmd>lua Delta_my_git_status()<CR>", { noremap = true })
 
 return {}
 
