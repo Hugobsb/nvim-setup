@@ -38,6 +38,70 @@ local plugins = {
       require "plugins.configs.telescope"
       require "custom.configs.telescope"
     end,
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+
+    lazy = false,
+
+    config = function()
+      require "custom.configs.dap"
+    end,
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+
+    lazy = false,
+
+    dependencies = {
+      "mfussenegger/nvim-dap"
+    },
+
+    config = function()
+      require "custom.configs.dapui"
+    end,
+  },
+
+  {
+    "theHamsta/nvim-dap-virtual-text",
+
+    lazy = false,
+
+    dependencies = {
+      "nvim-dap"
+    },
+
+    config = function()
+      require "custom.configs.dap-virtual-text"
+    end,
+  },
+
+  {
+    "mxsdev/nvim-dap-vscode-js",
+
+    lazy = false,
+
+    dependencies = {
+      "nvim-dap"
+    },
+
+    config = function()
+      require "custom.configs.dap-vscode"
+    end,
+  },
+
+  {
+    "microsoft/vscode-js-debug",
+
+    lazy = false,
+
+    dependencies = {
+      "nvim-dap"
+    },
+
+    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   }
 }
 

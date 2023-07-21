@@ -1,0 +1,58 @@
+-- local dap = require('dap')
+--
+-- dap.adapters["pwa-node"] = {
+--   type = "server",
+--   host = "localhost",
+--   port = "${port}",
+--   executable = {
+--     command = "node",
+--     -- 💀 Make sure to update this path to point to your installation
+--     args = { os.getenv("HOME") .. "/.local/share/nvim/lazy/vscode-js-debug/out/src/vsDebugServer.js", "${port}" },
+--   }
+-- }
+
+-- dap.configurations.typescriptreact = {
+--   {
+--     name = "Launch file",
+--     type = 'pwa-node',
+--     request = 'launch',
+--     runtimeExecutable = "deno",
+--     runtimeArgs = {
+--       "run",
+--       "--inspect-wait",
+--       "--allow-all"
+--     },
+--     program = "${file}",
+--     cwd = "${workspaceFolder}",
+--     attachSimplePort = 9229,  },
+--   {
+--     name = "Attach to Node process",
+--     type = "pwa-node",
+--     request = "attach",
+--     program = "${file}",
+--     cwd = vim.fn.getcwd(),
+--     sourceMaps = true,
+--     port = 9229,
+--     restart = true,
+--     skipFiles = { "**/node_modules/**" },
+--     localRoot = "${workspaceFolder}",
+--   },
+--   {
+--     name = "Debug Jest Tests",
+--     type = "pwa-node",
+--     request = "launch",
+--     cwd = vim.fn.getcwd(),
+--     restart = true,
+--     rootPath = "${workspaceFolder}",
+--     -- runtimeExecutable = os.getenv("HOME") .. "/.nvm/versions/node/v16.20.1/bin/npm",
+--     -- runtimeArgs = { "lua vim.fn.input('Node args: ')" },
+--     runtimeExecutable = "node",
+--     runtimeArgs = { "./node_modules/jest/bin/jest.js", "--runInBand" },
+--     skipFiles = { "<node_internals>/**" },
+--     console = "integratedTerminal",
+--     internalConsoleOptions = "neverOpen",
+--   }
+-- }
+
+return {}
+
