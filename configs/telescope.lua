@@ -38,9 +38,9 @@ Delta_my_git_status = function(opts)
   builtin.git_status(opts)
 end
 
-vim.api.nvim_set_keymap("n", "<leader>cm", "<cmd>lua Delta_my_git_commits()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>cbm", "<cmd>lua Delta_my_git_bcommits()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>gt", "<cmd>lua Delta_my_git_status()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>dcm", "<cmd>lua Delta_my_git_commits()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>dbcm", "<cmd>lua Delta_my_git_bcommits()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>dgt", "<cmd>lua Delta_my_git_status()<CR>", { noremap = true })
 
 return {}
 
