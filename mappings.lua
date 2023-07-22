@@ -33,7 +33,16 @@ M.dap = {
 
 M.dapui = {
   n = {
-    ["<leader>dpu"] = { "<cmd> lua require'dapui'.open()<CR>" }
+    ["<leader>dpu"] = { "<cmd> lua require'dapui'.open()<CR>" },
+  }
+}
+
+-- Tabufline
+
+M.tabufline = {
+  n = {
+    ["<leader>bm"] = { "<cmd> lua require'nvchad_ui.tabufline'.move_buf(1)<CR>" },
+    ["<leader>bM"] = { "<cmd> lua require'nvchad_ui.tabufline'.move_buf(-1)<CR>" },
   }
 }
 
