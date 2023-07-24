@@ -7,6 +7,10 @@ local lint = null_ls.builtins.diagnostics
 
 local sources = {
   formatting.prettierd,
+  formatting.gofumpt,
+  formatting.goimports_reviser,
+  formatting.golines,
+
   code_actions.refactoring,
   code_actions.eslint_d,
 
