@@ -8,6 +8,8 @@ local lint = null_ls.builtins.diagnostics
 local sources = {
   formatting.prettierd,
   code_actions.refactoring,
+  code_actions.eslint_d,
+
   -- completion,
   lint.eslint_d,
 }
