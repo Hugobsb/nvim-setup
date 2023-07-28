@@ -1,4 +1,5 @@
 local utils = require'custom.utils'
+local uuid = require'custom.modules.uuid'
 
 ---------------------------------- custom commands ---------------------------------------
 
@@ -55,4 +56,14 @@ new_cmd('Base64Decode', function()
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
+
+new_cmd('GenerateUUID', function()
+  uuid.seed()
+  local id = uuid()
+
+  utils.insert_text_before_cursor(id)
+
+  -- Cleaning the visual selection
+  vim.cmd('normal! gv')
+end, {})
 

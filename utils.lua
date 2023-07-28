@@ -55,6 +55,17 @@ M.get_visually_selected_text = function(no_selection_found_message)
   end
 end
 
+M.insert_text_before_cursor = function(str)
+  -- Enter normal mode to avoid issues with visual mode
+  vim.api.nvim_command('normal! gv')
+
+  -- Set the unnamed register with the replacement text
+  vim.fn.setreg('"', str, 'v')
+
+  -- Paste the replacement text before the cursor
+  vim.api.nvim_command('normal! ""P')
+end
+
 M.replace_selected_text = function(replace_with)
   local start_pos = vim.fn.getpos("'<")
   local end_pos = vim.fn.getpos("'>")
@@ -70,11 +81,7 @@ M.replace_selected_text = function(replace_with)
   -- Delete the selected text
   vim.api.nvim_command('normal! d')
 
-  -- Set the unnamed register with the replacement text
-  vim.fn.setreg('"', replace_with, 'v')
-
-  -- Paste the replacement text before the cursor
-  vim.api.nvim_command('normal! P')
+  M.insert_text_before_cursor(replace_with)
 end
 
 M.base64_encode = function(str)
