@@ -109,7 +109,7 @@ local plugins = {
       "nvim-dap"
     },
 
-    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && rm -rf package-lock.json"
+    build = "rm -rf dist out && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && rm -rf package-lock.json"
   }
 }
 
