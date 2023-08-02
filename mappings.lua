@@ -39,5 +39,11 @@ M.tabufline = {
   }
 }
 
+M.telescope = {
+  n = {
+    ["<leader>fwa"] = { "<cmd> lua require'telescope'.extensions.live_grep_args.live_grep_args()<CR>" }
+  }
+}
+
 return M
 

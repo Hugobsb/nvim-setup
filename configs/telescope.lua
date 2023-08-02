@@ -1,6 +1,8 @@
 local previewers = require('telescope.previewers')
 local builtin = require('telescope.builtin')
 
+local config = {}
+
 local delta = previewers.new_termopen_previewer {
   get_command = function(entry)
     -- this is for status
@@ -42,5 +44,8 @@ vim.api.nvim_set_keymap("n", "<leader>dcm", "<cmd>lua Delta_my_git_commits()<CR>
 vim.api.nvim_set_keymap("n", "<leader>dbcm", "<cmd>lua Delta_my_git_bcommits()<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>dgt", "<cmd>lua Delta_my_git_status()<CR>", { noremap = true })
 
-return {}
+config.defaults = {}
+config.extensions_list = { "live_grep_args" }
+
+return config
 

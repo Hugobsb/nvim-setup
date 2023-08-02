@@ -43,9 +43,11 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
 
-    opts = {
-      defaults = require "custom.configs.telescope"
-    }
+    dependencies = {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+    },
+
+    opts = require "custom.configs.telescope"
   },
 
   {
