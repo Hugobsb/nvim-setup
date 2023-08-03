@@ -132,6 +132,13 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     }
   },
+
+  {
+    "windwp/nvim-ts-autotag",
+
+    lazy = false,
+
+    config = require "custom.configs.nvim-ts-autotag",
   }
 }
 
