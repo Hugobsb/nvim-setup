@@ -112,6 +112,26 @@ local plugins = {
     },
 
     build = "rm -rf dist out package-lock.json && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+  },
+
+  {
+    "kylechui/nvim-surround",
+
+    version = "*",
+
+    event = "VeryLazy",
+
+    config = function()
+      require "nvim-surround".setup(
+        require "custom.configs.nvim-surround"
+      )
+    end,
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    }
+  },
   }
 }
 
