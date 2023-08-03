@@ -54,7 +54,7 @@ new_cmd('Base64Decode', function()
   end
 
   -- Cleaning the visual selection
-  vim.cmd('normal! gv')
+  vim.cmd('normal! gv') 
 end, { addr = 'lines', range = '%' })
 
 new_cmd('GenerateUUID', function()
@@ -66,4 +66,32 @@ new_cmd('GenerateUUID', function()
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
 end, {})
+
+new_cmd('SortAlphabetically', function()
+  local no_selection_found_message = 'A text must be selected to encode it.'
+
+  local option = vim.fn.input(
+    'Ascending: 1' .. '\n' .. 'Descending: 2' .. '\n' .. 'Choose your option: '
+  )
+
+  if option ~= '1' and option ~= '2' then
+    print(" " .. "Invalid option. You must select between '1' and '2'.")
+  else
+    local ok, sorted_string = xpcall(
+      utils.sort_alphabetically,
+      function(err)
+        print('Failed to sort the selected text: ' .. err)
+        return false
+      end,
+      option, no_selection_found_message
+    )
+
+    if ok then
+      utils.replace_selected_text(sorted_string)
+    end
+  end
+
+  -- Cleaning the visual selection
+  vim.cmd('normal! gv')
+end, { addr = 'lines', range = '%' })
 

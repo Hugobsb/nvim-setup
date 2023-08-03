@@ -32,6 +32,23 @@ local function is_base64_valid(str)
   return type(result) == 'string' and string.len(result) > 0
 end
 
+local function sort_text_alphabetically(text, ascending)
+    local lines = {}
+    for line in text:gmatch("[^\r\n]+") do
+        table.insert(lines, line)
+    end
+
+    if (ascending) then
+      table.sort(lines)
+    else
+      table.sort(lines, function(a, b) return a > b end)
+    end
+
+    local sortedText = table.concat(lines, "\n")
+
+    return sortedText
+end
+
 M.get_visually_selected_text = function(no_selection_found_message)
   local start_pos = vim.fn.getpos("'<")
   local end_pos = vim.fn.getpos("'>")
@@ -123,6 +140,18 @@ M.base64_decode = function(str)
   else
     return result
   end
+end
+
+M.sort_alphabetically = function(option, no_selection_found_message)
+  local text = M.get_visually_selected_text(no_selection_found_message)
+
+  if option == '1' then
+    return sort_text_alphabetically(text, true)
+  else if option == '2' then
+    return sort_text_alphabetically(text, false)
+  end end
+
+  return text
 end
 
 return M
