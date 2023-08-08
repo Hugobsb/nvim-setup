@@ -47,7 +47,9 @@ local plugins = {
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
 
-    opts = require "custom.configs.telescope"
+    opts = require "custom.configs.telescope-c",
+
+    config = require "plugins.configs.telescope"
   },
 
   {
@@ -139,6 +141,14 @@ local plugins = {
     lazy = false,
 
     config = require "custom.configs.nvim-ts-autotag",
+  },
+
+  {
+    "tpope/vim-fugitive",
+
+    lazy = false,
+
+    config = false
   }
 }
 
