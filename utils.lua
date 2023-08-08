@@ -34,6 +34,7 @@ end
 
 local function sort_text_alphabetically(text, ascending)
     local lines = {}
+
     for line in text:gmatch("[^\r\n]+") do
         table.insert(lines, line)
     end
