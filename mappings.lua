@@ -50,17 +50,25 @@ M.telescope = {
 M.linemovement = {
   n = {
     ["<A-Up>"] = { "<cmd> m-2 <CR>" },
-    ["<A-Down>"] = { "<cmd> m+ <CR>" }
+    ["<A-Down>"] = { "<cmd> m+ <CR>" },
+    ["<A-k>"] = { "<cmd> m-2 <CR>" },
+    ["<A-j>"] = { "<cmd> m+ <CR>" }
   },
   i = {
     ["<A-Up>"] = { "<Esc> <cmd> m-2 <CR>i" },
-    ["<A-Down>"] = { "<Esc> <cmd> m+ <CR>i" }
+    ["<A-Down>"] = { "<Esc> <cmd> m+ <CR>i" },
+    ["<A-k>"] = { "<Esc> <cmd> m-2 <CR>i" },
+    ["<A-j>"] = { "<Esc> <cmd> m+ <CR>i" }
   }
 }
 
 -- NvChad does not set Marks in visual mode or something like that
+
 vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv")
+
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv")
 
 -- Selection mappings
 
