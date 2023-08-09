@@ -45,9 +45,9 @@ M.telescope = {
   }
 }
 
--- Custom mappings
+-- Line movement mappings
 
-M.custom = {
+M.linemovement = {
   n = {
     ["<A-Up>"] = { "<cmd> m-2 <CR>" },
     ["<A-Down>"] = { "<cmd> m+ <CR>" }
@@ -61,6 +61,14 @@ M.custom = {
 -- NvChad does not set Marks in visual mode or something like that
 vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv")
+
+-- Selection mappings
+
+M.selec = {
+  n = {
+    ["<leader>a"] = { "ggVG" }
+  },
+}
 
 return M
 
