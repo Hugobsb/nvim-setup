@@ -3,8 +3,8 @@
 local M = {}
 
 M.ui = {
-  theme = "github_light",
-  theme_toggle = { "github_light", "one_light" },
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "one_light" },
 
   nvdash = {
     load_on_startup = true,
