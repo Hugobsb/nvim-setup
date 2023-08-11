@@ -44,7 +44,7 @@ local servers = {
     filetypes = { "html" }
   },
   ['tsserver'] = {
-    cmd = { "/home/hugo/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
+    cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
   },
   ['yamlls'] = {
