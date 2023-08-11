@@ -25,6 +25,33 @@ local plugins = {
   },
 
   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        -- servers
+        "css-lsp",
+        "docker-compose-language-service",
+        "dockerfile-language-server",
+        "gopls",
+        "html-lsp",
+        "typescript-language-server",
+        "yaml-language-server",
+
+        -- formatters
+        "gofumpt",
+        "goimports-reviser",
+        "golines",
+        "prettierd",
+        "xmlformatter",
+        "yamlfix",
+
+        -- code actions
+        "eslint_d",
+      }
+    }
+  },
+
+  {
     "kdheepak/lazygit.nvim",
 
     lazy = false,

@@ -6,13 +6,15 @@ local lint = null_ls.builtins.diagnostics
 -- local completion = null_ls.builtins.completion
 
 local sources = {
-  formatting.prettierd,
   formatting.gofumpt,
   formatting.goimports_reviser,
   formatting.golines,
+  formatting.prettierd,
+  formatting.xmlformatter,
+  formatting.yamlfix,
 
-  code_actions.refactoring,
   code_actions.eslint_d,
+  code_actions.refactoring,
 
   -- completion,
   lint.eslint_d,
