@@ -79,7 +79,7 @@ RestoreWindowGeometry = false
 ## Also, `ExtMessages` is still experimental at this time and we don't recommend setting it to true if you want stability.
 ExtCmdline   = true
 ExtPopupmenu = true
-ExtTabline   = true
+# ExtTabline   = false
 ExtMessages  = true
 
 ## Goneovim has a cached rendering feature enabled to speed up the process.
