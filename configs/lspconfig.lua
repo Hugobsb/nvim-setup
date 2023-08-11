@@ -1,9 +1,9 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local lspconfig = require "lspconfig"
 
-local lspconfig = require("lspconfig")
+local on_attach = require "plugins.configs.lspconfig".on_attach
+local capabilities = require "plugins.configs.lspconfig".capabilities
 
-local util = require("lspconfig/util")
+local util = require "lspconfig/util"
 
 local function mergeTables(dest, src)
   for key, value in pairs(src) do
@@ -17,13 +17,14 @@ end
 
 local servers = {
   ['cssls'] = {
-    -- configuration
+    fileTypes = { "css" }
   },
   ['docker_compose_language_service'] = {
-    -- configuration
+    rootDir = util.root_pattern("docker-compose.yaml", "docker-compose.yml"),
+    filetypes = { "yaml", "yml" }
   },
   ['dockerls'] = {
-    -- configuration
+    filetypes = { "dockerfile" }
   },
   ['gopls'] = {
     cmd = { "gopls" },
@@ -40,14 +41,14 @@ local servers = {
     }
   },
   ['html'] = {
-    -- configuration
+    filetypes = { "html" }
   },
   ['tsserver'] = {
     cmd = { "/home/hugo/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
   },
   ['yamlls'] = {
-    -- configuration
+    filetypes = { "yaml", "yml" }
   }
 }
 

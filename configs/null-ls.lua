@@ -10,7 +10,7 @@ local sources = {
   formatting.goimports_reviser,
   formatting.golines,
   formatting.prettierd,
-  formatting.xmlformatter,
+  formatting.xmlformat,
   formatting.yamlfix,
 
   code_actions.eslint_d,
