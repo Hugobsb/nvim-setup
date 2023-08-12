@@ -202,6 +202,18 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
 
     config = require "custom.configs.treesitter-c",
+  },
+
+  {
+    "L3MON4D3/LuaSnip",
+
+    version = "2.*",
+
+    dependencies = { "rafamadriz/friendly-snippets" },
+
+    config = require "custom.configs.luasnip-c",
+
+    build = "make install_jsregexp"
   }
 }
 
