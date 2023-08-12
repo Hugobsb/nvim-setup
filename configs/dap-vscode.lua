@@ -11,19 +11,33 @@ require("dap-vscode-js").setup({
 for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
   require("dap").configurations[language] = {
     {
+      name = "Launch file",
       type = "pwa-node",
       request = "launch",
-      name = "Launch file",
       program = "${file}",
       cwd = "${workspaceFolder}",
       port = 7473
+    },
+    {
+      name = "Launch process",
+      type = "pwa-node",
+      request = "launch",
+      runtimeExecutable = "npm",
+      runtimeArgs = {
+        "run-script",
+        "start:debug"
+      },
+      rootPath = "${workspaceFolder}",
+      cwd = "${workspaceFolder}",
+      console = "integratedTerminal",
+      internalConsoleOptions = "neverOpen"
     },
     {
       name = "Attach to Node process",
       type = "pwa-node",
       request = "attach",
       processId = require'dap.utils'.pick_process,
-      cwd = "${workspaceFolder}",
+      cwd = "${workspaceFolder}"
     },
     {
       type = "pwa-node",
@@ -38,7 +52,7 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       rootPath = "${workspaceFolder}",
       cwd = "${workspaceFolder}",
       console = "integratedTerminal",
-      internalConsoleOptions = "neverOpen",
+      internalConsoleOptions = "neverOpen"
     }
   }
 end
