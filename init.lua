@@ -1,6 +1,10 @@
 local utils = require'custom.utils'
 local uuid = require'custom.modules.uuid'
 
+-------------------------------------- globals -------------------------------------------
+
+vim.g.neovide_cursor_vfx_mode = "pixiedust"
+
 ---------------------------------- custom commands ---------------------------------------
 
 local new_cmd = vim.api.nvim_create_user_command
