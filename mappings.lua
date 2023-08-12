@@ -28,6 +28,7 @@ M.dapui = {
   n = {
     ["<leader>dpu"] = { "<cmd> lua require'dapui'.open() <CR>" },
     ["<leader>dpU"] = { "<cmd> lua require'dapui'.close() <CR>" },
+    ["<leader>dpuk"] = { "<cmd> lua require'dapui'.eval() <CR>" },
   }
 }
 

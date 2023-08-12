@@ -15,7 +15,8 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       request = "launch",
       name = "Launch file",
       program = "${file}",
-      cwd = "${workspaceFolder}"
+      cwd = "${workspaceFolder}",
+      port = 7473
     },
     {
       name = "Attach to Node process",

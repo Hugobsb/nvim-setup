@@ -9,7 +9,7 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-     end,
+    end,
   },
 
   {
@@ -21,7 +21,7 @@ local plugins = {
 
     config = function()
       require "custom.configs.null-ls"
-    end,
+    end
   },
 
   {
@@ -63,7 +63,7 @@ local plugins = {
     },
 
     config = function()
-      require "custom.configs.lazygit"
+      require "custom.configs.lazygit-c"
     end,
   },
 
@@ -86,7 +86,7 @@ local plugins = {
 
     config = function()
       require "custom.configs.dap"
-    end,
+    end
   },
 
   {
@@ -102,7 +102,7 @@ local plugins = {
       require "dapui".setup(
         require "custom.configs.dapui-c"
       )
-    end,
+    end
   },
 
   {
@@ -115,8 +115,10 @@ local plugins = {
     },
 
     config = function()
-      require "custom.configs.dap-virtual-text"
-    end,
+      require "nvim-dap-virtual-text".setup(
+        require "custom.configs.dap-virtual-text"
+      )
+    end
   },
 
   {
@@ -130,7 +132,7 @@ local plugins = {
 
     config = function()
       require "custom.configs.dap-vscode"
-    end,
+    end
   },
 
   {
@@ -169,7 +171,11 @@ local plugins = {
 
     lazy = false,
 
-    config = require "custom.configs.nvim-ts-autotag",
+    config = function()
+      require "nvim-ts-autotag".setup(
+        require "custom.configs.nvim-ts-autotag"
+      )
+    end
   },
 
   {
@@ -191,12 +197,20 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
 
-    -- Ree-enabling Netrw to be able to perform `:GBrowse`
-    opts = { disable_netrw = false },
+    opts = {
+      -- Ree-enabling Netrw to be able to perform `:GBrowse`
+      disable_netrw = false,
 
-    config = require "nvim-treesitter".setup(
-      require "plugins.configs.treesitter"
-    )
+      autotag = {
+        enable = true
+      }
+    },
+
+    config = function()
+      require "nvim-treesitter".setup(
+        require "plugins.configs.treesitter"
+      )
+    end
   }
 }
 
