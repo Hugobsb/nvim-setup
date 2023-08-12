@@ -27,5 +27,5 @@ local config = {
 
 null_ls.setup(config)
 
-return {}
+return config
 

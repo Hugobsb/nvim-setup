@@ -8,7 +8,7 @@ local plugins = {
 
     config = function()
       require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require "custom.configs.lspconfig-c"
     end,
   },
 
@@ -197,20 +197,7 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
 
-    opts = {
-      -- Ree-enabling Netrw to be able to perform `:GBrowse`
-      disable_netrw = false,
-
-      autotag = {
-        enable = true
-      }
-    },
-
-    config = function()
-      require "nvim-treesitter".setup(
-        require "plugins.configs.treesitter"
-      )
-    end
+    config = require "custom.configs.treesitter-c",
   }
 }
 
