@@ -99,7 +99,9 @@ local plugins = {
     },
 
     config = function()
-      require "custom.configs.dapui"
+      require "dapui".setup(
+        require "custom.configs.dapui-c"
+      )
     end,
   },
 
@@ -176,6 +178,25 @@ local plugins = {
     lazy = false,
 
     config = false
+  },
+
+  {
+    "tpope/vim-rhubarb",
+
+    lazy = false,
+
+    config = false
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+
+    -- Ree-enabling Netrw to be able to perform `:GBrowse`
+    opts = { disable_netrw = false },
+
+    config = require "nvim-treesitter".setup(
+      require "plugins.configs.treesitter"
+    )
   }
 }
 

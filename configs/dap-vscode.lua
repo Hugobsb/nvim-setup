@@ -11,6 +11,13 @@ require("dap-vscode-js").setup({
 for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
   require("dap").configurations[language] = {
     {
+      type = "pwa-node",
+      request = "launch",
+      name = "Launch file",
+      program = "${file}",
+      cwd = "${workspaceFolder}"
+    },
+    {
       name = "Attach to Node process",
       type = "pwa-node",
       request = "attach",
