@@ -3,19 +3,23 @@ local config = {
   disable_netrw = false,
 
   ensure_installed = {
+    "c",
     "dart",
     "dockerfile",
     "go",
     "java",
     "json",
+    "jsdoc",
     "jsonc",
-    "jsondoc",
     "kotlin",
     "lua",
     "markdown",
     "mermaid",
+    "query",
     "sql",
+    "todotxt",
     "toml",
+    "tsx",
     "typescript",
     "vim",
     "vimdoc",
@@ -28,6 +32,10 @@ local config = {
 
   -- List of parsers to ignore installing (for "all")
   ignore_install = { "javascript" },
+
+  autotag = {
+    enable = true
+  }
 }
 
 return config

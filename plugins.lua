@@ -171,6 +171,10 @@ local plugins = {
 
     lazy = false,
 
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter"
+    },
+
     config = function()
       require "nvim-ts-autotag".setup(
         require "custom.configs.nvim-ts-autotag"
