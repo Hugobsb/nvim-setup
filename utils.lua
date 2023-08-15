@@ -155,5 +155,38 @@ M.sort_alphabetically = function(option, no_selection_found_message)
   return text
 end
 
+M.validate_and_convert_github_url = function(url)
+    if (url == nil) then return nil end
+
+    local httpsPattern = "^https://github.com/.+/.+$"
+
+    if string.match(url, httpsPattern) then
+        return url
+    end
+
+    local sshPattern = "^git@github.com:.+/.+%.git$"
+
+    local sshMatch = string.match(url, sshPattern)
+
+    if sshMatch then
+        local username, reponame = string.match(sshMatch, "^git@github.com:(.+)/(.+)%.git$")
+        if username and reponame then
+            return "https://github.com/" .. username .. "/" .. reponame
+        end
+    end
+
+    return nil
+end
+
+M.get_buffer_directory = function()
+  local bufnr = vim.fn.bufnr('%')
+
+  local filename = vim.fn.bufname(bufnr)
+
+  local directory = vim.fn.fnamemodify(filename, ':h')
+
+  return directory
+end
+
 return M
 

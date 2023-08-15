@@ -214,6 +214,14 @@ local plugins = {
     config = require "custom.configs.luasnip-c",
 
     build = "make install_jsregexp"
+  },
+
+  {
+    "andweeb/presence.nvim",
+
+    lazy = false,
+
+    config = require "custom.configs.presence-c"
   }
 }
 
