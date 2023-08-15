@@ -183,7 +183,7 @@ M.get_buffer_directory = function()
 
   local filename = vim.fn.bufname(bufnr)
 
-  local directory = vim.fn.fnamemodify(filename, ':h')
+  local directory = vim.fn.fnamemodify(filename, ':p')
 
   return directory
 end
