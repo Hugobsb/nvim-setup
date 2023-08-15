@@ -36,8 +36,8 @@ M.dapui = {
 
 M.tabufline = {
   n = {
-    ["<leader>bm"] = { "<cmd> lua require'nvchad_ui.tabufline'.move_buf(1) <CR>" },
-    ["<leader>bM"] = { "<cmd> lua require'nvchad_ui.tabufline'.move_buf(-1) <CR>" },
+    ["<leader>bm"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>" },
+    ["<leader>bM"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>" },
   }
 }
 
