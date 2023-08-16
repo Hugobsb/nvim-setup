@@ -1,7 +1,4 @@
 local config = {
-  -- Ree-enabling Netrw to be able to perform `:GBrowse`
-  disable_netrw = false,
-
   ensure_installed = {
     "c",
     "dart",

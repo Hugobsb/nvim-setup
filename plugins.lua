@@ -199,9 +199,15 @@ local plugins = {
   },
 
   {
+    "nvim-tree/nvim-tree.lua",
+
+    opts = require "custom.configs.nvimtree-c"
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
 
-    config = require "custom.configs.treesitter-c",
+    opts = require "custom.configs.treesitter-c"
   },
 
   {
