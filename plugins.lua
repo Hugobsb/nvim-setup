@@ -34,6 +34,7 @@ local plugins = {
         "dockerfile-language-server",
         "gopls",
         "html-lsp",
+        "json-lsp",
         "typescript-language-server",
         "yaml-language-server",
 
