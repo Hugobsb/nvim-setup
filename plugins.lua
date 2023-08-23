@@ -235,6 +235,16 @@ local plugins = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = require "custom.configs.trouble"
+  },
+
+  {
+    "iamcco/markdown-preview.nvim",
+
+    build = "cd app && npm install",
+
+    ft = "markdown",
+
+    config = false
   }
 }
 
