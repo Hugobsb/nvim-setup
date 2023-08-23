@@ -9,6 +9,11 @@ No need to worry at all. TreeSitter will install everything described [here](htt
 
 ## Language server & Formatting
 Be sure to **install all Mason packages** in the first time the editor is opened to install everything described [here](https://github.com/Hugobsb/neovim-custom-configuration/blob/78971fec0f6db9356106391a3b16b2044d622113/configs/mason-c.lua#L2-L23).
+This can be done using the command:
+
+```
+:MasonInstallAll
+```
 
 # Manual intervention
 Details what requires user manual setup to work as expected.
