@@ -217,6 +217,14 @@ local plugins = {
     lazy = false,
 
     config = require "custom.configs.presence-c"
+  },
+
+  {
+    "wakatime/vim-wakatime",
+
+    lazy = false,
+
+    config = false
   }
 }
 
