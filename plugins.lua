@@ -225,6 +225,16 @@ local plugins = {
     lazy = false,
 
     config = false
+  },
+
+  {
+    "folke/trouble.nvim",
+
+    event = "BufEnter",
+
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+
+    config = require "custom.configs.trouble"
   }
 }
 
