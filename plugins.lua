@@ -15,6 +15,8 @@ local plugins = {
   {
     "jose-elias-alvarez/null-ls.nvim",
 
+    event = "BufEnter",
+
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
@@ -26,30 +28,8 @@ local plugins = {
 
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- servers
-        "css-lsp",
-        "docker-compose-language-service",
-        "dockerfile-language-server",
-        "gopls",
-        "html-lsp",
-        "json-lsp",
-        "typescript-language-server",
-        "yaml-language-server",
 
-        -- formatters
-        "gofumpt",
-        "goimports-reviser",
-        "golines",
-        "prettierd",
-        "xmlformatter",
-        "yamlfix",
-
-        -- code actions
-        "eslint_d",
-      }
-    }
+    opts = require "custom.configs.mason-c"
   },
 
   {
@@ -65,7 +45,7 @@ local plugins = {
 
     config = function()
       require "custom.configs.lazygit-c"
-    end,
+    end
   },
 
   {
@@ -83,7 +63,7 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
 
-    lazy = false,
+    event = "BufEnter",
 
     config = function()
       require "custom.configs.dap"
@@ -93,7 +73,7 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui",
 
-    lazy = false,
+    event = "BufEnter",
 
     dependencies = {
       "mfussenegger/nvim-dap"
@@ -109,7 +89,7 @@ local plugins = {
   {
     "theHamsta/nvim-dap-virtual-text",
 
-    lazy = false,
+    event = "BufEnter",
 
     dependencies = {
       "nvim-dap"
@@ -125,13 +105,21 @@ local plugins = {
   {
     "mxsdev/nvim-dap-vscode-js",
 
-    lazy = false,
+    event = {
+      "BufEnter *.ts",
+      "BufEnter *.tsx",
+      "BufEnter *.js",
+      "BufEnter *.jsx"
+    },
 
     dependencies = {
       "nvim-dap"
     },
 
     config = function()
+      require "dap"
+      require "dap.utils"
+      require "dap-vscode-js"
       require "custom.configs.dap-vscode"
     end
   },
@@ -139,7 +127,7 @@ local plugins = {
   {
     "microsoft/vscode-js-debug",
 
-    lazy = false,
+    event = "BufEnter",
 
     dependencies = {
       "nvim-dap"
@@ -170,17 +158,17 @@ local plugins = {
   {
     "windwp/nvim-ts-autotag",
 
-    lazy = false,
+    event = {
+      "BufEnter *.html",
+      "BufEnter *.tsx",
+      "BufEnter *.jsx"
+    },
 
     dependencies = {
       "nvim-treesitter/nvim-treesitter"
     },
 
-    config = function()
-      require "nvim-ts-autotag".setup(
-        require "custom.configs.nvim-ts-autotag"
-      )
-    end
+    config = require "custom.configs.nvim-ts-autotag"
   },
 
   {
@@ -194,7 +182,7 @@ local plugins = {
   {
     "tpope/vim-rhubarb",
 
-    lazy = false,
+    event = "BufEnter",
 
     config = false
   },

@@ -1,4 +1,8 @@
-require("dap-vscode-js").setup({
+local dap = require "dap"
+local dap_utils = require "dap.utils"
+local dap_vscode_js = require "dap-vscode-js"
+
+dap_vscode_js.setup({
   node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
   debugger_path = os.getenv("HOME") .. "/.local/share/nvim/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
   -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
@@ -9,7 +13,7 @@ require("dap-vscode-js").setup({
 })
 
 for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
-  require("dap").configurations[language] = {
+  dap.configurations[language] = {
     {
       name = "Launch file",
       type = "pwa-node",
@@ -36,7 +40,7 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       name = "Attach to Node process",
       type = "pwa-node",
       request = "attach",
-      processId = require'dap.utils'.pick_process,
+      processId = dap_utils.pick_process,
       cwd = "${workspaceFolder}"
     },
     {
