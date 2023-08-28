@@ -73,6 +73,7 @@ M.get_visually_selected_text = function(no_selection_found_message)
   end
 end
 
+---@param str string
 M.insert_text_before_cursor = function(str)
   -- Enter normal mode to avoid issues with visual mode
   vim.api.nvim_command('normal! gv')
@@ -186,6 +187,12 @@ M.get_buffer_directory = function()
   local directory = vim.fn.fnamemodify(filename, ':p')
 
   return directory
+end
+
+M.generate_iso_date = function()
+  local iso_date = vim.fn.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+
+  return iso_date
 end
 
 return M

@@ -99,3 +99,12 @@ new_cmd('SortAlphabetically', function()
   vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
 
+new_cmd('GenerateISODate', function()
+  local iso_date = utils.generate_iso_date()
+
+  utils.insert_text_before_cursor(iso_date)
+
+  -- Cleaning the visual selection
+  vim.cmd('normal! gv')
+end, { addr = 'lines', range = '%' })
+
