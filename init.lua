@@ -58,7 +58,7 @@ new_cmd('Base64Decode', function()
   end
 
   -- Cleaning the visual selection
-  vim.cmd('normal! gv') 
+  vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
 
 new_cmd('GenerateUUID', function()
@@ -69,7 +69,7 @@ new_cmd('GenerateUUID', function()
 
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
-end, {})
+end, { addr = 'lines', range = '%' })
 
 new_cmd('SortAlphabetically', function()
   local no_selection_found_message = 'A text must be selected to encode it.'

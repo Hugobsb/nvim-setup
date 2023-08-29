@@ -75,9 +75,6 @@ end
 
 ---@param str string
 M.insert_text_before_cursor = function(str)
-  -- Enter normal mode to avoid issues with visual mode
-  vim.api.nvim_command('normal! gv')
-
   -- Set the unnamed register with the replacement text
   vim.fn.setreg('"', str, 'v')
 
