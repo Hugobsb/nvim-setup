@@ -3,7 +3,20 @@ local uuid = require'custom.modules.uuid'
 
 -------------------------------------- globals -------------------------------------------
 
-vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_cursor_vfx_mode = 'pixiedust'
+
+--------------------------------------- fonts --------------------------------------------
+
+local default_font = 'Fira Code'
+local default_font_size = 14
+
+if vim.fn.has('gui_running') then
+  if (vim.fn.has('unix')) then
+    vim.opt.guifont = { default_font, ':h' .. default_font_size }
+  else
+    vim.opt.guifont = { default_font, 'h' .. default_font_size }
+  end
+end
 
 ---------------------------------- custom commands ---------------------------------------
 
@@ -107,4 +120,32 @@ new_cmd('GenerateISODate', function()
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
+
+--------------------------------- custom gui commands ------------------------------------
+
+if vim.fn.has('gui_running') then
+  new_cmd('IncreaseFontSize', function(cmd)
+    local increase_by = tonumber(cmd.args)
+
+    if (increase_by ~= nil) then
+      return utils.resize_font_size(math.abs(increase_by))
+    end
+
+    return utils.resize_font_size(1)
+  end, { nargs = "?" })
+
+  new_cmd('DecreaseFontSize', function(cmd)
+    local decrease_by = tonumber(cmd.args)
+
+    if (decrease_by ~= nil) then
+      return utils.resize_font_size(-math.abs(decrease_by))
+    end
+
+    return utils.resize_font_size(-1)
+  end, { nargs = "?" })
+
+  new_cmd('RestoreFontSize', function()
+    return utils.resize_font_size(default_font_size, true)
+  end, {})
+end
 

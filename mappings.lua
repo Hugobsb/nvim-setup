@@ -80,5 +80,20 @@ M.selec = {
   },
 }
 
+-- Font mappings
+
+M.font = {
+  n = {
+    ["<A-=>"] = { "<cmd> RestoreFontSize <CR> " },
+    ["<C-=>"] = { "<cmd> IncreaseFontSize <CR> " },
+    ["<C-->"] = { "<cmd> DecreaseFontSize <CR> " }
+  },
+  i = {
+    ["<A-=>"] = { "<cmd> RestoreFontSize <CR> " },
+    ["<C-=>"] = { "<cmd> IncreaseFontSize <CR> " },
+    ["<C-->"] = { "<cmd> DecreaseFontSize <CR> " }
+  }
+}
+
 return M
 

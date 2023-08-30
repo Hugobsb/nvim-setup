@@ -192,5 +192,30 @@ M.generate_iso_date = function()
   return iso_date
 end
 
+M.resize_font_size = function(amount, exact, bounds)
+  if (bounds == nil) then
+    bounds = {
+      maximum = 24,
+      minimum = 8
+    }
+  end
+
+  vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", function(n)
+    local size = n + amount
+
+    if exact ~= nil then
+        size = amount
+    end
+
+    if size <= bounds.minimum then
+        size = bounds.minimum
+    elseif size >= bounds.maximum then
+        size = bounds.maximum
+    end
+
+    return string.format(":h%d", size)
+  end)
+end
+
 return M
 
