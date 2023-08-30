@@ -4,6 +4,9 @@ Custom folder from NvChad directory to keep track of my personal configuration
 # Get Started
 Follow the instructions to properly setup the editor on the first time it is opened.
 
+## Font
+Any font works with Neovim, however it is recommendable to use a [Nerd Font](https://www.nerdfonts.com). I am currently using Fira Code.
+
 ## Syntax highlighting
 No need to worry at all. TreeSitter will install everything described [here](https://github.com/Hugobsb/neovim-custom-configuration/blob/78971fec0f6db9356106391a3b16b2044d622113/configs/treesitter-c.lua#L2-L24).
 
