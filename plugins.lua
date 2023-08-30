@@ -245,6 +245,16 @@ local plugins = {
     ft = "markdown",
 
     config = false
+  },
+
+  {
+    "akinsho/git-conflict.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = true
   }
 }
 
