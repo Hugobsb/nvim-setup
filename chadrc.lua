@@ -8,11 +8,7 @@ M.ui = {
 
   nvdash = {
     load_on_startup = true,
-  },
-
-  statusline = {
-    theme = "vscode_colored",
-  },
+  }
 }
 
 M.mappings = require "custom.mappings"

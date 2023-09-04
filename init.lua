@@ -1,11 +1,11 @@
 local utils = require'custom.utils'
 local uuid = require'custom.modules.uuid'
 
--------------------------------------- globals -------------------------------------------
+----------------------------------- globals ----------------------------------------
 
 vim.g.neovide_cursor_vfx_mode = 'pixiedust'
 
---------------------------------------- fonts --------------------------------------------
+------------------------------------ fonts -----------------------------------------
 
 local default_font = 'Fira Code'
 local default_font_size = 14
@@ -18,7 +18,14 @@ if vim.fn.has('gui_running') then
   end
 end
 
----------------------------------- custom commands ---------------------------------------
+----------------------------------- neovide ----------------------------------------
+
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_right = 0
+vim.g.neovide_padding_left = 0
+
+------------------------------- custom commands ------------------------------------
 
 local new_cmd = vim.api.nvim_create_user_command
 
@@ -121,7 +128,7 @@ new_cmd('GenerateISODate', function()
   vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
 
---------------------------------- custom gui commands ------------------------------------
+------------------------------ custom gui commands ---------------------------------
 
 if vim.fn.has('gui_running') then
   new_cmd('IncreaseFontSize', function(cmd)
