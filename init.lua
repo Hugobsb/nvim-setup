@@ -156,3 +156,36 @@ if vim.fn.has('gui_running') then
   end, {})
 end
 
+new_cmd('BreakListItems', function()
+  local no_selection_found_message = 'A text must be selected to encode it.'
+
+  local selection = utils.get_visually_selected_text(no_selection_found_message)
+
+  local separator = vim.fn.input('Break at (default ","): ')
+
+  if separator == '' then
+    separator = nil
+  end
+
+  if selection == nil then
+    return
+  end
+
+  local ok, broken_text = xpcall(
+    utils.break_list_items,
+    function (err)
+      print('Failed to break the selected text: ' .. err)
+      return false
+    end,
+    selection,
+    separator
+  )
+
+  if ok then
+    utils.replace_selected_text(broken_text)
+  end
+
+  -- Cleaning the visual selection
+  vim.cmd('normal! gv')
+end, { addr = 'lines', range = '%' })
+

@@ -68,9 +68,9 @@ local function sort_text_alphabetically(text, ascending)
     )
   end
 
-  local sortedText = trim_left .. table.concat(lines, "\n") .. trim_right
+  local sorted_text = trim_left .. table.concat(lines, "\n") .. trim_right
 
-  return sortedText
+  return sorted_text
 end
 
 M.get_visually_selected_text = function(no_selection_found_message)
@@ -252,6 +252,26 @@ M.resize_font_size = function(amount, exact, bounds)
 
     return string.format(":h%d", size)
   end)
+end
+
+---@param text string
+---@param separator string|nil
+M.break_list_items = function(text, separator)
+  if (separator == nil) then
+    separator = ','
+  end
+
+  local trimmed_text = text:gsub("%s", "")
+
+  local broken_text = "\n" .. trimmed_text:gsub(separator, separator .. "\n")
+
+  local ends_with_separator = trimmed_text:sub(-1) == separator
+
+  if not ends_with_separator then
+      broken_text = broken_text .. "\n"
+  end
+
+  return broken_text
 end
 
 return M
