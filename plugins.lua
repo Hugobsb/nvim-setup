@@ -255,6 +255,16 @@ local plugins = {
     event = "BufEnter",
 
     config = true
+  },
+
+  {
+    "simrat39/symbols-outline.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = true
   }
 }
 
