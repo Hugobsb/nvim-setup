@@ -265,6 +265,16 @@ local plugins = {
     event = "BufEnter",
 
     config = true
+  },
+
+  {
+    "github/copilot.vim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = false
   }
 }
 
