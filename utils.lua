@@ -32,22 +32,45 @@ local function is_base64_valid(str)
   return type(result) == 'string' and string.len(result) > 0
 end
 
+---@param text string
+---@param ascending boolean
 local function sort_text_alphabetically(text, ascending)
-    local lines = {}
+  local lines = {}
 
-    for line in text:gmatch("[^\r\n]+") do
-        table.insert(lines, line)
-    end
+  local match_whitespaces = "%S+"
 
-    if (ascending) then
-      table.sort(lines)
-    else
-      table.sort(lines, function(a, b) return a > b end)
-    end
+  local match_lines = "[^\r\n]+"
 
-    local sortedText = table.concat(lines, "\n")
+  for line in text:gmatch(match_lines) do
+    table.insert(lines, line)
+  end
 
-    return sortedText
+  if #lines == 0 then
+    return text
+  end
+
+  local trim_left = string.match(text, "^[\n\r]+") or ""
+  local trim_right = string.match(text, "[\n\r]+$") or ""
+
+  if ascending then
+    table.sort(
+      lines,
+      function (a, b)
+        return a:match(match_whitespaces) < b:match(match_whitespaces)
+      end
+    )
+  else
+    table.sort(
+      lines,
+      function(a, b)
+        return a:match(match_whitespaces) > b:match(match_whitespaces)
+      end
+    )
+  end
+
+  local sortedText = trim_left .. table.concat(lines, "\n") .. trim_right
+
+  return sortedText
 end
 
 M.get_visually_selected_text = function(no_selection_found_message)
@@ -82,24 +105,32 @@ M.insert_text_before_cursor = function(str)
   vim.api.nvim_command('normal! ""P')
 end
 
+---@param replace_with string
 M.replace_selected_text = function(replace_with)
-  local start_pos = vim.fn.getpos("'<")
-  local end_pos = vim.fn.getpos("'>")
-  local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
-
-  if #lines == 0 then
-    return
-  end
-
-  -- Enter normal mode to avoid issues with visual mode
+  -- Save the current cursor position
   vim.api.nvim_command('normal! gv')
-
-  -- Delete the selected text
-  vim.api.nvim_command('normal! d')
 
   M.insert_text_before_cursor(replace_with)
 end
 
+--@param replace_with string
+M.replace_selected_text_visually = function(replace_with)
+  -- Save the current cursor position
+  vim.api.nvim_command('normal! gv')
+
+  if vim.fn.visualmode() ~= 'V' then
+    -- Estamos no modo visual (não linha)
+    -- Trocar para o modo visual de linha
+    vim.api.nvim_feedkeys('V', 'x', true)
+  end
+
+  print(vim.fn.visualmode())
+
+  M.insert_text_before_cursor(replace_with)
+end
+
+---@param str string
+---@return string
 M.base64_encode = function(str)
   if is_base64_valid(str) then
     print('Warning: the given string is already encoded')
@@ -107,38 +138,44 @@ M.base64_encode = function(str)
 
   local command = 'echo "' .. str .. '" | base64'
 
-  local result, err = execute_os_command(command)
+  local output, err = execute_os_command(command)
 
   if err then
     error(err)
   end
 
-  if type(result) == "string" and not str:match("\n$") then
-    return string.gsub(result, "\n$", "")
-  else
-    return result
+  local result = tostring(output)
+
+  if type(output) == "string" and not str:match("\n$") then
+    result = string.gsub(output, "\n$", "")
   end
+
+  return result
 end
 
+---@param str string
+---@return string
 M.base64_decode = function(str)
   if not is_base64_valid(str) then
     error('The given string is not a valid base64')
-    return
+    return str
   end
 
   local command = 'echo "' .. str .. '" | base64 --decode'
 
-  local result, err = execute_os_command(command)
+  local output, err = execute_os_command(command)
 
   if err then
     error(err)
   end
 
-  if type(result) == "string" and not str:match("\n$") then
-    return string.gsub(result, "\n$", "")
-  else
-    return result
+  local result = tostring(output)
+
+  if type(output) == "string" and not str:match("\n$") then
+    result = string.gsub(output, "\n$", "")
   end
+
+  return result
 end
 
 M.sort_alphabetically = function(option, no_selection_found_message)

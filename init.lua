@@ -111,7 +111,7 @@ new_cmd('SortAlphabetically', function()
     )
 
     if ok then
-      utils.replace_selected_text(sorted_string)
+      utils.replace_selected_text_visually(sorted_string)
     end
   end
 
