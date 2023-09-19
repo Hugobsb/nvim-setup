@@ -11,6 +11,7 @@ local config = {
     "yaml-language-server",
 
     -- formatters
+    "fixjson",
     "gofumpt",
     "goimports-reviser",
     "golines",

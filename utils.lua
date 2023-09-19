@@ -124,8 +124,6 @@ M.replace_selected_text_visually = function(replace_with)
     vim.api.nvim_feedkeys('V', 'x', true)
   end
 
-  print(vim.fn.visualmode())
-
   M.insert_text_before_cursor(replace_with)
 end
 
