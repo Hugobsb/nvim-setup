@@ -86,9 +86,6 @@ new_cmd('GenerateUUID', function()
   local id = uuid()
 
   utils.insert_text_before_cursor(id)
-
-  -- Cleaning the visual selection
-  vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
 
 new_cmd('SortAlphabetically', function()
@@ -117,16 +114,13 @@ new_cmd('SortAlphabetically', function()
 
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
-end, { addr = 'lines', range = '%' })
+end, {})
 
 new_cmd('GenerateISODate', function()
   local iso_date = utils.generate_iso_date()
 
   utils.insert_text_before_cursor(iso_date)
-
-  -- Cleaning the visual selection
-  vim.cmd('normal! gv')
-end, { addr = 'lines', range = '%' })
+end, {})
 
 ------------------------------ custom gui commands ---------------------------------
 
