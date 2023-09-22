@@ -5,10 +5,14 @@ local uuid = require'custom.modules.uuid'
 
 vim.g.neovide_cursor_vfx_mode = 'pixiedust'
 
+--------------------------------- manual sets --------------------------------------
+
+vim.cmd("set nowrap")
+
 ------------------------------------ fonts -----------------------------------------
 
 local default_font = 'Fira Code'
-local default_font_size = 14
+local default_font_size = 10
 
 if vim.fn.has('gui_running') then
   if (vim.fn.has('unix')) then
@@ -20,10 +24,20 @@ end
 
 ----------------------------------- neovide ----------------------------------------
 
+vim.opt.linespace = 6
+
 vim.g.neovide_padding_top = 0
 vim.g.neovide_padding_bottom = 0
 vim.g.neovide_padding_right = 0
 vim.g.neovide_padding_left = 0
+
+vim.g.neovide_refresh_rate = 75
+vim.g.neovide_refresh_rate_idle = 5
+
+vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_cursor_antialiasing = true
+
+vim.g.neovide_floating_blur_amount_x = 5.0
 
 ------------------------------- custom commands ------------------------------------
 
