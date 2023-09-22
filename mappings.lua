@@ -8,7 +8,7 @@ M.general = {
     -- Disabling this key mapping pointing it to itself fixes this issue
     -- Note: this solution is not universal and only works for GUI or terminals that support modifyOtherKeys
     -- See more at https://vimhelp.org/motion.txt.html#jump-motions
-    ["<C-i>"] = { "<C-i>", { noremap = true } },
+    ["<C-i>"] = { "<C-i>", "Go forwardly in jumplist", { noremap = true } },
   }
 }
 
@@ -25,22 +25,22 @@ M.lazygit = {
 
 M.dap = {
   n = {
-    ["<F5>"] = { "<cmd> lua require'dap'.continue() <CR>" },
-    ["<F10>"] = { "<cmd> lua require'dap'.step_over() <CR>" },
-    ["<F11>"] = { "<cmd> lua require'dap'.step_into() <CR>" },
-    ["<F12>"] = { "<cmd> lua require'dap'.step_out() <CR>" },
-    ["<leader>bp"] = { "<cmd> lua require'dap'.toggle_breakpoint() <CR>" },
-    ["<leader>BP"] = { "<cmd> lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) <CR>" },
-    ["<leader>lp"] = { "<cmd> lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) <CR>" },
-    ["<leader>dr"] = { "<cmd> lua require'dap'.repl.open() <CR>" },
+    ["<F5>"] = { "<cmd> lua require'dap'.continue() <CR>", "Debug controls | Continue" },
+    ["<F10>"] = { "<cmd> lua require'dap'.step_over() <CR>", "Debug controls | Step over" },
+    ["<F11>"] = { "<cmd> lua require'dap'.step_into() <CR>", "Debug controls | Step into" },
+    ["<F12>"] = { "<cmd> lua require'dap'.step_out() <CR>", "Debug controls | Step out" },
+    ["<leader>bp"] = { "<cmd> lua require'dap'.toggle_breakpoint() <CR>", "Toggle line breakpoint" },
+    ["<leader>BP"] = { "<cmd> lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) <CR>", "Set line conditional breakpoint" },
+    ["<leader>lp"] = { "<cmd> lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) <CR>", "Set line conditional breakpoint for logging" },
+    ["<leader>dr"] = { "<cmd> lua require'dap'.repl.open() <CR>", "Open REPL" },
   }
 }
 
 M.dapui = {
   n = {
-    ["<leader>dpu"] = { "<cmd> lua require'dapui'.open() <CR>" },
-    ["<leader>dpU"] = { "<cmd> lua require'dapui'.close() <CR>" },
-    ["<leader>dpuk"] = { "<cmd> lua require'dapui'.eval() <CR>" },
+    ["<leader>dpu"] = { "<cmd> lua require'dapui'.open() <CR>", "Open debugger" },
+    ["<leader>dpU"] = { "<cmd> lua require'dapui'.close() <CR>", "Close debugger" },
+    ["<leader>dpuk"] = { "<cmd> lua require'dapui'.eval() <CR>", "Evaluate expression" },
   }
 }
 
@@ -48,15 +48,29 @@ M.dapui = {
 
 M.tabufline = {
   n = {
-    ["<C-Tab>"] = { "<cmd> lua require'nvchad.tabufline'.tabuflineNext() <CR>" },
-    ["<leader>bm"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>" },
-    ["<leader>bM"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>" },
+    ["<C-Tab>"] = { "<cmd> lua require'nvchad.tabufline'.tabuflineNext() <CR>", "Go to next tab" },
+    ["<leader>bm"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", "Move tab forward" },
+    ["<leader>bM"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>", "Move tab backward" },
   }
 }
 
+-- Diffview
+
+M.diffview = {
+  n = {
+    ["<leader>dv"] = { "<cmd> DiffviewOpen <CR>", "Open diff view menu" },
+    ["<leader>dV"] = { "<cmd> DiffviewClose <CR>", "Close diff view menu" }
+  }
+}
+
+-- Telescope
+
 M.telescope = {
   n = {
-    ["<leader>fwa"] = { "<cmd> lua require'telescope'.extensions.live_grep_args.live_grep_args() <CR>" }
+    ["<leader>fwa"] = {
+      "<cmd> lua require'telescope'.extensions.live_grep_args.live_grep_args() <CR>",
+      "Search in Telescope with custom arguments"
+    }
   }
 }
 
@@ -64,16 +78,16 @@ M.telescope = {
 
 M.linemovement = {
   n = {
-    ["<A-Up>"] = { "<cmd> m-2 <CR>" },
-    ["<A-Down>"] = { "<cmd> m+ <CR>" },
-    ["<A-k>"] = { "<cmd> m-2 <CR>" },
-    ["<A-j>"] = { "<cmd> m+ <CR>" }
+    ["<A-Up>"] = { "<cmd> m-2 <CR>", "Move line upwards" },
+    ["<A-Down>"] = { "<cmd> m+ <CR>", "Move line downwards" },
+    ["<A-k>"] = { "<cmd> m-2 <CR>", "Move line upwards" },
+    ["<A-j>"] = { "<cmd> m+ <CR>", "Move line downwards" }
   },
   i = {
-    ["<A-Up>"] = { "<Esc> <cmd> m-2 <CR>i" },
-    ["<A-Down>"] = { "<Esc> <cmd> m+ <CR>i" },
-    ["<A-k>"] = { "<Esc> <cmd> m-2 <CR>i" },
-    ["<A-j>"] = { "<Esc> <cmd> m+ <CR>i" }
+    ["<A-Up>"] = { "<Esc> <cmd> m-2 <CR>i", "Move line upwards" },
+    ["<A-Down>"] = { "<Esc> <cmd> m+ <CR>i", "Move line downwards" },
+    ["<A-k>"] = { "<Esc> <cmd> m-2 <CR>i", "Move line upwards" },
+    ["<A-j>"] = { "<Esc> <cmd> m+ <CR>i", "Move line downwards" }
   }
 }
 
@@ -87,9 +101,9 @@ vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv")
 
 -- Selection mappings
 
-M.selec = {
+M.selection = {
   n = {
-    ["<leader>a"] = { "ggVG" }
+    ["<leader>a"] = { "ggVG", "Select all" }
   },
 }
 
@@ -97,14 +111,14 @@ M.selec = {
 
 M.font = {
   n = {
-    ["<A-=>"] = { "<cmd> RestoreFontSize <CR> " },
-    ["<C-=>"] = { "<cmd> IncreaseFontSize <CR> " },
-    ["<C-->"] = { "<cmd> DecreaseFontSize <CR> " }
+    ["<A-=>"] = { "<cmd> RestoreFontSize <CR>", "Restore font size" },
+    ["<C-=>"] = { "<cmd> IncreaseFontSize <CR>", "Increase font size" },
+    ["<C-->"] = { "<cmd> DecreaseFontSize <CR>", "Decrease font size" }
   },
   i = {
-    ["<A-=>"] = { "<cmd> RestoreFontSize <CR> " },
-    ["<C-=>"] = { "<cmd> IncreaseFontSize <CR> " },
-    ["<C-->"] = { "<cmd> DecreaseFontSize <CR> " }
+    ["<A-=>"] = { "<cmd> RestoreFontSize <CR>", "Restore font size" },
+    ["<C-=>"] = { "<cmd> IncreaseFontSize <CR>", "Increase font size" },
+    ["<C-->"] = { "<cmd> DecreaseFontSize <CR>", "Decrease font size" }
   }
 }
 
