@@ -1,11 +1,5 @@
 local M = {}
 
-M.disabled = {
-  n = {
-    ["<Tab>"] = ""
-  }
-}
-
 -- General
 
 M.general = {
