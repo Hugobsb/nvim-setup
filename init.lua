@@ -31,9 +31,6 @@ vim.g.neovide_padding_bottom = 0
 vim.g.neovide_padding_right = 0
 vim.g.neovide_padding_left = 0
 
-vim.g.neovide_refresh_rate = 75
-vim.g.neovide_refresh_rate_idle = 5
-
 vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_cursor_antialiasing = true
 
