@@ -275,7 +275,18 @@ local plugins = {
     event = "BufEnter",
 
     config = false
+  },
+
+  {
+    "sindrets/diffview.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = true
   }
 }
 
 return plugins
+
