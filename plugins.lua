@@ -4,6 +4,7 @@ local plugins = {
 
     dependencies = {
       "jose-elias-alvarez/null-ls.nvim",
+      "SmiteshP/nvim-navic"
     },
 
     config = function()
@@ -285,6 +286,49 @@ local plugins = {
     event = "BufEnter",
 
     config = true
+  },
+
+  {
+    "kevinhwang91/nvim-hlslens",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = true
+  },
+
+  {
+    "lewis6991/gitsigns.nvim",
+
+    version = "*",
+
+    config = require "custom.configs.gitsigns"
+  },
+
+  {
+    "petertriho/nvim-scrollbar",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    dependencies = {
+      "kevinhwang91/nvim-hlslens",
+      "lewis6991/gitsigns.nvim"
+    },
+
+    config = true
+  },
+
+  {
+    "SmiteshP/nvim-navic",
+
+    version = "*",
+
+    event = "LspAttach",
+
+    config = require "custom.configs.nvim-navic"
   }
 }
 

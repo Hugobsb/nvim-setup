@@ -1,5 +1,7 @@
 local lspconfig = require "lspconfig"
 
+local navic = require "nvim-navic"
+
 ---@diagnostic disable-next-line: different-requires
 local original_plugin_config = require "plugins.configs.lspconfig"
 
@@ -49,6 +51,9 @@ local servers = {
   ['jsonls'] = {
     fileTypes = { "json", "jsonc" }
   },
+  ['lua_ls'] = {
+    filetypes = { "lua" }
+  },
   ['tsserver'] = {
     cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
@@ -60,7 +65,13 @@ local servers = {
 
 for lsp, config in pairs(servers) do
   local setup_config = {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+      end
+
+      on_attach(client, bufnr)
+    end,
     capabilities = capabilities,
   }
 
