@@ -318,7 +318,7 @@ local plugins = {
       "lewis6991/gitsigns.nvim"
     },
 
-    config = true
+    config = require "custom.configs.nvim-scrollbar"
   },
 
   {
