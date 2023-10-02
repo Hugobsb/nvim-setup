@@ -329,6 +329,41 @@ local plugins = {
     event = "LspAttach",
 
     config = require "custom.configs.nvim-navic"
+  },
+
+  {
+    "gorbit99/codewindow.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    keys = {
+      {
+        "<leader>mo",
+        "codewindow.toggle_minimap()",
+        mode = "n",
+        desc = "Toggle Minimap",
+      },
+      {
+        "<leader>mm",
+        "codewindow.toggle_focus()",
+        mode = "n",
+        desc = "Focus Minimap",
+      },
+    },
+
+    config = function(_, opts)
+      local codewindow = require "codewindow"
+      codewindow.setup(opts)
+      codewindow.apply_default_keybinds()
+    end,
+
+    opts = {
+      show_cursor = false,
+      screen_bounds = "lines",
+      window_border = "none",
+    },
   }
 }
 
