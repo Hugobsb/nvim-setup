@@ -48,7 +48,6 @@ M.dapui = {
 
 M.tabufline = {
   n = {
-    ["<C-Tab>"] = { "<cmd> lua require'nvchad.tabufline'.tabuflineNext() <CR>", "Go to next tab" },
     ["<leader>bm"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", "Move tab forward" },
     ["<leader>bM"] = { "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>", "Move tab backward" },
   }
