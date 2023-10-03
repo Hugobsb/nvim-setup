@@ -322,22 +322,6 @@ local plugins = {
   },
 
   {
-    "SmiteshP/nvim-navic",
-
-    version = "*",
-
-    dependencies = {
-      "fgheng/winbar.nvim",
-    },
-
-    event = "LspAttach",
-
-    config = function()
-      require "custom.configs.nvim-navic"
-    end
-  },
-
-  {
     "gorbit99/codewindow.nvim",
 
     version = "*",
@@ -370,6 +354,20 @@ local plugins = {
       screen_bounds = "lines",
       window_border = "none",
     },
+  },
+
+  {
+    'Bekaboo/dropbar.nvim',
+
+    version = "*",
+
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    },
+
+    event = "BufEnter",
+
+    config = true
   }
 }
 
