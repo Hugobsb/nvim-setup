@@ -326,9 +326,15 @@ local plugins = {
 
     version = "*",
 
+    dependencies = {
+      "fgheng/winbar.nvim",
+    },
+
     event = "LspAttach",
 
-    config = require "custom.configs.nvim-navic"
+    config = function()
+      require "custom.configs.nvim-navic"
+    end
   },
 
   {

@@ -28,17 +28,21 @@ local config = {
       TypeParameter = ' '
     },
     lsp = {
-        auto_attach = false,
+        auto_attach = true,
         preference = nil,
     },
-    highlight = false,
+    highlight = true,
     separator = " > ",
-    depth_limit = 0,
+    depth_limit = 10,
     depth_limit_indicator = "..",
     safe_output = true,
     lazy_update_context = false,
-    click = false
+    click = true
 }
 
-return config
+dofile(vim.g.base46_cache .. "navic")
+
+require("nvim-navic").setup(config)
+
+vim.o.winbar = " %{%v:lua.require'nvim-navic'.get_location()%}"
 
