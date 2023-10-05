@@ -14,11 +14,11 @@ M.general = {
 
 -- Lazy Git
 
-local OpenLazyGit = { ["<leader>lg"] = { "<cmd> LazyGit  <CR>" , "Open LazyGit" } }
 
-M.lazygit = {
-  n = OpenLazyGit,
-  t = OpenLazyGit
+M.neogit = {
+  n = {
+    ["<leader>ng"] = { "<cmd> Neogit  <CR>" , "Open Neogit" }
+  }
 }
 
 -- Dap

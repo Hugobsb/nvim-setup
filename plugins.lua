@@ -34,22 +34,6 @@ local plugins = {
   },
 
   {
-    "kdheepak/lazygit.nvim",
-
-    lazy = false,
-
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      -- optional for floating window border decoration
-      "nvim-lua/plenary.nvim",
-    },
-
-    config = function()
-      require "custom.configs.lazygit-c"
-    end
-  },
-
-  {
     "nvim-telescope/telescope.nvim",
 
     dependencies = {
@@ -368,6 +352,20 @@ local plugins = {
     event = "BufEnter",
 
     config = true
+
+  {
+    'NeogitOrg/neogit',
+
+    lazy = false,
+
+    dependencies = {
+      'nvim-lua/plenary.nvim',         -- required
+      'nvim-telescope/telescope.nvim', -- optional
+      'sindrets/diffview.nvim',        -- optional
+      'ibhagwan/fzf-lua',              -- optional
+    },
+
+    config = require "custom.configs.neogit"
   }
 }
 
