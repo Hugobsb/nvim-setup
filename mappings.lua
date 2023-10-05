@@ -58,6 +58,7 @@ M.tabufline = {
 M.diffview = {
   n = {
     ["<leader>dv"] = { "<cmd> DiffviewOpen <CR>", "Open diff view menu" },
+    ["<leader>dvh"] = { "<cmd> DiffviewFileHistory <CR>", "Open diff view file history menu" },
     ["<leader>dV"] = { "<cmd> DiffviewClose <CR>", "Close diff view menu" }
   }
 }
