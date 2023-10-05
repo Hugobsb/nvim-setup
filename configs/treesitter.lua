@@ -4,6 +4,7 @@ local config = {
     "dart",
     "dockerfile",
     "go",
+    "http",
     "java",
     "json",
     "jsdoc",
@@ -29,6 +30,24 @@ local config = {
 
   -- List of parsers to ignore installing (for "all")
   ignore_install = { "javascript" },
+
+  highlight = {
+    enable = true,
+    disable = {
+      "NeogitConsole",
+      "NeogitStatus",
+      "NeogitGitCommandHistory",
+      "NeogitMergeMessage",
+      "NeogitCommitMessage",
+      "NeogitCommitSelectView",
+      "NeogitCommitView",
+      "NeogitLogView",
+      "NeogitRebaseTodo",
+      "NeogitReflogView",
+      "NeogitStatusNew",
+      "NeogitPopup"
+    }
+  },
 
   autotag = {
     enable = true

@@ -1,4 +1,4 @@
-local utils = require "custom/utils"
+local utils = require "custom.utils"
 
 local blacklist = { "bees", "gateway" }
 

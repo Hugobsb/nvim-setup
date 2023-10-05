@@ -9,7 +9,7 @@ local plugins = {
 
     config = function()
       require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig-c"
+      require "custom.configs.lspconfig"
     end,
   },
 
@@ -30,7 +30,7 @@ local plugins = {
   {
     "williamboman/mason.nvim",
 
-    opts = require "custom.configs.mason-c"
+    opts = require "custom.configs.mason"
   },
 
   {
@@ -40,7 +40,7 @@ local plugins = {
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
 
-    opts = require "custom.configs.telescope-c",
+    opts = require "custom.configs.telescope",
 
     config = require "plugins.configs.telescope"
   },
@@ -66,7 +66,7 @@ local plugins = {
 
     config = function()
       require "dapui".setup(
-        require "custom.configs.dapui-c"
+        require "custom.configs.dapui"
       )
     end
   },
@@ -175,13 +175,13 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
 
-    opts = require "custom.configs.nvimtree-c"
+    opts = require "custom.configs.nvimtree"
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
 
-    opts = require "custom.configs.treesitter-c"
+    opts = require "custom.configs.treesitter"
   },
 
   {
@@ -191,7 +191,7 @@ local plugins = {
 
     dependencies = { "rafamadriz/friendly-snippets" },
 
-    config = require "custom.configs.luasnip-c",
+    config = require "custom.configs.luasnip",
 
     build = "make install_jsregexp"
   },
@@ -201,7 +201,7 @@ local plugins = {
 
     lazy = false,
 
-    config = require "custom.configs.presence-c"
+    config = require "custom.configs.presence"
   },
 
   {
