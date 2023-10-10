@@ -12,8 +12,7 @@ M.general = {
   }
 }
 
--- Lazy Git
-
+-- Neogit
 
 M.neogit = {
   n = {
