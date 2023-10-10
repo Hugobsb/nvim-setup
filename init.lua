@@ -55,7 +55,11 @@ new_cmd('Base64Encode', function()
   local ok, encoded_string = xpcall(
     utils.base64_encode,
     function(err)
-      print('Failed to encode the selected text: ' .. err)
+      vim.notify(
+        'Failed to encode the selected text: ' .. err,
+        'error',
+        { title = 'Base64Encode command' }
+      )
       return false
     end,
     selection
@@ -81,7 +85,11 @@ new_cmd('Base64Decode', function()
   local ok, decoded_string = xpcall(
     utils.base64_decode,
     function(err)
-      print('Failed to decode the selected text: ' .. err)
+      vim.notify(
+        'Failed to decode the selected text: ' .. err,
+        'error',
+        { title = 'Base64Decode command' }
+      )
       return false
     end,
     selection
@@ -96,10 +104,23 @@ new_cmd('Base64Decode', function()
 end, { addr = 'lines', range = '%' })
 
 new_cmd('GenerateUUID', function()
-  uuid.seed()
-  local id = uuid()
+  local ok, id = xpcall(
+    function ()
+      uuid.seed()
+      return uuid()
+    end,
+    function(err)
+      vim.notify(
+        'Failed to generate UUID: ' .. err,
+        'error',
+        { title = 'GenerateUUID command' }
+      )
+    end
+  )
 
-  utils.insert_text_before_cursor(id)
+  if ok then
+    utils.insert_text_before_cursor(id)
+  end
 end, { addr = 'lines', range = '%' })
 
 new_cmd('SortAlphabetically', function()
@@ -110,12 +131,20 @@ new_cmd('SortAlphabetically', function()
   )
 
   if option ~= '1' and option ~= '2' then
-    print(" " .. "Invalid option. You must select between '1' and '2'.")
+    vim.notify(
+      " " .. "Invalid option. You must select between '1' and '2'.",
+      "warning",
+      { title = 'SortAlphabetically command' }
+    )
   else
     local ok, sorted_string = xpcall(
       utils.sort_alphabetically,
       function(err)
-        print('Failed to sort the selected text: ' .. err)
+        vim.notify(
+          'Failed to sort the selected text: ' .. err,
+          'error',
+          { title = 'SortAlphabetically command' }
+        )
         return false
       end,
       option, no_selection_found_message
@@ -182,7 +211,11 @@ new_cmd('BreakListItems', function()
   local ok, broken_text = xpcall(
     utils.break_list_items,
     function (err)
-      print('Failed to break the selected text: ' .. err)
+      vim.notify(
+        'Failed to break the selected text: ' .. err,
+        'error',
+        { title = 'BreakListItems command' }
+      )
       return false
     end,
     selection,

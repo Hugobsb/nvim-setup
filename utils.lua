@@ -79,7 +79,7 @@ M.get_visually_selected_text = function(no_selection_found_message)
   local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
 
   if #lines == 0 then
-    print(no_selection_found_message)
+    vim.notify(no_selection_found_message, "warning", { title = 'Visual selection utilitary' })
     return ""
   elseif #lines == 1 then
     return string.sub(lines[1], start_pos[3], end_pos[3])
@@ -131,7 +131,7 @@ end
 ---@return string
 M.base64_encode = function(str)
   if is_base64_valid(str) then
-    print('Warning: the given string is already encoded')
+    vim.notify('Warning: the given string is already encoded', 'warning', { title = 'Base64 encode utilitary' })
   end
 
   local command = 'echo "' .. str .. '" | base64'
