@@ -157,7 +157,7 @@ new_cmd('SortAlphabetically', function()
 
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
-end, {})
+end, { addr = 'lines', range = '%' })
 
 new_cmd('GenerateISODate', function()
   local iso_date = utils.generate_iso_date()
