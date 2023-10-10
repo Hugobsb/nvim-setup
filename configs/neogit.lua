@@ -2,7 +2,7 @@ local config = {
   -- Hides the hints at the top of the status buffer
   disable_hint = false,
   -- Disables changing the buffer highlights based on where the cursor is.
-  disable_context_highlighting = true,
+  disable_context_highlighting = false,
   -- Disables signs for sections/items/hunks
   disable_signs = false,
   -- Do not ask to confirm the commit - just do it when the buffer is closed.
