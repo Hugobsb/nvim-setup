@@ -352,6 +352,7 @@ local plugins = {
     event = "BufEnter",
 
     config = true
+  },
 
   {
     'NeogitOrg/neogit',
