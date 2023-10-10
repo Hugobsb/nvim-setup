@@ -36,6 +36,9 @@ vim.g.neovide_cursor_antialiasing = true
 
 vim.g.neovide_floating_blur_amount_x = 5.0
 
+vim.g.neovide_font_hinting = 'none'
+vim.g.neovide_font_edging = 'subpixelantialias'
+
 ------------------------------- custom commands ------------------------------------
 
 local new_cmd = vim.api.nvim_create_user_command
