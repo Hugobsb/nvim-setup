@@ -312,21 +312,6 @@ local plugins = {
 
     event = "BufEnter",
 
-    keys = {
-      {
-        "<leader>mo",
-        "codewindow.toggle_minimap()",
-        mode = "n",
-        desc = "Toggle Minimap",
-      },
-      {
-        "<leader>mm",
-        "codewindow.toggle_focus()",
-        mode = "n",
-        desc = "Focus Minimap",
-      },
-    },
-
     config = function(_, opts)
       local codewindow = require "codewindow"
       codewindow.setup(opts)
