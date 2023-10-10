@@ -348,6 +348,22 @@ local plugins = {
     },
 
     config = require "custom.configs.neogit"
+  },
+
+  {
+    "rcarriga/nvim-notify",
+
+    version = "*",
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",  -- optional
+    },
+
+    event = "BufEnter",
+
+    config = function()
+      require "custom.configs.notify"
+    end
   }
 }
 
