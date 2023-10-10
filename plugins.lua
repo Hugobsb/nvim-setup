@@ -333,11 +333,7 @@ local plugins = {
       codewindow.apply_default_keybinds()
     end,
 
-    opts = {
-      show_cursor = false,
-      screen_bounds = "lines",
-      window_border = "none",
-    },
+    opts = require "custom.configs.codewindow",
   },
 
   {
