@@ -1,4 +1,5 @@
 local utils = require'custom.utils'
+local screenshot = require'custom.modules.screenshot'
 local uuid = require'custom.modules.uuid'
 
 ----------------------------------- globals ----------------------------------------
@@ -230,6 +231,19 @@ new_cmd('BreakListItems', function()
   vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
 
+new_cmd('Screenshot', function()
+  xpcall(
+    screenshot,
+    function (err)
+        vim.notify(
+          'Failed to take screenshot of the selected text:' .. err,
+          'error',
+          { title = 'Screenshot command' }
+        )
+      return false
+    end
+  )
+end, { addr = 'lines', range = '%' })
 
 ---------------------------------- bugfixes ----------------------------------------
 

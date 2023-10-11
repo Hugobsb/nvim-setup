@@ -281,5 +281,30 @@ M.break_list_items = function(text, separator)
   return broken_text
 end
 
+---@param c string
+M.char_to_hex = function(c)
+  return string.format("%%%02X", string.byte(c))
+end
+
+---@param text string
+M.url_encode = function (text)
+  text = text:gsub("\n", "\r\n")
+  text = text:gsub("([^%w ])", M.char_to_hex)
+  text = text:gsub(" ", "+")
+  return text
+end
+
+---@param x string
+M.hex_to_char = function(x)
+  return string.char(tonumber(x, 16))
+end
+
+---@param text string
+M.url_decode = function(text)
+  text = text:gsub("+", " ")
+  text = text:gsub("%%(%x%x)", M.hex_to_char)
+  return text
+end
+
 return M
 
