@@ -12,6 +12,24 @@ M.general = {
   }
 }
 
+-- Lsp saga
+
+M.lspsaga = {
+  n = {
+    ["<leader>ca"] = { "<cmd> Lspsaga code_action <CR>", "Open LSP Saga code action" },
+    ["<leader>o"] = { "<cmd> Lspsaga outline <CR>", "Toggle LSP Saga outline" },
+    ["<leader>wd"] = { "<cmd> Lspsaga show_workspace_diagnostics <CR>", "Show LSP Saga workspace diagnostics" },
+    ["<leader>f"] = { "<cmd> Lspsaga show_cursor_diagnostics <CR>", "Show LSP Saga cursor diagnostics", { noremap = true } },
+    ["<leader>ld"] = { "<cmd> Lspsaga show_line_diagnostics <CR>", "Show LSP Saga line diagnostics" },
+    ["<leader>zd"] = { "<cmd> Lspsaga show_buf_diagnostics <CR>", "Show LSP Saga current buffer diagnostics" },
+    ["<leader>fd"] = { "<cmd> Lspsaga finder <CR>", "Open LSP Saga finder" },
+    ["<leader>ic"] = { "<cmd> Lspsaga incoming_calls <CR>", "Open LSP Saga incoming calls" },
+    ["<leader>oc"] = { "<cmd> Lspsaga incoming_calls <CR>", "Open LSP Saga outcoming calls" },
+    ["gp"] = { "<cmd> Lspsaga peek_definition <CR>", "Open LSP Saga definition peek" },
+    ["gP"] = { "<cmd> Lspsaga peek_type_definition <CR>", "Open LSP Saga type definition peek" }
+  }
+}
+
 -- Neogit
 
 M.neogit = {
