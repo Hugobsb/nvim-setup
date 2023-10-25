@@ -1,5 +1,5 @@
 local config = {
-  auto_enable = true,
+  auto_enable = false,
   show_cursor = false,
   screen_bounds = "lines",
   window_border = "none",
