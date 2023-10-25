@@ -30,7 +30,7 @@ end
 local function is_base64_valid(str)
   local base64_pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
 
-  local command = string.format("echo %s | grep -E '%s'", escape_shell_chars(str), base64_pattern)
+  local command = string.format('echo "%s" | grep -E "%s"', escape_shell_chars(str), base64_pattern)
 
   local result, err = execute_os_command(command)
 
@@ -140,10 +140,10 @@ end
 ---@return string
 M.base64_encode = function(str)
   if is_base64_valid(str) then
-    vim.notify('Warning: the given string is already encoded', 'warning', { title = 'Base64 encode utilitary' })
+    vim.notify('Warning: the given string can be already encoded', 'warning', { title = 'Base64 encode utilitary' })
   end
 
-  local command = string.format('echo %s | base64', escape_shell_chars(str))
+  local command = string.format('echo "%s" | base64', escape_shell_chars(str))
 
   local output, err = execute_os_command(command)
 
@@ -168,7 +168,7 @@ M.base64_decode = function(str)
     return str
   end
 
-  local command = string.format('echo %s | base64 --decode', escape_shell_chars(str))
+  local command = string.format('echo "%s" | base64 --decode', escape_shell_chars(str))
 
   local output, err = execute_os_command(command)
 
