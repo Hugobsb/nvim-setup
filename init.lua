@@ -256,3 +256,13 @@ vim.api.nvim_create_autocmd("FileType", {
 		pattern = "NeogitCommitMessage";
 		command = "silent! set filetype=gitcommit",
 })
+
+-- Copilot tab key
+
+vim.api.nvim_set_keymap('i', '<silent><script><expr> <C-J>', 'v:lua.require(\'copilot\').Accept(\'\\n\')', { noremap = true, silent = true })
+vim.g.copilot_no_tab_map = true
+
+-- Neovide alt key for MacOS
+
+vim.g.neovide_input_macos_alt_is_meta = true
+
