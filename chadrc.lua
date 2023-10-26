@@ -35,8 +35,26 @@ M.ui = {
         return encoding .. "  "
       end
 
+      local function git()
+        local has_buffer_branch = string.len(modules[3]) > 0
+
+        if not has_buffer_branch then
+          local directory_branch = vim.fn.system("git branch --show-current 2>/dev/null")
+
+          -- Remove the empty character ^@ from the end of the function
+          directory_branch = string.sub(directory_branch, 1, -2)
+
+          if string.len(directory_branch) > 0 then
+            return "  " .. directory_branch .. "  "
+          end
+        end
+
+        return ""
+      end
+
       table.insert(modules, 10, get_tab_spaces())
       table.insert(modules, 12, get_line_break_encoding())
+      table.insert(modules, 4, git())
     end
   },
 }
