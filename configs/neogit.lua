@@ -40,6 +40,8 @@ local config = {
     "NeogitCommitPopup--allow-empty",
     "NeogitRevertPopup--no-edit",
   },
+  -- Set to false if you want to be responsible for creating _ALL_ keymappings
+  use_default_keymaps = true,
   -- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
   -- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
   auto_refresh = true,
@@ -79,6 +81,9 @@ local config = {
     kind = "tab",
   },
   merge_editor = {
+    kind = "split",
+  },
+  tag_editor = {
     kind = "split",
   },
   preview_buffer = {
@@ -170,6 +175,23 @@ local config = {
       ["<c-j>"] = "NOP",
     },
     -- Setting any of these to `false` will disable the mapping.
+    popup = {
+      ["?"] = "HelpPopup",
+      ["A"] = "CherryPickPopup",
+      ["D"] = "DiffPopup",
+      ["M"] = "RemotePopup",
+      ["P"] = "PushPopup",
+      ["X"] = "ResetPopup",
+      ["Z"] = "StashPopup",
+      ["b"] = "BranchPopup",
+      ["c"] = "CommitPopup",
+      ["f"] = "FetchPopup",
+      ["l"] = "LogPopup",
+      ["m"] = "MergePopup",
+      ["p"] = "PullPopup",
+      ["r"] = "RebasePopup",
+      ["v"] = "RevertPopup",
+    },
     status = {
       ["q"] = "Close",
       ["I"] = "InitRepo",
@@ -192,26 +214,10 @@ local config = {
       ["<c-v>"] = "VSplitOpen",
       ["<c-x>"] = "SplitOpen",
       ["<c-t>"] = "TabOpen",
-      ["?"] = "HelpPopup",
-      ["D"] = "DiffPopup",
-      ["p"] = "PullPopup",
-      ["r"] = "RebasePopup",
-      ["m"] = "MergePopup",
-      ["P"] = "PushPopup",
-      ["c"] = "CommitPopup",
-      ["l"] = "LogPopup",
-      ["v"] = "RevertPopup",
-      ["Z"] = "StashPopup",
-      ["A"] = "CherryPickPopup",
-      ["b"] = "BranchPopup",
-      ["f"] = "FetchPopup",
-      ["X"] = "ResetPopup",
-      ["M"] = "RemotePopup",
       ["{"] = "GoToPreviousHunkHeader",
       ["}"] = "GoToNextHunkHeader",
     },
-  },
+  }
 }
 
 return config
-
