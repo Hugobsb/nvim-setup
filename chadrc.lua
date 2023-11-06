@@ -57,6 +57,10 @@ M.ui = {
       table.insert(modules, 4, git())
     end
   },
+
+  cmp = {
+    style = "atom_colored"
+  },
 }
 
 M.mappings = require "custom.mappings"
