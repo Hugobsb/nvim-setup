@@ -378,6 +378,16 @@ local plugins = {
     config = function()
       require "custom.configs.notify"
     end
+  },
+
+  {
+    "rmagatti/auto-session",
+
+    version = "*",
+
+    lazy = false,
+
+    config = require "custom.configs.auto-session"
   }
 }
 

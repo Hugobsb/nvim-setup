@@ -8,7 +8,11 @@ vim.g.neovide_cursor_vfx_mode = 'pixiedust'
 
 --------------------------------- manual sets --------------------------------------
 
+-- Disables line wrapping
 vim.cmd("set nowrap")
+
+-- Sets `session options` for the `auto-session` plugin
+vim.cmd("set sessionoptions+=winpos,terminal,folds")
 
 ------------------------------------ fonts -----------------------------------------
 
@@ -259,8 +263,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Copilot tab key
 
-vim.api.nvim_set_keymap('i', '<silent><script><expr> <C-J>', 'v:lua.require(\'copilot\').Accept(\'\\n\')', { noremap = true, silent = true })
 vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap('i', '<silent><script><expr> <C-J>', 'v:lua.require(\'copilot\').Accept(\'\\n\')', { noremap = true, silent = true })
 
 -- Neovide alt key for MacOS
 

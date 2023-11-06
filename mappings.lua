@@ -86,8 +86,12 @@ M.telescope = {
   n = {
     ["<leader>fwa"] = {
       "<cmd> lua require'telescope'.extensions.live_grep_args.live_grep_args() <CR>",
-      "Search in Telescope with custom arguments"
-    }
+      "Live grep with custom arguments"
+    },
+    ["<leader>fs"] = {
+      "<cmd> lua require'auto-session.session-lens'.search_session() <CR>",
+      "Search for sessions from `auto-session` plugin",
+    },
   }
 }
 
@@ -136,6 +140,13 @@ M.font = {
     ["<A-=>"] = { "<cmd> RestoreFontSize <CR>", "Restore font size" },
     ["<C-=>"] = { "<cmd> IncreaseFontSize <CR>", "Increase font size" },
     ["<C-->"] = { "<cmd> DecreaseFontSize <CR>", "Decrease font size" }
+  }
+}
+
+M.autosession = {
+  n = {
+    ["<leader>ss"] = { "<cmd> SessionSave <CR>", "Save a session" },
+    ["<leader>sr"] = { "<cmd> SessionSave <CR>", "Restore the last session" },
   }
 }
 
