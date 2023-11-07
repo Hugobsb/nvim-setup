@@ -14,6 +14,15 @@ M.ui = {
 
   extended_integrations = { "navic" },
 
+  hl_override = {
+    ["St_cwd"] = {
+      bg = "statusline_bg",
+      fg = "#ffae00",
+    },
+  },
+
+  lsp_semantic_tokens = true, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
+
   statusline = {
     theme = "vscode_colored",
     overriden_modules = function(modules)
@@ -55,6 +64,9 @@ M.ui = {
       table.insert(modules, 10, get_tab_spaces())
       table.insert(modules, 12, get_line_break_encoding())
       table.insert(modules, 4, git())
+
+      -- Add an extra space to cwd ending
+      table.insert(modules, 17, " ")
     end
   },
 
