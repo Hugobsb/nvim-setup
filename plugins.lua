@@ -388,6 +388,16 @@ local plugins = {
     lazy = false,
 
     config = require "custom.configs.auto-session"
+  },
+
+  {
+    "stevearc/dressing.nvim",
+
+    version = "*",
+
+    lazy = false,
+
+    config = require "custom.configs.dressing"
   }
 }
 

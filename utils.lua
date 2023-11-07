@@ -188,9 +188,9 @@ end
 M.sort_alphabetically = function(option, no_selection_found_message)
   local text = M.get_visually_selected_text(no_selection_found_message)
 
-  if option == '1' then
+  if option == 'Ascending' then
     return sort_text_alphabetically(text, true)
-  else if option == '2' then
+  else if option == 'Descending' then
     return sort_text_alphabetically(text, false)
   end end
 

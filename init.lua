@@ -131,37 +131,38 @@ end, { addr = 'lines', range = '%' })
 new_cmd('SortAlphabetically', function()
   local no_selection_found_message = 'A text must be selected to encode it.'
 
-  local option = vim.fn.input(
-    'Ascending: 1' .. '\n' .. 'Descending: 2' .. '\n' .. 'Choose your option: '
-  )
+  local options = { 'Ascending', 'Descending' }
 
-  if option ~= '1' and option ~= '2' then
-    vim.notify(
-      " " .. "Invalid option. You must select between '1' and '2'.",
-      "warning",
-      { title = 'SortAlphabetically command' }
-    )
-  else
-    local ok, sorted_string = xpcall(
-      utils.sort_alphabetically,
-      function(err)
-        vim.notify(
-          'Failed to sort the selected text: ' .. err,
-          'error',
-          { title = 'SortAlphabetically command' }
-        )
-        return false
-      end,
-      option, no_selection_found_message
-    )
+  vim.ui.select(options, { prompt = 'Choose the sort method: ' }, function(choice)
+    if choice ~= options[1] and choice ~= options[2] then
+      vim.notify(
+        " " .. string.format("Invalid option. You must select between '%s' and %s.", options[1], options[2]),
+        "warning",
+        { title = 'SortAlphabetically command' }
+      )
+    else
+      local ok, sorted_string = xpcall(
+        utils.sort_alphabetically,
+        function(err)
+          vim.notify(
+            'Failed to sort the selected text: ' .. err,
+            'error',
+            { title = 'SortAlphabetically command' }
+          )
+          return false
+        end,
+        choice, no_selection_found_message
+      )
 
-    if ok then
-      utils.replace_selected_text_visually(sorted_string)
+      if ok then
+        utils.replace_selected_text_visually(sorted_string)
+      end
     end
-  end
 
-  -- Cleaning the visual selection
-  vim.cmd('normal! gv')
+    -- Cleaning the visual selection
+    vim.cmd('normal! gv')
+  end)
+
 end, { addr = 'lines', range = '%' })
 
 new_cmd('GenerateISODate', function()
@@ -197,43 +198,6 @@ if vim.fn.has('gui_running') then
     return utils.resize_font_size(default_font_size, true)
   end, {})
 end
-
-new_cmd('BreakListItems', function()
-  local no_selection_found_message = 'A text must be selected to encode it.'
-
-  local selection = utils.get_visually_selected_text(no_selection_found_message)
-
-  local separator = vim.fn.input('Break at (default ","): ')
-
-  if separator == '' then
-    separator = nil
-  end
-
-  if selection == nil then
-    return
-  end
-
-  local ok, broken_text = xpcall(
-    utils.break_list_items,
-    function (err)
-      vim.notify(
-        'Failed to break the selected text: ' .. err,
-        'error',
-        { title = 'BreakListItems command' }
-      )
-      return false
-    end,
-    selection,
-    separator
-  )
-
-  if ok then
-    utils.replace_selected_text(broken_text)
-  end
-
-  -- Cleaning the visual selection
-  vim.cmd('normal! gv')
-end, { addr = 'lines', range = '%' })
 
 new_cmd('Screenshot', function()
   xpcall(
