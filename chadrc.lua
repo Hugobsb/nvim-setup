@@ -12,30 +12,25 @@ M.ui = {
     load_on_startup = true,
 
     header = {
-      [[
-                                                                                       
-                ,--,                                                                   
-              ,--.'|                                                                   
-           ,--,  | :                                    ,---,                 ,---,    
-        ,---.'|  : '         ,--,              ,---.  ,---.'|               ,---.'|    
-        |   | : _' |       ,'_ /|  ,----._,.  '   ,'\ |   | :     .--.--.   |   | :    
-        :   : |.'  |  .--. |  | : /   /  ' / /   /   |:   : :    /  /    '  :   : :    
-        |   ' '  ; :,'_ /| :  . ||   :     |.   ; ,. ::     |,-.|  :  /`./  :     |,-. 
-        '   |  .'. ||  ' | |  . .|   | .\  .'   | |: :|   : '  ||  :  ;_    |   : '  | 
-        |   | :  | '|  | ' |  | |.   ; ';  |'   | .; :|   |  / : \  \    `. |   |  / : 
-        '   : |  : ;:  | : ;  ; |'   .   . ||   :    |'   : |: |  `----.   \'   : |: | 
-        |   | '  ,/ '  :  `--'   \`---`-'| | \   \  / |   | '/ : /  /`--'  /|   | '/ : 
-        ;   : ;--'  :  ,      .-./.'__/\_: |  `----'  |   :    |'--'.     / |   :    | 
-        |   ,/       `--`----'    |   :    :          /    \  /   `--'---'  /    \  /  
-        '---'                      \   \  /           `-'----'              `-'----'   
-                                    `--`-'                                             
-      ]]
+      [[ ██░ ██  █    ██      ▄████  ▒█████      ██▒   █▓ ██▓ ███▄ ▄███▓]],
+      [[▓██░ ██▒ ██  ▓██▒    ██▒ ▀█▒▒██▒  ██▒   ▓██░   █▒▓██▒▓██▒▀█▀ ██▒]],
+      [[▒██▀▀██░▓██  ▒██░   ▒██░▄▄▄░▒██░  ██▒    ▓██  █▒░▒██▒▓██    ▓██░]],
+      [[░▓█ ░██ ▓▓█  ░██░   ░▓█  ██▓▒██   ██░     ▒██ █░░░██░▒██    ▒██ ]],
+      [[░▓█▒░██▓▒▒█████▓    ░▒▓███▀▒░ ████▓▒░      ▒▀█░  ░██░▒██▒   ░██▒]],
+      [[ ▒ ░░▒░▒░▒▓▒ ▒ ▒     ░▒   ▒ ░ ▒░▒░▒░       ░ ▐░  ░▓  ░ ▒░   ░  ░]],
+      [[ ▒ ░▒░ ░░░▒░ ░ ░      ░   ░   ░ ▒ ▒░       ░ ░░   ▒ ░░  ░      ░]],
+      [[ ░  ░░ ░ ░░░ ░ ░    ░ ░   ░ ░ ░ ░ ▒          ░░   ▒ ░░      ░   ]],
+      [[ ░  ░  ░   ░              ░     ░ ░           ░   ░         ░   ]],
+      [[                                             ░                  ]],
     },
 
     buttons = {
       { "  Find File", "Spc f f", "Telescope find_files" },
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
+      { "󱑜  Save session", "Spc s s", "SessionSave" },
+      { "󰁯  Restore last session", "Spc s r", "SessionRestore" },
+      { "  Find sessions", "Spc f s", "'auto-session.session-lens'.search_session()" },
       { "  Bookmarks", "Spc m a", "Telescope marks" },
       { "  Themes", "Spc t h", "Telescope themes" },
       { "  Mappings", "Spc c h", "NvCheatsheet" },
@@ -52,6 +47,10 @@ M.ui = {
   hl_override = {
     -- Statusline highlights
     ["St_cwd"] = { bg = "statusline_bg", fg = "#ffae00" },
+
+    -- NvDash highlights
+    ["NvDashAscii"] = { fg = "#bd93f9", bg = "none" },
+    ["NvDashButtons"] = { fg = "#f8f8f2", bg = "none" },
 
     -- Diff highlights
     ["DiffAdd"] = { bg = "#22863a", fg = "none" },
