@@ -8,11 +8,14 @@ vim.g.neovide_cursor_vfx_mode = 'pixiedust'
 
 --------------------------------- manual sets --------------------------------------
 
--- Disables line wrapping
+-- Disable line wrapping
 vim.cmd("set nowrap")
 
--- Sets `session options` for the `auto-session` plugin
+-- Set `session options` for the `auto-session` plugin
 vim.cmd("set sessionoptions+=winpos,terminal,folds")
+
+-- Set / as diff character
+vim.opt.fillchars:append { diff = "╱" }
 
 ------------------------------------ fonts -----------------------------------------
 

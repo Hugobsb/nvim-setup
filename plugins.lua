@@ -283,7 +283,9 @@ local plugins = {
 
     event = "BufEnter",
 
-    config = true
+    config = function ()
+      require "custom.configs.diffview"
+    end
   },
 
   {
@@ -361,7 +363,9 @@ local plugins = {
       'ibhagwan/fzf-lua',              -- optional
     },
 
-    config = require "custom.configs.neogit"
+    config = function()
+      require "custom.configs.neogit"
+    end
   },
 
   {

@@ -1,7 +1,7 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, inject-field, undefined-doc-name
 ---@diagnostic disable-next-line: undefined-doc-name
----@type ChadrcConfig 
 
+---@type ChadrcConfig 
 local M = {}
 
 M.ui = {
@@ -10,15 +10,73 @@ M.ui = {
 
   nvdash = {
     load_on_startup = true,
+
+    header = {
+      [[
+                                                                                       
+                ,--,                                                                   
+              ,--.'|                                                                   
+           ,--,  | :                                    ,---,                 ,---,    
+        ,---.'|  : '         ,--,              ,---.  ,---.'|               ,---.'|    
+        |   | : _' |       ,'_ /|  ,----._,.  '   ,'\ |   | :     .--.--.   |   | :    
+        :   : |.'  |  .--. |  | : /   /  ' / /   /   |:   : :    /  /    '  :   : :    
+        |   ' '  ; :,'_ /| :  . ||   :     |.   ; ,. ::     |,-.|  :  /`./  :     |,-. 
+        '   |  .'. ||  ' | |  . .|   | .\  .'   | |: :|   : '  ||  :  ;_    |   : '  | 
+        |   | :  | '|  | ' |  | |.   ; ';  |'   | .; :|   |  / : \  \    `. |   |  / : 
+        '   : |  : ;:  | : ;  ; |'   .   . ||   :    |'   : |: |  `----.   \'   : |: | 
+        |   | '  ,/ '  :  `--'   \`---`-'| | \   \  / |   | '/ : /  /`--'  /|   | '/ : 
+        ;   : ;--'  :  ,      .-./.'__/\_: |  `----'  |   :    |'--'.     / |   :    | 
+        |   ,/       `--`----'    |   :    :          /    \  /   `--'---'  /    \  /  
+        '---'                      \   \  /           `-'----'              `-'----'   
+                                    `--`-'                                             
+      ]]
+    },
+
+    buttons = {
+      { "  Find File", "Spc f f", "Telescope find_files" },
+      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
+      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
+      { "  Bookmarks", "Spc m a", "Telescope marks" },
+      { "  Themes", "Spc t h", "Telescope themes" },
+      { "  Mappings", "Spc c h", "NvCheatsheet" },
+    },
   },
 
-  extended_integrations = { "navic" },
+  extended_integrations = {
+    "dap",
+    "navic",
+    "notify",
+    "trouble",
+  },
 
   hl_override = {
-    ["St_cwd"] = {
-      bg = "statusline_bg",
-      fg = "#ffae00",
-    },
+    -- Statusline highlights
+    ["St_cwd"] = { bg = "statusline_bg", fg = "#ffae00" },
+
+    -- Diff highlights
+    ["DiffAdd"] = { bg = "#22863a", fg = "none" },
+    ["DiffDelete"] = { bg = "none", fg = "#b31d28" },
+    ["DiffChange"] = { bg = "#1f2231", fg = "none" },
+    ["DiffText"] = { bg = "#394b70", fg = "none" },
+
+    -- Semantic highlights
+    -- references
+    -- https://neovim.io/doc/user/lsp.html#lsp-semantic-highlight
+    -- https://gist.github.com/swarn/fb37d9eefe1bc616c2a7e476c0bc0316
+    ["@lsp.type.namespace"] = { link = "@namespace" },
+    ["@lsp.type.type"] = { link = "@type" },
+    ["@lsp.type.class"] = { link = "@type" },
+    ["@lsp.type.enum"] = { link = "@type" },
+    ["@lsp.type.interface"] = { link = "@type" },
+    ["@lsp.type.struct"] = { link = "@structure" },
+    ["@lsp.type.parameter"] = { link = "@parameter" },
+    ["@lsp.type.variable"] = { link = "@variable" },
+    ["@lsp.type.property"] = { link = "@property" },
+    ["@lsp.type.enumMember"] = { link = "@constant" },
+    ["@lsp.type.function"] = { link = "@function" },
+    ["@lsp.type.method"] = { link = "@method" },
+    ["@lsp.type.macro"] = { link = "@macro" },
+    ["@lsp.type.decorator"] = { link = "@function" },
   },
 
   lsp_semantic_tokens = true, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
