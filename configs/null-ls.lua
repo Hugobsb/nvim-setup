@@ -22,7 +22,7 @@ local sources = {
 }
 
 local config = {
-  debug = true,
+  debug = false,
   sources = sources,
 }
 

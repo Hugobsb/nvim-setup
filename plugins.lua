@@ -30,8 +30,6 @@ local plugins = {
   {
     "jose-elias-alvarez/null-ls.nvim",
 
-    event = "BufEnter",
-
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
