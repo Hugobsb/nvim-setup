@@ -130,7 +130,7 @@ local plugins = {
       "nvim-dap"
     },
 
-    build = "rm -rf dist out package-lock.json && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    build = "rm -rf dist out package-lock.json && npm ci --cache .npm && npx gulp vsDebugServerBundle && mv dist out"
   },
 
   {
@@ -237,7 +237,7 @@ local plugins = {
   {
     "iamcco/markdown-preview.nvim",
 
-    build = "cd app && npm install",
+    build = "cd app && yarn install --frozen-lockfile",
 
     ft = "markdown",
 
