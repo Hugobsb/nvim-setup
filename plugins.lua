@@ -132,7 +132,7 @@ local plugins = {
       "nvim-dap"
     },
 
-    build = "rm -rf dist out package-lock.json && npm ci --cache .npm && npx gulp vsDebugServerBundle && mv dist out"
+    build = "rm -rf dist out && npm ci --cache .npm && npx gulp vsDebugServerBundle && mv dist out"
   },
 
   {
