@@ -143,11 +143,27 @@ M.font = {
   }
 }
 
+-- Autosession mappings
+
 M.autosession = {
   n = {
     ["<leader>ss"] = { "<cmd> SessionSave <CR>", "Save a session" },
     ["<leader>sr"] = { "<cmd> SessionSave <CR>", "Restore the last session" },
   }
+}
+
+-- GitHub Copilot mappings
+
+M.copilot = {
+  i = {
+    ["<C-l>"] = {
+      function()
+        vim.fn.feedkeys(vim.fn['copilot#Accept'](), '')
+      end,
+      "Copilot accept suggestion",
+      { replace_keycodes = true, nowait = true, silent = true, expr = true, noremap = true }
+    }
+  },
 }
 
 return M

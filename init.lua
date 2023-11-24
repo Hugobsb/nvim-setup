@@ -223,15 +223,17 @@ end, { addr = 'lines', range = '%' })
 vim.api.nvim_create_augroup("neogit-additions", {})
 
 vim.api.nvim_create_autocmd("FileType", {
-		group = "neogit-additions",
-		pattern = "NeogitCommitMessage";
-		command = "silent! set filetype=gitcommit",
+  group = "neogit-additions",
+  pattern = "NeogitCommitMessage";
+  command = "silent! set filetype=gitcommit",
 })
 
 -- Copilot tab key
 
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap('i', '<silent><script><expr> <C-J>', 'v:lua.require(\'copilot\').Accept(\'\\n\')', { noremap = true, silent = true })
+-- See the mapping configuration where the tab key is re-mapped
+vim.g.copilot_no_tab_map = true;
+vim.g.copilot_assume_mapped = true;
+vim.g.copilot_tab_fallback = "";
 
 -- Neovide alt key for MacOS
 
