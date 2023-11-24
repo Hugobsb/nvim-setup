@@ -402,7 +402,18 @@ local plugins = {
     lazy = false,
 
     config = require "custom.configs.dressing"
-  }
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+
+    opts = {
+      preselect = "none",
+      completion = {
+        autocomplete = false
+      }
+    },
+  },
 }
 
 return plugins
