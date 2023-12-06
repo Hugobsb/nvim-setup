@@ -55,8 +55,6 @@ local plugins = {
     },
 
     opts = require "custom.configs.telescope",
-
-    config = require "plugins.configs.telescope"
   },
 
   {
@@ -413,6 +411,14 @@ local plugins = {
         autocomplete = false
       }
     },
+  },
+
+  {
+    "junegunn/fzf.vim",
+
+    version = "*",
+
+    lazy = false
   },
 }
 
