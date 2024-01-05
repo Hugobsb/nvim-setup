@@ -420,6 +420,16 @@ local plugins = {
 
     lazy = false
   },
+
+  {
+    "David-Kunz/jester",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = require "custom.configs.jester"
+  },
 }
 
 return plugins

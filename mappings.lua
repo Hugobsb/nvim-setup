@@ -166,5 +166,21 @@ M.copilot = {
   },
 }
 
+-- Jester mappings
+
+M.jester = {
+  n = {
+    -- Run only
+    ["<leader>jc"] = { "<cmd> lua require'jester'.run() <CR>", "Run nearest test(s) under the cursor" },
+    ["<leader>jf"] = { "<cmd> lua require'jester'.run_file() <CR>", "Run test(s) in the current file" },
+    ["<leader>jl"] = { "<cmd> lua require'jester'.run_last() <CR>", "Run last test(s)" },
+
+    -- Run and debug
+    ["<leader>jdc"] = { "<cmd> lua require'jester'.debug() <CR>", "Debug nearest test(s) under the cursor" },
+    ["<leader>jdf"] = { "<cmd> lua require'jester'.debug_file() <CR>", "Debug test(s) in the current file" },
+    ["<leader>jdl"] = { "<cmd> lua require'jester'.debug_last() <CR>", "Debug last test(s)" },
+  }
+}
+
 return M
 
