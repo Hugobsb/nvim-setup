@@ -48,6 +48,11 @@ local servers = {
   ['html'] = {
     filetypes = { "html" }
   },
+  ['jdtls'] = {
+    rootDir = util.root_pattern({ ".gradlew", ".git", "mvnw" }),
+    cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/jdtls" },
+    filetypes = { "java" }
+  },
   ['jsonls'] = {
     fileTypes = { "json", "jsonc" }
   },

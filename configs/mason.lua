@@ -6,6 +6,7 @@ local config = {
     "dockerfile-language-server",
     "gopls",
     "html-lsp",
+    "jdtls",
     "json-lsp",
     "typescript-language-server",
     "yaml-language-server",
@@ -15,11 +16,13 @@ local config = {
     "gofumpt",
     "goimports-reviser",
     "golines",
+    "google-java-format",
     "prettierd",
     "xmlformatter",
     "yamlfix",
 
     -- code actions
+    "checkstyle",
     "eslint_d",
   }
 }

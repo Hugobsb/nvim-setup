@@ -10,6 +10,7 @@ local sources = {
   formatting.gofumpt,
   formatting.goimports_reviser,
   formatting.golines,
+  formatting.google_java_format,
   formatting.prettierd,
   formatting.xmlformat,
   formatting.yamlfix,
@@ -19,6 +20,9 @@ local sources = {
 
   -- completion,
   lint.eslint_d,
+  lint.checkstyle.with({
+    extra_args = { "-c", "/google_checks.xml" } -- or "/sun_checks.xml" or path to self written rules
+  }),
 }
 
 local config = {
