@@ -20,9 +20,6 @@ local sources = {
 
   -- completion,
   lint.eslint_d,
-  lint.checkstyle.with({
-    extra_args = { "-c", "/google_checks.xml" } -- or "/sun_checks.xml" or path to self written rules
-  }),
 }
 
 local config = {
