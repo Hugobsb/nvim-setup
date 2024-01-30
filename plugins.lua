@@ -430,6 +430,18 @@ local plugins = {
 
     config = require "custom.configs.jester"
   },
+
+  {
+    "Hugobsb/ccryptor.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    opts = {
+      dir_path = os.getenv('NVIM_SAFE_DIR') or os.getenv('HOME') .. '/Projects/safe/'
+    }
+  },
 }
 
 return plugins
