@@ -239,3 +239,5 @@ vim.g.copilot_tab_fallback = "";
 
 vim.g.neovide_input_macos_alt_is_meta = true
 
+vim.cmd("hi WinBar guibg=NONE")
+
