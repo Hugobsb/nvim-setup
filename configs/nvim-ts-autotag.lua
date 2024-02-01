@@ -1,5 +1,12 @@
 local config = {
-  filetypes = { 'html', 'xml', 'javascriptreact', 'typescriptreact' },
+  filetypes = {
+    'html',
+    'xml',
+    'javascriptreact',
+    'jsx',
+    'typescriptreact',
+    'tsx',
+  },
 
   skip_tags = {
     'area',
