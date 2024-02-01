@@ -141,7 +141,13 @@ local plugins = {
   {
     "microsoft/vscode-js-debug",
 
-    event = "BufEnter",
+    event = {
+      "BufEnter *.js",
+      "BufEnter *.js",
+      "BufEnter *.jsx",
+      "BufEnter *.ts",
+      "BufEnter *.tsx"
+    },
 
     dependencies = {
       "nvim-dap"
@@ -257,6 +263,10 @@ local plugins = {
     build = "cd app && yarn install --frozen-lockfile",
 
     ft = "markdown",
+
+    event = {
+      "BufEnter *.md"
+    },
 
     config = false
   },
@@ -443,7 +453,12 @@ local plugins = {
 
     version = "*",
 
-    event = "BufEnter",
+    event = {
+      "BufEnter *.js",
+      "BufEnter *.jsx",
+      "BufEnter *.ts",
+      "BufEnter *.tsx"
+    },
 
     config = require "custom.configs.jester"
   },
