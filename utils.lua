@@ -105,6 +105,15 @@ M.get_visually_selected_text = function(no_selection_found_message)
   end
 end
 
+---@param text string
+M.escape_regex_chars = function(text)
+  local magic_chars_match = '[%%%[%]^$().*+-?]'
+
+  local escaped_text = text:gsub(magic_chars_match, "%%%0")
+
+  return escaped_text
+end
+
 ---@param str string
 M.insert_text_before_cursor = function(str)
   -- Set the unnamed register with the replacement text

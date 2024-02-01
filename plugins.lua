@@ -22,6 +22,10 @@ local plugins = {
           icon = '',
           name = 'EncryptedFiles',
         },
+        ['http'] = {
+          icon = '',
+          name = 'HttpFiles'
+        }
       },
     },
   },
@@ -454,6 +458,16 @@ local plugins = {
     opts = {
       dir_path = os.getenv('NVIM_SAFE_DIR') or os.getenv('HOME') .. '/Projects/safe/'
     }
+  },
+
+  {
+    "rest-nvim/rest.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = require "custom.configs.rest"
   },
 }
 

@@ -48,6 +48,10 @@ M.ui = {
     DevIconEncryptedFiles = {
       fg = "#ffa500",
       bg = "none",
+    },
+    DevIconHttpFiles = {
+      fg = "#ffa500",
+      bg = "none",
     }
   },
 

@@ -182,5 +182,17 @@ M.jester = {
   }
 }
 
+-- Rest mappings
+
+M.rest = {
+  n = {
+    ["<leader>rr"] = { "<cmd> lua require'rest-nvim'.run() <CR>", "Run HTTP request" },
+    ["<leader>rp"] = { "<cmd> lua require'rest-nvim'.run(true) <CR>", "Preview HTTP request" },
+    ["<leader>rl"] = { "<cmd> lua require'rest-nvim'.last() <CR>", "Run last HTTP request" },
+    -- Currently the file run is glitched and cannot be run twice, but it's a plugin issue
+    ["<leader>rf"] = { "<cmd> lua require'rest-nvim'.last() <CR>", "Select HTTP request file to run" },
+  }
+}
+
 return M
 

@@ -174,6 +174,56 @@ new_cmd('GenerateISODate', function()
   utils.insert_text_before_cursor(iso_date)
 end, {})
 
+new_cmd('RestCustomRunFile', function()
+  local options = vim.fn.globpath(
+    vim.fn.getcwd() .. (os.getenv('NVIM_REST_DIR') or '/http-requests'),
+    '*.http',
+    true,
+    true
+  )
+
+  if #options == 0 then
+    vim.notify(
+      'No http files found in the current directory.',
+      'warning',
+      { title = 'RestCustomRunFile command' }
+    )
+    return
+  end
+
+  for i, option in ipairs(options) do
+    options[i] = option:gsub(utils.escape_regex_chars(vim.fn.getcwd()) .. '/', '')
+  end
+
+  vim.ui.select(options, { prompt = 'Choose the http request: ' }, function(choice)
+    if choice == nil then
+      vim.notify(
+        'No http file selected.',
+        'warning',
+        { title = 'RestCustomRunFile command' }
+      )
+
+      return
+    end
+
+    require'rest-nvim'.run_file(choice, { keep_going = false })
+
+    -- TODO: check if adding this verification is necessary
+    -- xpcall(
+    --   require'rest-nvim'.run_file(choice, { keep_going = false }),
+    --   function (err)
+    --     vim.notify(
+    --       'Failed to run the selected http file: ' .. err,
+    --       'error',
+    --       { title = 'RestCustomRunFile command' }
+    --     )
+    --
+    --     return false
+    --   end
+    -- )
+  end)
+end, {})
+
 ------------------------------ custom gui commands ---------------------------------
 
 if vim.fn.has('gui_running') then
