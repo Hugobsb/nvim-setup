@@ -50,7 +50,7 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       -- trace = true, -- include debugger info
       runtimeExecutable = "node",
       runtimeArgs = {
-        "./node_modules/jest/bin/jest.js",
+        vim.fn.getcwd() .. "/node_modules/jest/bin/jest.js",
         "--runInBand",
       },
       rootPath = "${workspaceFolder}",
