@@ -282,6 +282,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- See the mapping configuration where the tab key is re-mapped
 vim.g.copilot_no_tab_map = true;
+
 vim.g.copilot_assume_mapped = true;
 vim.g.copilot_tab_fallback = "";
 
@@ -289,5 +290,8 @@ vim.g.copilot_tab_fallback = "";
 
 vim.g.neovide_input_macos_alt_is_meta = true
 
+-- Fix ugly highlight groups
 vim.cmd("hi WinBar guibg=NONE")
+vim.cmd("hi WinBarNC guibg=NONE")
+vim.cmd("hi DapUINormalNC guibg=NONE")
 
