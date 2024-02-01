@@ -14,6 +14,19 @@ local plugins = {
   },
 
   {
+    'nvim-tree/nvim-web-devicons',
+
+    opts = {
+      override_by_filename = {
+        ['cpt'] = {
+          icon = '',
+          name = 'EncryptedFiles',
+        },
+      },
+    },
+  },
+
+  {
     'nvimdev/lspsaga.nvim',
 
     event = 'LspAttach',

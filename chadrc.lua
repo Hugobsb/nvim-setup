@@ -44,6 +44,13 @@ M.ui = {
     "trouble",
   },
 
+  hl_add = {
+    DevIconEncryptedFiles = {
+      fg = "#ffa500",
+      bg = "none",
+    }
+  },
+
   hl_override = {
     -- Statusline highlights
     ["St_cwd"] = { bg = "statusline_bg", fg = "#ffae00" },
