@@ -194,5 +194,13 @@ M.rest = {
   }
 }
 
+-- Dropbar mappings
+
+M.dropbar = {
+  n = {
+    ["<leader>db"] = { "<cmd> lua require'dropbar.api'.pick() <CR>", "Enter dropbar interactive pick mode" },
+  }
+}
+
 return M
 
