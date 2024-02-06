@@ -152,7 +152,7 @@ M.base64_encode = function(str)
     vim.notify('Warning: the given string can be already encoded', 'warning', { title = 'Base64 encode utilitary' })
   end
 
-  local command = string.format('echo "%s" | base64', escape_shell_chars(str))
+  local command = string.format('echo -n "%s" | base64', escape_shell_chars(str))
 
   local output, err = execute_os_command(command)
 
