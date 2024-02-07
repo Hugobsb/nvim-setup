@@ -30,7 +30,7 @@ end
 local function is_base64_valid(str)
   local base64_pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
 
-  local command = string.format('echo "%s" | grep -E "%s"', escape_shell_chars(str), base64_pattern)
+  local command = string.format('echo -n "%s" | grep -E "%s"', str, base64_pattern)
 
   local result, err = execute_os_command(command)
 
@@ -177,7 +177,7 @@ M.base64_decode = function(str)
     return str
   end
 
-  local command = string.format('echo "%s" | base64 --decode', escape_shell_chars(str))
+  local command = string.format('echo -n "%s" | base64 --decode', escape_shell_chars(str))
 
   local output, err = execute_os_command(command)
 
@@ -253,6 +253,7 @@ M.resize_font_size = function(amount, exact, bounds)
     }
   end
 
+---@diagnostic disable-next-line: undefined-field
   vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", function(n)
     local size = n + amount
 
@@ -313,6 +314,23 @@ M.url_decode = function(text)
   text = text:gsub("+", " ")
   text = text:gsub("%%(%x%x)", M.hex_to_char)
   return text
+end
+
+---@param str string
+M.is_uuid_valid = function(str)
+  local uuid_pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+
+  local command = string.format('echo -n "%s" | grep -E "%s"', escape_shell_chars(str), uuid_pattern)
+
+  print(command)
+
+  local result, err = execute_os_command(command)
+
+  if err then
+    error(err)
+  end
+
+  return type(result) == 'string' and string.len(result) > 0
 end
 
 return M

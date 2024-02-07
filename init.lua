@@ -132,7 +132,7 @@ new_cmd('GenerateUUID', function()
 end, { addr = 'lines', range = '%' })
 
 new_cmd('SortAlphabetically', function()
-  local no_selection_found_message = 'A text must be selected to encode it.'
+  local no_selection_found_message = 'A text must be selected to sort it.'
 
   local options = { 'Ascending', 'Descending' }
 
@@ -140,7 +140,7 @@ new_cmd('SortAlphabetically', function()
     if choice ~= options[1] and choice ~= options[2] then
       vim.notify(
         " " .. string.format("Invalid option. You must select between '%s' and %s.", options[1], options[2]),
-        "warning",
+        'warning',
         { title = 'SortAlphabetically command' }
       )
     else
@@ -223,6 +223,49 @@ new_cmd('RestCustomRunFile', function()
     -- )
   end)
 end, {})
+
+new_cmd('ValidateUUID', function()
+  local no_selection_found_message = 'A text must be selected to validate it.'
+
+  local options = { 'v4' }
+
+  vim.ui.select(options, { prompt = 'Choose the UUID version: ' }, function(choice)
+    if choice ~= options[1] then
+      vim.notify(
+        " " .. string.format("Invalid option. You must select between the following options: ['%s']", options[1]),
+        'warning',
+        { title = 'CheckUUID command' }
+      )
+    else
+      local selection = utils.get_visually_selected_text(no_selection_found_message)
+
+      local ok, is_valid = xpcall(
+        utils.is_uuid_valid,
+        function(err)
+          vim.notify(
+            'Failed to validate the selected text: ' .. err,
+            'error',
+            { title = 'CheckUUID command' }
+          )
+          return false
+        end,
+        selection
+      )
+
+      if not ok then
+        return
+      end
+
+      local message = is_valid and 'The selected text is a valid UUID.' or 'The selected text is not a valid UUID.'
+
+      vim.notify(message, 'info', { title = 'CheckUUID command' })
+    end
+
+    -- Cleaning the visual selection
+    vim.cmd('normal! gv')
+  end)
+
+end, { addr = 'lines', range = '%' })
 
 ------------------------------ custom gui commands ---------------------------------
 
