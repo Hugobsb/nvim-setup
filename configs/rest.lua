@@ -37,6 +37,9 @@ local config = {
   -- Jump to request line on run
   jump_to_request = false,
   env_file = '.env',
+  -- for telescope select
+  env_pattern = "\\.env$",
+  env_edit_command = "tabedit",
   custom_dynamic_variables = {},
   yank_dry_run = true,
   search_back = true,

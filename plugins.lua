@@ -482,7 +482,9 @@ local plugins = {
 
     event = "BufEnter",
 
-    config = require "custom.configs.rest"
+    config = function()
+      require "custom.configs.rest"
+    end
   },
 }
 
