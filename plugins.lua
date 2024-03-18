@@ -476,11 +476,21 @@ local plugins = {
   },
 
   {
+    "vhyrro/luarocks.nvim",
+
+    config = function()
+      require("luarocks").setup({})
+    end
+  },
+
+  {
     "rest-nvim/rest.nvim",
 
     version = "*",
 
-    event = "BufEnter",
+    ft = "http",
+
+    dependencies = { "luarocks.nvim" },
 
     config = function()
       require "custom.configs.rest"
