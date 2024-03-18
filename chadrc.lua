@@ -31,7 +31,7 @@ M.ui = {
       { "󱑜  Save session", "Spc s s", "SessionSave" },
       { "󰁯  Restore last session", "Spc s r", "SessionRestore" },
       { "  Find sessions", "Spc f s", "'auto-session.session-lens'.search_session()" },
-      { "  Bookmarks", "Spc m a", "Telescope marks" },
+      { "󰂽  Bookmarks", "Spc m a", "Telescope marks" },
       { "  Themes", "Spc t h", "Telescope themes" },
       { "  Mappings", "Spc c h", "NvCheatsheet" },
     },
