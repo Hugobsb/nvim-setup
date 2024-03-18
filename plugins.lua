@@ -232,7 +232,7 @@ local plugins = {
   },
 
   {
-    "andweeb/presence.nvim",
+    "Hugobsb/presence.nvim",
 
     lazy = false,
 
