@@ -113,6 +113,7 @@ return {
     event = "BufEnter",
 
     dependencies = {
+      "nvim-neotest/nvim-nio",
       "mfussenegger/nvim-dap"
     },
 
