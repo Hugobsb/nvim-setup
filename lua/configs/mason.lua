@@ -8,6 +8,7 @@ local config = {
     "html-lsp",
     "jdtls",
     "json-lsp",
+    "lua-language-server",
     "typescript-language-server",
     "yaml-language-server",
 
