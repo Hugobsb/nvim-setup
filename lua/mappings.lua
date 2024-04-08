@@ -69,18 +69,17 @@ map("n", "<leader>fs", "<cmd> lua require'auto-session.session-lens'.search_sess
 
 -- Line movement mappings
 
-map({ "n", "i" }, "<A-Up>", "<cmd> m-2 <CR>", { desc = "Move line upwards" })
-map({ "n", "i" }, "<A-Down>", "<cmd> m+ <CR>", { desc = "Move line downwards" })
+-- Without line selection
+map({ "n", "i" }, "<A-Up>", "<cmd> m-2 <cr>", { desc = "Move line upwards" })
+map({ "n", "i" }, "<A-Down>", "<cmd> m+ <cr>", { desc = "Move line downwards" })
 map({ "n", "i" }, "<A-k>", "<cmd> m-2 <CR>", { desc = "Move line upwards" })
 map({ "n", "i" }, "<A-j>", "<cmd> m+ <CR>", { desc = "Move line downwards" })
 
--- NvChad does not set Marks in visual mode or something like that
-
-vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
-vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv")
-
-vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv")
-vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv")
+-- With line selection
+map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line upwards" })
+map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line downwards" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line upwards" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line downwards" })
 
 -- Selection mappings
 
