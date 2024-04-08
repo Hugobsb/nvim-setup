@@ -93,6 +93,9 @@ local servers = {
 
 for lsp, config in pairs(servers) do
   local setup_config = {
+    on_init = on_init,
+    capabilities = capabilities,
+
     on_attach = function(client, bufnr)
       if client.server_capabilities.documentSymbolProvider then
           navic.attach(client, bufnr)
@@ -100,7 +103,6 @@ for lsp, config in pairs(servers) do
 
       on_attach(client, bufnr)
     end,
-    capabilities = capabilities,
   }
 
   mergeTables(setup_config, config)
