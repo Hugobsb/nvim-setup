@@ -76,10 +76,10 @@ map({ "n", "i" }, "<A-k>", "<cmd> m-2 <CR>", { desc = "Move line upwards" })
 map({ "n", "i" }, "<A-j>", "<cmd> m+ <CR>", { desc = "Move line downwards" })
 
 -- With line selection
-map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line upwards" })
-map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line downwards" })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line upwards" })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line downwards" })
+map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line(s) upwards" })
+map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line(s) downwards" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line(s) upwards" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line(s) downwards" })
 
 -- Selection mappings
 
