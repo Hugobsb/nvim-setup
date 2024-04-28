@@ -507,5 +507,27 @@ return {
       require "configs.rest"
     end
   },
+
+  {
+    "0x100101/lab.nvim",
+
+    version = "*",
+
+
+    event = {
+      "BufEnter *.js",
+      "BufEnter *.jsx",
+      "BufEnter *.ts",
+      "BufEnter *.tsx",
+      "BufEnter *.py",
+      "BufEnter *.lua"
+    },
+
+    build = "cd js && npm ci",
+
+    dependencies = { "nvim-lua/plenary.nvim" },
+
+    config = true
+  },
 }
 
