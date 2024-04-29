@@ -11,6 +11,7 @@ local sources = {
   formatting.goimports_reviser,
   formatting.golines,
   formatting.google_java_format,
+  formatting.ktlint,
   formatting.prettierd,
   formatting.xmlformat,
   formatting.yamlfix,

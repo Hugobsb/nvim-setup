@@ -1,5 +1,3 @@
-local dap = require "dap"
-local dap_utils = require "dap.utils"
 local dap_vscode_js = require "dap-vscode-js"
 
 dap_vscode_js.setup({
@@ -11,55 +9,6 @@ dap_vscode_js.setup({
   log_file_level = 4, -- Logging level for output to file. Set to false to disable file logging.
   log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
 })
-
-for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
-  dap.configurations[language] = {
-    {
-      name = "Launch file",
-      type = "pwa-node",
-      request = "launch",
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-      port = 7473
-    },
-    {
-      name = "Launch process",
-      type = "pwa-node",
-      request = "launch",
-      runtimeExecutable = "npm",
-      runtimeArgs = {
-        "run-script",
-        "start:debug"
-      },
-      rootPath = "${workspaceFolder}",
-      cwd = "${workspaceFolder}",
-      console = "integratedTerminal",
-      internalConsoleOptions = "neverOpen"
-    },
-    {
-      name = "Attach to Node process",
-      type = "pwa-node",
-      request = "attach",
-      processId = dap_utils.pick_process,
-      cwd = "${workspaceFolder}"
-    },
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "Debug Jest Tests",
-      -- trace = true, -- include debugger info
-      runtimeExecutable = "node",
-      runtimeArgs = {
-        vim.fn.getcwd() .. "/node_modules/jest/bin/jest.js",
-        "--runInBand",
-      },
-      rootPath = "${workspaceFolder}",
-      cwd = "${workspaceFolder}",
-      console = "integratedTerminal",
-      internalConsoleOptions = "neverOpen"
-    }
-  }
-end
 
 return {}
 

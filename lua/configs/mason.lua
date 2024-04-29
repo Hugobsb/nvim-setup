@@ -8,6 +8,7 @@ local config = {
     "html-lsp",
     "jdtls",
     "json-lsp",
+    "kotlin-language-server",
     "lua-language-server",
     "typescript-language-server",
     "yaml-language-server",
@@ -18,12 +19,14 @@ local config = {
     "goimports-reviser",
     "golines",
     "google-java-format",
+    "ktlint",
     "prettierd",
     "xmlformatter",
     "yamlfix",
 
-    -- code actions
+    -- linters / code actions
     "checkstyle",
+    "detekt",
     "eslint_d",
   }
 }

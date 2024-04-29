@@ -134,7 +134,7 @@ return {
       "BufEnter *.ts",
       "BufEnter *.tsx",
       "BufEnter *.js",
-      "BufEnter *.jsx"
+      "BufEnter *.jsx",
     },
 
     dependencies = {
@@ -165,6 +165,19 @@ return {
     },
 
     build = "rm -rf dist out && npm ci --cache .npm && npx gulp vsDebugServerBundle && mv dist out"
+  },
+
+  {
+    "fwcd/kotlin-debug-adapter",
+
+    event = {
+      "BufEnter *.kt",
+      "BufEnter *.kts"
+    },
+
+    build = "./gradlew :adapter:installDist",
+
+    config = false,
   },
 
   {
