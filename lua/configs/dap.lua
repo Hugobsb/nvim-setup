@@ -78,14 +78,34 @@ dap.configurations.kotlin = {
     name = "Kotlin Launch",
     projectRoot = "${workspaceFolder}",
     mainClass = function()
-      local root = vim.fs.find("src", { path = vim.uv.cwd(), upward = true, stop = vim.env.HOME })[1] or ""
-      local fname = vim.api.nvim_buf_get_name(0)
-      return fname:gsub(root, ""):gsub("main/kotlin/", ""):gsub(".kt", "Kt"):gsub("/", "."):sub(2, -1)
+      -- path until src
+      local root = vim.fs.find("src", { path = vim.uv.cwd(), upward = true, stop = vim.env.HOME })[1] or "" -- /home/hugobsb/projects/work/ab-inbev/banking/pix-out-transaction/src
+
+      -- path until src + path until filename
+      local fname = vim.api.nvim_buf_get_name(0) -- /home/hugobsb/Projects/work/ab-inbev/banking/pix-out-transaction/src/main/kotlin/com/bees/pixouttransaction/PixOutTransactionApplication.kt
+
+      -- use src to cut the class path
+      -- example: com.abcd.efgh.MainApplicationKt
+      return fname:sub(string.len(root) + 2):gsub("main/kotlin/", ""):gsub(".kt", "Kt"):gsub("/", ".")
     end,
     preLaunchTask = "build",
     jsonLogFile = "",
     enableJsonLogging = false,
-  }
+  },
+  {
+    -- Use this for unit tests
+    -- First, run 
+    -- ./gradlew --info cleanTest test --debug-jvm
+    -- then attach the debugger to it
+    type = "kotlin",
+    request = "attach",
+    name = "Attach to debugging session",
+    port = 5005,
+    args = {},
+    projectRoot = vim.fn.getcwd,
+    hostName = "localhost",
+    timeout = 2000,
+  },
 }
 
 return {}
