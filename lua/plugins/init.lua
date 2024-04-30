@@ -320,7 +320,7 @@ return {
 
     version = "*",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     config = false
   },
