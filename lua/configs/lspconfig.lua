@@ -55,6 +55,9 @@ local servers = {
   ['jsonls'] = {
     fileTypes = { "json", "jsonc" }
   },
+  ['kotlin_language_server'] = {
+    fileTypes = { "kt", "kts" }
+  },
   ['lua_ls'] = {
     filetypes = { "lua" },
     settings = {
