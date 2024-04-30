@@ -12,8 +12,7 @@ vim.fn.sign_define('DapLogPoint', { text = '⚪', texthl = '', linehl = '', numh
 dap.adapters.kotlin = {
   type = 'executable',
   command = os.getenv("HOME") .. "/.local/share/nvim/lazy/kotlin-debug-adapter/adapter/build/install/adapter/bin/kotlin-debug-adapter",
-  args = { '--stdio' },
-  name = "kotlin"
+  options = { auto_continue_if_many_stopped = false },
 }
 
 -- JS/TS adapter is configured by a separate module
