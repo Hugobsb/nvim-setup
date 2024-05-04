@@ -3,7 +3,7 @@ local null_ls = require "null-ls"
 local formatting = null_ls.builtins.formatting
 local code_actions = null_ls.builtins.code_actions
 local lint = null_ls.builtins.diagnostics
--- local completion = null_ls.builtins.completion
+local completion = null_ls.builtins.completion
 
 local sources = {
   formatting.fixjson,
@@ -21,6 +21,7 @@ local sources = {
 
   -- completion,
   lint.eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
+  completion.spell,
 }
 
 local config = {
