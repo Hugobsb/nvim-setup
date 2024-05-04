@@ -20,7 +20,7 @@ local sources = {
   code_actions.refactoring,
 
   -- completion,
-  lint.eslint_d,
+  lint.eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
 }
 
 local config = {
