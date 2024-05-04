@@ -10,6 +10,7 @@ local config = {
     "json-lsp",
     "kotlin-language-server",
     "lua-language-server",
+    "rust-analyzer",
     "typescript-language-server",
     "yaml-language-server",
 

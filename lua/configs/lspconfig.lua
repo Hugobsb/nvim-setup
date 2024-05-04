@@ -85,6 +85,17 @@ local servers = {
       },
     },
   },
+  ['rust_analyzer'] = {
+    filetypes = { "rust" },
+    root_dir = util.root_pattern("Cargo.toml"),
+    settings = {
+      ['rust-analyzer'] = {
+        cargo = {
+          allFeatures = true,
+        }
+      }
+    },
+  },
   ['tsserver'] = {
     cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
