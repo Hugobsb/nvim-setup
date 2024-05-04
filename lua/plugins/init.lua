@@ -51,7 +51,7 @@ return {
       'neovim/nvim-lspconfig'             -- optional
     },
 
-    config = require "configs.lspsaga",
+    opts = require "configs.lspsaga",
   },
 
   {
@@ -541,6 +541,18 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
 
     config = true
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
+
+    ft = "rust",
+
+    dependencies = "neovim/nvim-lspconfig",
+
+    opts = function(_, opts)
+      require "rust-tools".setup(opts)
+    end
   },
 }
 
