@@ -53,7 +53,21 @@ local servers = {
     filetypes = { "java" }
   },
   ['jsonls'] = {
-    fileTypes = { "json", "jsonc" }
+    fileTypes = { "json", "jsonc" },
+    settings = {
+      json = {
+        schemas = {
+          {
+            fileMatch = { "package.json" },
+            url = "https://json.schemastore.org/package.json"
+          },
+          {
+            fileMatch = { "tsconfig*.json" },
+            url = "https://json.schemastore.org/tsconfig.json"
+          }
+        },
+      },
+    },
   },
   ['kotlin_language_server'] = {
     fileTypes = { "kt", "kts" }
