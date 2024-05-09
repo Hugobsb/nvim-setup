@@ -129,6 +129,15 @@ for lsp, config in pairs(servers) do
       end
 
       on_attach(client, bufnr)
+
+      vim.keymap.del({ "n", "v" }, "<leader>ca", { buffer = bufnr, desc = "LSP Code action" })
+
+      vim.keymap.set(
+        { "n", "v" },
+        "<leader>ca",
+        "<cmd> Lspsaga code_action <CR>",
+        { buffer = bufnr, desc = "LSP Code action", noremap = true }
+      )
     end,
   }
 
