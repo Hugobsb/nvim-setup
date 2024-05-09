@@ -6,6 +6,7 @@ local config = {
     "go",
     "http",
     "java",
+    "javascript",
     "json",
     "jsdoc",
     "jsonc",
@@ -29,7 +30,7 @@ local config = {
   auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript" },
+  ignore_install = {},
 
   highlight = {
     enable = true,
