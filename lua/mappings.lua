@@ -138,3 +138,8 @@ map("n", "<leader>rf", "<cmd> lua require'rest-nvim'.last() <CR>", { desc = "Sel
 
 map("n", "<leader>db", "<cmd> lua require'dropbar.api'.pick() <CR>", { desc = "Enter dropbar interactive pick mode" })
 
+-- DBee
+
+map({ "n", "v" }, "<leader>dbe", "<cmd> lua require'dbee'.toggle() <CR>", { desc = "DBee toggle UI" })
+-- map({ "n", "v" }, "<leader>dbeq", "<cmd> lua require'dbee'.execute() <CR>", { desc = "DBee execute query" })
+

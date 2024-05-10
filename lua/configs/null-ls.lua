@@ -13,6 +13,7 @@ local sources = {
   formatting.google_java_format,
   formatting.ktlint,
   formatting.prettierd,
+  formatting.sql_formatter,
   formatting.xmlformat,
   formatting.yamlfix,
 

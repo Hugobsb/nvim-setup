@@ -109,6 +109,10 @@ local servers = {
       }
     },
   },
+  ['sqls'] = {
+    cmd = { "sqls" },
+    filetypes = { "sql", "mysql" }
+  },
   ['tsserver'] = {
     cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }

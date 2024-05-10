@@ -21,6 +21,7 @@ local config = {
     "google-java-format",
     "ktlint",
     "prettierd",
+    "sql-formatter",
     "xmlformatter",
     "yamlfix",
 

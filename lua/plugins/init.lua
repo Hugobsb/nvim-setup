@@ -456,12 +456,27 @@ return {
   {
     "hrsh7th/nvim-cmp",
 
-    opts = {
-      preselect = "none",
-      completion = {
-        autocomplete = false
-      }
+    dependencies = {
+      {
+        "MattiasMTS/cmp-dbee",
+        dependencies = {
+          {"kndndrj/nvim-dbee"}
+        },
+        ft = "sql",
+        config = function()
+          require("cmp-dbee").setup({})
+        end
+      },
     },
+
+    config = function(_, opts)
+      table.insert(opts.sources, 5, { name = "cmp-dbee" })
+
+      opts.preselect = "none";
+      opts.completion.autocomplete = false
+
+      require("cmp").setup(opts)
+    end,
   },
 
   {
@@ -554,5 +569,28 @@ return {
   --     require "rust-tools".setup(opts)
   --   end
   -- },
+
+  {
+    "kndndrj/nvim-dbee",
+
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+
+    build = function()
+      -- Install tries to automatically detect the install method.
+      -- if it fails, try calling it with one of these parameters:
+      --    "curl", "wget", "bitsadmin", "go"
+      xpcall(
+        ---@diagnostic disable-next-line: param-type-mismatch
+        require("dbee").install(), -- Try to detect install method
+        function()
+          require("dbee").install("curl") -- Fallback to curl in case of errors
+        end
+      )
+    end,
+
+    config = true,
+  },
 }
 
