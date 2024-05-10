@@ -5,7 +5,7 @@ local config = {
   expressions = {"call_expression"}, -- tree-sitter object used to scan for tests/describe blocks
   path_to_jest_run = 'jest', -- used to run tests
   path_to_jest_debug = './node_modules/.bin/jest', -- used for debugging
-  terminal_cmd = "lua require('nvterm.terminal').new 'horizontal'", -- used to spawn a terminal for running tests, for debugging refer to nvim-dap's config
+  terminal_cmd = "lua require('nvchad.term').new { pos = 'sp' }", -- used to spawn a terminal for running tests, for debugging refer to nvim-dap's config
   dap = { -- debug adapter configuration
     type = 'pwa-node',
     request = 'launch',
