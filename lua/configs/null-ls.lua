@@ -6,6 +6,7 @@ local lint = null_ls.builtins.diagnostics
 local completion = null_ls.builtins.completion
 
 local sources = {
+  formatting.beautysh,
   formatting.fixjson,
   formatting.gofumpt,
   formatting.goimports_reviser,

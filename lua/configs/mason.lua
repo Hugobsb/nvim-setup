@@ -1,6 +1,7 @@
 local config = {
   ensure_installed = {
     -- servers
+    "bash-language-server",
     "css-lsp",
     "docker-compose-language-service",
     "dockerfile-language-server",
@@ -14,6 +15,7 @@ local config = {
     "yaml-language-server",
 
     -- formatters
+    "beautysh",
     "fixjson",
     "gofumpt",
     "goimports-reviser",

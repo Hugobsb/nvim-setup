@@ -20,6 +20,10 @@ local function mergeTables(dest, src)
 end
 
 local servers = {
+  ['bashls'] = {
+    cmd = { "bash-language-server", "start" },
+    filetypes = { "sh" }
+  },
   ['cssls'] = {
     fileTypes = { "css" }
   },
