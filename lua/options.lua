@@ -318,6 +318,10 @@ new_cmd('Screenshot', function()
   )
 end, { addr = 'lines', range = '%' })
 
+new_cmd('RunSH', function()
+  vim.fn.execute('set splitright | vnew | set filetype=sh | read !sh #')
+end, {})
+
 ---------------------------------- bugfixes ----------------------------------------
 
 -- Neogit message filetype
