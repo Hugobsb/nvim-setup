@@ -8,6 +8,8 @@ M.ui = {
   theme = "chadracula-evondev",
   theme_toggle = { "chadracula-evondev", "one_light" },
 
+  transparency = vim.g.neovide == nil,
+
   nvdash = {
     load_on_startup = true,
 
