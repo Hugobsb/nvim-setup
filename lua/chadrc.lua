@@ -177,12 +177,28 @@ M.ui = {
 
   statusline = {
     theme = "vscode_colored",
-    overriden_modules = function(modules)
-      local function get_tab_spaces()
-        return "%#StText#Spaces: " .. vim.opt.tabstop:get() .. "  "
-      end
 
-      local function get_line_break_encoding()
+    order = {
+      "mode",
+      "file",
+      "git",
+      "%=",
+      "lsp_msg",
+      "whitespace",
+      "diagnostics",
+      "tab_spaces",
+      "line_break_encoding",
+      "lsp",
+      "cursor",
+      "cwd"
+    },
+
+    modules = {
+      tab_spaces = function()
+        return " %#StText#Spaces: " .. vim.opt.tabstop:get() .. "  "
+      end,
+
+      line_break_encoding = function()
         local encoding = vim.api.nvim_buf_get_option(0, 'fileformat')
 
         if (encoding == "unix") then
@@ -194,32 +210,20 @@ M.ui = {
         end
 
         return encoding .. "  "
-      end
+      end,
 
-      local function git()
-        local has_buffer_branch = string.len(modules[3]) > 0
+      whitespace = function() return " " end,
+    },
 
-        if not has_buffer_branch then
-          local directory_branch = vim.fn.system("git branch --show-current 2>/dev/null")
-
-          -- Remove the empty character ^@ from the end of the function
-          directory_branch = string.sub(directory_branch, 1, -2)
-
-          if string.len(directory_branch) > 0 then
-            return "  " .. directory_branch .. "  "
-          end
-        end
-
-        return ""
-      end
-
-      table.insert(modules, 10, get_tab_spaces())
-      table.insert(modules, 12, get_line_break_encoding())
-      table.insert(modules, 4, git())
-
-      -- Add an extra space to cwd ending
-      table.insert(modules, 17, " ")
-    end
+    -- overriden_modules = function(modules)
+    --
+    --   table.insert(modules, 10, get_tab_spaces())
+    --   table.insert(modules, 12, get_line_break_encoding())
+    --   table.insert(modules, 4, git())
+    --
+    --   -- Add an extra space to cwd ending
+    --   table.insert(modules, 17, " ")
+    -- end
   },
 
   cmp = {
