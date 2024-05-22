@@ -214,16 +214,6 @@ M.ui = {
 
       whitespace = function() return " " end,
     },
-
-    -- overriden_modules = function(modules)
-    --
-    --   table.insert(modules, 10, get_tab_spaces())
-    --   table.insert(modules, 12, get_line_break_encoding())
-    --   table.insert(modules, 4, git())
-    --
-    --   -- Add an extra space to cwd ending
-    --   table.insert(modules, 17, " ")
-    -- end
   },
 
   cmp = {
