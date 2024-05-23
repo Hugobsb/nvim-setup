@@ -175,6 +175,10 @@ M.ui = {
 
   lsp_semantic_tokens = true, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 
+  tabufline = {
+    enabled = false,
+  },
+
   statusline = {
     theme = "vscode_colored",
 
@@ -185,6 +189,7 @@ M.ui = {
       "%=",
       "lsp_msg",
       "whitespace",
+      "unsaved_buffer",
       "diagnostics",
       "tab_spaces",
       "line_break_encoding",
@@ -210,6 +215,14 @@ M.ui = {
         end
 
         return encoding .. "  "
+      end,
+
+      unsaved_buffer = function ()
+        if vim.api.nvim_buf_get_option(0, 'modified') then
+          return ' • Modified '
+        end
+
+        return ""
       end,
 
       whitespace = function() return " " end,

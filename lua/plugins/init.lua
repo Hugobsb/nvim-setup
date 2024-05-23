@@ -614,5 +614,27 @@ return {
 
     config = true,
   },
+
+  {
+    "tpope/vim-obsession",
+
+    lazy = false,
+
+    config = false
+  },
+
+  {
+    "ThePrimeagen/harpoon",
+
+    branch = "harpoon2",
+
+    event = "BufEnter",
+
+    config = function()
+      require("configs.harpoon")
+    end,
+
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
 }
 

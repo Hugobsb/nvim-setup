@@ -53,8 +53,8 @@ map("n", "<leader>dpuk", "<cmd> lua require'dapui'.eval() <CR>", { desc = "Evalu
 
 -- Tabufline
 
-map("n", "<leader>bm", "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", { desc = "Move tab forward" })
-map("n", "<leader>bM", "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>", { desc = "Move tab backward" })
+-- map("n", "<leader>bm", "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", { desc = "Move tab forward" })
+-- map("n", "<leader>bM", "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>", { desc = "Move tab backward" })
 
 -- Diffview
 
@@ -80,10 +80,6 @@ map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line(s) upwards" })
 map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line(s) downwards" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line(s) upwards" })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line(s) downwards" })
-
--- Selection mappings
-
-map("n", "<leader>a", "ggVG", { desc = "Select all" })
 
 -- Font mappings
 
