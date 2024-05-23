@@ -1,8 +1,9 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
+local nomap = vim.keymap.del
+
+-- add yours here
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
@@ -138,4 +139,26 @@ map("n", "<leader>db", "<cmd> lua require'dropbar.api'.pick() <CR>", { desc = "E
 
 map({ "n", "v" }, "<leader>dbe", "<cmd> lua require'dbee'.toggle() <CR>", { desc = "DBee toggle UI" })
 -- map({ "n", "v" }, "<leader>dbeq", "<cmd> lua require'dbee'.execute() <CR>", { desc = "DBee execute query" })
+
+-- Harpoon mappings
+
+nomap("n", "<C-j>")
+nomap("n", "<C-k>")
+nomap("n", "<leader>h")
+
+map("n", "<leader>a", "<cmd> lua require'harpoon':list():add() <CR>", { desc = "Harpoon add entry", noremap = true })
+map("n", "<leader>ar", "<cmd> lua require'harpoon':list():remove() <CR>", { desc = "Harpoon remove entry", noremap = true })
+map("n", "<leader>h", "<cmd> lua require'harpoon'.ui:toggle_quick_menu(harpoon:list()) <CR>", { desc = "Harpoon open list", noremap = true })
+
+-- Select buffers stored within Harpoon list
+-- map("n", "<C-h>", function() harpoon:list():select(1) end)
+-- map("n", "<C-t>", function() harpoon:list():select(2) end)
+-- map("n", "<C-n>", function() harpoon:list():select(3) end)
+-- map("n", "<C-s>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+map("n", "<C-k>", "<cmd> lua require'harpoon':list():prev() <CR>", { desc = "Harpoon previous buffer" })
+map("n", "<C-j>", "<cmd> lua require'harpoon':list():next() <CR>", { desc = "Harpoon next buffer" })
+
+map("n", "<leader>hh", "<cmd> HarpoonTelescope <CR>", { desc = "Harpoon open Telescope window", noremap = true })
 
