@@ -628,7 +628,7 @@ return {
 
     branch = "harpoon2",
 
-    event = "BufEnter",
+    lazy = false,
 
     config = function()
       require("configs.harpoon")
