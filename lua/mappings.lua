@@ -150,7 +150,7 @@ nomap("n", "<leader>h")
 
 map("n", "<leader>a", "<cmd> lua require'harpoon':list():add() <CR>", { desc = "Harpoon add entry", noremap = true })
 map("n", "<leader>ar", "<cmd> lua require'harpoon':list():remove() <CR>", { desc = "Harpoon remove entry", noremap = true })
-map("n", "<leader>h", "<cmd> lua require'harpoon'.ui:toggle_quick_menu(harpoon:list()) <CR>", { desc = "Harpoon open list", noremap = true })
+map("n", "<leader>h", "<cmd> lua require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) <CR>", { desc = "Harpoon open list", noremap = true })
 
 -- Select buffers stored within Harpoon list
 -- map("n", "<C-h>", function() harpoon:list():select(1) end)
