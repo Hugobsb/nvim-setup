@@ -7,10 +7,9 @@ local nomap = vim.keymap.del
 
 nomap("n", "<tab>")
 nomap("n", "<S-tab>")
+nomap("n", "<leader>x")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
-
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Tab remapping conflicts with C-I key binding that jumps forwardly in the jump history
 -- Disabling this key mapping pointing it to itself fixes this issue
@@ -89,11 +88,6 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line(s) downwards" })
 map({ "n", "i" }, "<A-=>", "<cmd> RestoreFontSize <CR>", { desc = "Restore font size" })
 map({ "n", "i" }, "<C-=>", "<cmd> IncreaseFontSize <CR>", { desc = "Increase font size" })
 map({ "n", "i" }, "<C-->", "<cmd> DecreaseFontSize <CR>", { desc = "Decrease font size" })
-
--- Autosession mappings
-
-map("n", "<leader>ss", "<cmd> SessionSave <CR>", { desc = "Save a session" })
-map("n", "<leader>sr", "<cmd> SessionSave <CR>", { desc = "Restore the last session" })
 
 -- GitHub Copilot mappings
 

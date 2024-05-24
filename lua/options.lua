@@ -9,20 +9,6 @@ local utils = require'utils'
 local screenshot = require'modules.screenshot'
 local uuid = require'modules.uuid'
 
------------------------------------ session ----------------------------------------
-
--- xpcall(
---   function () vim.cmd("silent Obsession") end,
---   function (err)
---     vim.notify(
---       'Failed to start recording the session: ' .. err,
---       ---@diagnostic disable-next-line: param-type-mismatch
---       'error',
---       { title = 'Obsess plugin' }
---     )
---   end
--- )
-
 ----------------------------------- globals ----------------------------------------
 
 vim.g.neovide_cursor_vfx_mode = 'pixiedust'

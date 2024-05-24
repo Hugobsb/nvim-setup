@@ -447,16 +447,6 @@ return {
   },
 
   {
-    "rmagatti/auto-session",
-
-    version = "*",
-
-    lazy = false,
-
-    config = require "configs.auto-session"
-  },
-
-  {
     "stevearc/dressing.nvim",
 
     version = "*",
@@ -620,7 +610,9 @@ return {
 
     lazy = false,
 
-    config = false
+    config = function()
+      require "configs.obsession"
+    end
   },
 
   {
