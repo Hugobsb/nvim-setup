@@ -441,8 +441,16 @@ return {
 
     event = "BufEnter",
 
-    config = function()
-      require "configs.notify"
+    opts = {
+      background_colour = "#000000"
+    },
+
+    config = function(_, opts)
+      local notify = require "notify"
+
+      notify.setup(opts)
+
+      vim.notify = notify
     end
   },
 
