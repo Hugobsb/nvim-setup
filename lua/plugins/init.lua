@@ -1,90 +1,5 @@
 return {
   {
-    "stevearc/conform.nvim",
-
-    -- event = 'BufWritePre' -- uncomment for format on save
-
-    config = function()
-      require "configs.conform"
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-
-    dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
-      "SmiteshP/nvim-navic"
-    },
-
-    config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
-    end,
-  },
-
-  {
-    'nvim-tree/nvim-web-devicons',
-
-    opts = {
-      override_by_filename = {
-        ['cpt'] = {
-          icon = '',
-          name = 'EncryptedFiles',
-        },
-        ['http'] = {
-          icon = '',
-          name = 'HttpFiles'
-        }
-      },
-    },
-  },
-
-  {
-    'nvimdev/lspsaga.nvim',
-
-    event = 'LspAttach',
-
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',  -- optional
-      'nvim-tree/nvim-web-devicons',      -- optional
-      'neovim/nvim-lspconfig'             -- optional
-    },
-
-    opts = require "configs.lspsaga",
-  },
-
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-
-    event = "BufEnter",
-
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    },
-
-    config = function()
-      require "configs.null-ls"
-    end
-  },
-
-  {
-    "williamboman/mason.nvim",
-
-    opts = require "configs.mason"
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-
-    dependencies = {
-      "nvim-telescope/telescope-live-grep-args.nvim",
-    },
-
-    opts = require "configs.telescope",
-  },
-
-  {
     "mfussenegger/nvim-dap",
 
     event = "BufEnter",
@@ -229,18 +144,6 @@ return {
     event = "BufEnter",
 
     config = false
-  },
-
-  {
-    "nvim-tree/nvim-tree.lua",
-
-    opts = require "configs.nvimtree"
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-
-    opts = require "configs.treesitter"
   },
 
   {
@@ -462,32 +365,6 @@ return {
     lazy = false,
 
     config = require "configs.dressing"
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-
-    dependencies = {
-      {
-        "MattiasMTS/cmp-dbee",
-        dependencies = {
-          {"kndndrj/nvim-dbee"}
-        },
-        ft = "sql",
-        config = function()
-          require("cmp-dbee").setup({})
-        end
-      },
-    },
-
-    config = function(_, opts)
-      table.insert(opts.sources, 5, { name = "cmp-dbee" })
-
-      opts.preselect = "none";
-      opts.completion.autocomplete = false
-
-      require("cmp").setup(opts)
-    end,
   },
 
   {

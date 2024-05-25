@@ -1,13 +1,92 @@
-require "nvchad.mappings"
-
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
--- add yours here
+------------------------------------ core ------------------------------------------
 
-nomap("n", "<tab>")
-nomap("n", "<S-tab>")
-nomap("n", "<leader>x")
+map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
+
+map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
+map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
+map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+
+map("n", "<leader>fm", function()
+  require("conform").format { lsp_fallback = true }
+end, { desc = "format files" })
+
+-- global lsp mappings
+map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "lsp diagnostic loclist" })
+
+-- Comment
+map("n", "<leader>/", function()
+  require("Comment.api").toggle.linewise.current()
+end, { desc = "comment toggle" })
+
+map(
+  "v",
+  "<leader>/",
+  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+  { desc = "comment toggle" }
+)
+
+-- telescope
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
+map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
+map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
+map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
+map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
+map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
+map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
+map(
+  "n",
+  "<leader>fa",
+  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+  { desc = "telescope find all files" }
+)
+
+-- terminal
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+
+-- toggleable
+map({ "n", "t" }, "<A-v>", function()
+  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
+end, { desc = "terminal toggleable vertical term" })
+
+map({ "n", "t" }, "<A-h>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal new horizontal term" })
+
+map({ "n", "t" }, "<A-i>", function()
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "terminal toggle floating term" })
+
+-- whichkey
+map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
+
+map("n", "<leader>wk", function()
+  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
+end, { desc = "whichkey query lookup" })
+
+-- blankline
+map("n", "<leader>cc", function()
+  local config = { scope = {} }
+  config.scope.exclude = { language = {}, node_type = {} }
+  config.scope.include = { node_type = {} }
+  local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
+
+  if node then
+    local start_row, _, end_row, _ = node:range()
+    if start_row ~= end_row then
+      vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
+      vim.api.nvim_feedkeys("_", "n", true)
+    end
+  end
+end, { desc = "blankline jump to current context" })
+
+------------------------------------ misc ------------------------------------------
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
@@ -52,11 +131,6 @@ map("n", "<leader>dr", "<cmd> lua require'dap'.repl.open() <CR>", { desc = "Open
 map("n", "<leader>dpu", "<cmd> lua require'dapui'.open() <CR>", { desc = "Open debugger" })
 map("n", "<leader>dpU", "<cmd> lua require'dapui'.close() <CR>", { desc = "Close debugger" })
 map("n", "<leader>dpuk", "<cmd> lua require'dapui'.eval() <CR>", { desc = "Evaluate expression" })
-
--- Tabufline
-
--- map("n", "<leader>bm", "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", { desc = "Move tab forward" })
--- map("n", "<leader>bM", "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>", { desc = "Move tab backward" })
 
 -- Diffview
 
@@ -137,10 +211,6 @@ map({ "n", "v" }, "<leader>dbe", "<cmd> lua require'dbee'.toggle() <CR>", { desc
 -- map({ "n", "v" }, "<leader>dbeq", "<cmd> lua require'dbee'.execute() <CR>", { desc = "DBee execute query" })
 
 -- Harpoon mappings
-
-nomap("n", "<C-j>")
-nomap("n", "<C-k>")
-nomap("n", "<leader>h")
 
 map("n", "<leader>a", "<cmd> lua require'harpoon':list():add() <CR>", { desc = "Harpoon add entry", noremap = true })
 map("n", "<leader>ar", "<cmd> lua require'harpoon':list():remove() <CR>", { desc = "Harpoon remove entry", noremap = true })

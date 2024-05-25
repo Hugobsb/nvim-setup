@@ -12,8 +12,10 @@ local config = {
     "jsonc",
     "kotlin",
     "lua",
+    "luadoc",
     "markdown",
     "mermaid",
+    "printf",
     "query",
     "sql",
     "todotxt",
@@ -34,6 +36,7 @@ local config = {
 
   highlight = {
     enable = true,
+    use_languagetree = true,
     disable = {
       "NeogitConsole",
       "NeogitStatus",
@@ -50,10 +53,11 @@ local config = {
     }
   },
 
+  indent = { enable = true },
+
   autotag = {
     enable = true
   }
 }
 
 return config
-
