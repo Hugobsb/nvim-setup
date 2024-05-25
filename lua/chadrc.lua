@@ -5,8 +5,8 @@
 local M = {}
 
 M.ui = {
-  theme = "chadracula-evondev",
-  theme_toggle = { "chadracula-evondev", "one_light" },
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "one_light" },
 
   transparency = vim.g.neovide == nil,
 
