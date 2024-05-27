@@ -636,5 +636,17 @@ return {
 
     dependencies = { "nvim-lua/plenary.nvim" }
   },
+
+  {
+    "axkirillov/hbac.nvim",
+
+    lazy = false,
+
+    opts = {
+      autoclose = true,
+      threshold = 5,
+      close_buffers_with_windows = false,
+    },
+  },
 }
 
