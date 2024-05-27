@@ -319,7 +319,7 @@ new_cmd('Screenshot', function()
 end, { addr = 'lines', range = '%' })
 
 new_cmd('RunSH', function()
-  vim.fn.execute('set splitright | vnew | set filetype=sh | read !sh #')
+  vim.fn.execute("set splitright | vnew | set filetype=sh | execute('read !sh #') | execute getline(1) == '' ? '1delete' : ''")
 end, {})
 
 new_cmd('HarpoonTelescope', function()
