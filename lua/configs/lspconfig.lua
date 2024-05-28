@@ -74,7 +74,9 @@ local servers = {
     },
   },
   ['kotlin_language_server'] = {
-    fileTypes = { "kt", "kts" }
+    rootDir = util.root_pattern({ ".gradlew", ".git", "mvnw" }),
+    fileTypes = { "kt", "kts" },
+    cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/kotlin-language-server" },
   },
   ['lua_ls'] = {
     filetypes = { "lua" },
