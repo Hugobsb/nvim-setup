@@ -193,7 +193,7 @@ M.ui = {
       "diagnostics",
       "tab_spaces",
       "line_break_encoding",
-      "lsp",
+      "custom_lsp",
       "cursor",
       "cwd"
     },
@@ -223,6 +223,33 @@ M.ui = {
         end
 
         return ""
+      end,
+
+      custom_lsp = function()
+        local current_buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+
+        local function get_lsp()
+          local fallback = ""
+
+          if rawget(vim, "lsp") and vim.version().minor >= 10 then
+            for _, client in ipairs(vim.lsp.get_clients()) do
+              if client.name == "null-ls" or client.name == "GitHub Copilot" then
+                fallback = client.name
+                goto continue
+              end
+
+              if client.attached_buffers[current_buf] then
+                return (vim.o.columns > 100 and "   LSP ~ " .. client.name .. " ") or "   LSP "
+              end
+
+              ::continue::
+            end
+          end
+
+          return fallback
+        end
+
+        return "%#St_Lsp#" .. get_lsp()
       end,
 
       whitespace = function() return " " end,
