@@ -55,6 +55,11 @@ map("n", "<leader>dpu", "<cmd> lua require'dapui'.open() <CR>", { desc = "Open d
 map("n", "<leader>dpU", "<cmd> lua require'dapui'.close() <CR>", { desc = "Close debugger" })
 map("n", "<leader>dpuk", "<cmd> lua require'dapui'.eval() <CR>", { desc = "Evaluate expression" })
 
+-- Nvim tab management
+
+map("n", "<tab>", "<cmd> tabnext <CR>", { desc = "Go to next tab" })
+map("n", "<S-tab>", "<cmd> tabprevious <CR>", { desc = "Go to previous tab" })
+
 -- Tabufline
 
 -- map("n", "<leader>bm", "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", { desc = "Move tab forward" })
