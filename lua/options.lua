@@ -356,7 +356,7 @@ new_cmd('TelescopeCustomBufferFind', function()
           end)
         end
 
-        map('n', '<c-d>', delete_buf)
+        map('n', '<c-e>', delete_buf)
 
         return true
       end
