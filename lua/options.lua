@@ -342,6 +342,30 @@ new_cmd('HarpoonTelescope', function()
   }):find()
 end, {})
 
+new_cmd('TelescopeCustomBufferFind', function()
+  local action_state = require('telescope.actions.state')
+
+  local function get_buffers()
+    require'telescope.builtin'.buffers{
+      initial_mode = 'normal',
+      attach_mappings = function(prompt_bufnr, map)
+        local delete_buf = function()
+          local current_picker = action_state.get_current_picker(prompt_bufnr)
+          current_picker:delete_selection(function(selection)
+            vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+          end)
+        end
+
+        map('n', '<c-d>', delete_buf)
+
+        return true
+      end
+    }
+  end
+
+  get_buffers()
+end, {})
+
 ---------------------------------- bugfixes ----------------------------------------
 
 -- Neogit message filetype

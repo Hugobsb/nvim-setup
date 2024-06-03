@@ -9,6 +9,7 @@ nomap("n", "<tab>")
 nomap("n", "<S-tab>")
 nomap("n", "<leader>x")
 nomap({ "n", "i" }, "<C-s>")
+nomap("n", "<leader>fb")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
@@ -69,6 +70,7 @@ map("n", "<leader>dV", "<cmd> DiffviewClose <CR>", { desc = "Close diff view men
 
 map("n", "<leader>fwa", "<cmd> lua require'telescope'.extensions.live_grep_args.live_grep_args() <CR>", { desc = "Live grep with custom arguments" })
 map("n", "<leader>fs", "<cmd> lua require'auto-session.session-lens'.search_session() <CR>", { desc = "Search for sessions from `auto-session` plugin", })
+map("n", "<leader>fb", "<cmd> TelescopeCustomBufferFind <CR>", { desc = "Find buffer - ovewritten" })
 
 -- Line movement mappings
 
