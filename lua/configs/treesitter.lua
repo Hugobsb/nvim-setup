@@ -48,10 +48,6 @@ local config = {
       "NeogitStatusNew",
       "NeogitPopup"
     }
-  },
-
-  autotag = {
-    enable = true
   }
 }
 
