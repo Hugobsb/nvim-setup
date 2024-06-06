@@ -19,6 +19,24 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 -- See more at https://vimhelp.org/motion.txt.html#jump-motions
 map("n", "<C-i>", "<C-i>", { desc = "Go forwardly in jumplist", noremap = true })
 
+-- hjkl movement
+
+map("i", "<C-h>", "<Left>", { desc = "move left" })
+map("i", "<C-l>", function()
+  local copilot_key = vim.fn['copilot#Accept']()
+
+  if copilot_key ~= "" then
+    -- Accept Copilot suggestion
+    vim.fn.feedkeys(copilot_key, '')
+    return
+  end
+
+  -- Move to the right
+  vim.api.nvim_command('normal! l')
+end, { desc = "move right" })
+map("i", "<C-j>", "<Down>", { desc = "move down" })
+map("i", "<C-k>", "<Up>", { desc = "move up" })
+
 -- Lsp saga
 
 -- Done at the LSP Config on LSP attach to be able to override NvChad's one
@@ -96,24 +114,6 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line(s) downwards" })
 map({ "n", "i" }, "<A-=>", "<cmd> RestoreFontSize <CR>", { desc = "Restore font size" })
 map({ "n", "i" }, "<C-=>", "<cmd> IncreaseFontSize <CR>", { desc = "Increase font size" })
 map({ "n", "i" }, "<C-->", "<cmd> DecreaseFontSize <CR>", { desc = "Decrease font size" })
-
--- GitHub Copilot mappings
-
-map(
-  "i",
-  "<C-l>",
-  function()
-    vim.fn.feedkeys(vim.fn['copilot#Accept'](), '')
-  end,
-  {
-    desc = "Copilot accept suggestion",
-    replace_keycodes = true,
-    nowait = true,
-    silent = true,
-    expr = true,
-    noremap = true
-  }
-)
 
 -- Jester mappings
 
