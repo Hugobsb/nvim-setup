@@ -31,6 +31,9 @@ local config = {
     "checkstyle",
     "detekt",
     "eslint_d",
+
+    -- debug adapters
+    "java-debug-adapter"
   }
 }
 

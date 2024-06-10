@@ -1,4 +1,4 @@
--- EXAMPLE 
+-- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -54,7 +54,7 @@ local servers = {
   ['jdtls'] = {
     rootDir = util.root_pattern({ ".gradlew", ".git", "mvnw" }),
     cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/jdtls" },
-    filetypes = { "java" }
+    filetypes = { "java" },
   },
   ['jsonls'] = {
     fileTypes = { "json", "jsonc" },
@@ -135,7 +135,7 @@ for lsp, config in pairs(servers) do
 
     on_attach = function(client, bufnr)
       if client.server_capabilities.documentSymbolProvider then
-          navic.attach(client, bufnr)
+        navic.attach(client, bufnr)
       end
 
       on_attach(client, bufnr)
