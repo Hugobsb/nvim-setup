@@ -723,7 +723,7 @@ return {
 
     opts = {
       autoclose = true,
-      threshold = 5,
+      threshold = 15,
       close_buffers_with_windows = false,
     },
   },
