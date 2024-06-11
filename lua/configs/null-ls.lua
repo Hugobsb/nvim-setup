@@ -59,7 +59,6 @@ local sources = {
 
   -- diagnostics
   diagnostics_eslint_d, -- none-ls-extras
-  -- diagnostics.detekt,
   diagnostics.tidy,
 
   -- completion
