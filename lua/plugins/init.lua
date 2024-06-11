@@ -13,7 +13,7 @@ return {
     "neovim/nvim-lspconfig",
 
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       "SmiteshP/nvim-navic"
     },
 
@@ -55,11 +55,12 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
 
     event = "BufEnter",
 
     dependencies = {
+      "nvimtools/none-ls-extras.nvim",
       "nvim-lua/plenary.nvim"
     },
 
