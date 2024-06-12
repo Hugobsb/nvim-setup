@@ -18,29 +18,29 @@ local formatting_beautysh = require("none-ls.formatting.beautysh")
 
 -- custom sources
 
-local detekt = {
-  name = "Detekt",
-  meta = {
-    url = "https://github.com/detekt/detekt",
-    description = "Static code analysis for Kotlin",
-  },
-  method = null_ls.methods.DIAGNOSTICS,
-  filetypes = { "kotlin" },
-  generator = null_ls.generator({
-    command = "detekt",
-    args = { "--input", "$FILENAME" },
-    from_stderr = true,
-    format = "line",
-    on_output = helpers.diagnostics.from_patterns({
-      {
-        pattern = [[.*:(%d+):(%d+): [%w-/]+ (.*)]],
-        groups = { "row", "col", "message" }
-      }
-    })
-  })
-}
-
-null_ls.register(detekt)
+-- local detekt = {
+--   name = "Detekt",
+--   meta = {
+--     url = "https://github.com/detekt/detekt",
+--     description = "Static code analysis for Kotlin",
+--   },
+--   method = null_ls.methods.DIAGNOSTICS,
+--   filetypes = { "kotlin" },
+--   generator = null_ls.generator({
+--     command = "detekt",
+--     args = { "--input", "$FILENAME" },
+--     from_stderr = true,
+--     format = "line",
+--     on_output = helpers.diagnostics.from_patterns({
+--       {
+--         pattern = [[.*:(%d+):(%d+): [%w-/]+ (.*)]],
+--         groups = { "row", "col", "message" }
+--       }
+--     })
+--   })
+-- }
+--
+-- null_ls.register(detekt)
 
 local sources = {
   formatting_beautysh,
@@ -59,6 +59,7 @@ local sources = {
 
   -- diagnostics
   diagnostics_eslint_d, -- none-ls-extras
+  diagnostics.ktlint,
   diagnostics.tidy,
 
   -- completion
