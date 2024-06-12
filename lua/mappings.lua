@@ -8,7 +8,7 @@ local nomap = vim.keymap.del
 nomap("n", "<tab>")
 nomap("n", "<S-tab>")
 nomap("n", "<leader>x")
-nomap({ "n", "i" }, "<C-s>")
+pcall(function() nomap({ "n", "i" }, "<C-s>") end)
 nomap("n", "<leader>fb")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
