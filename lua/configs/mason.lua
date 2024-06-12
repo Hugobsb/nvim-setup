@@ -15,8 +15,6 @@ local config = {
     "yaml-language-server",
 
     -- formatters
-    "beautysh",
-    "fixjson",
     "gofumpt",
     "goimports-reviser",
     "golines",
@@ -24,7 +22,6 @@ local config = {
     "ktlint",
     "prettierd",
     "sql-formatter",
-    "xmlformatter",
     "yamlfix",
 
     -- linters / code actions
