@@ -92,7 +92,6 @@ map("n", "<leader>dV", "<cmd> DiffviewClose <CR>", { desc = "Close diff view men
 -- Telescope
 
 map("n", "<leader>fwa", "<cmd> lua require'telescope'.extensions.live_grep_args.live_grep_args() <CR>", { desc = "Live grep with custom arguments" })
-map("n", "<leader>fs", "<cmd> lua require'auto-session.session-lens'.search_session() <CR>", { desc = "Search for sessions from `auto-session` plugin", })
 map("n", "<leader>fb", "<cmd> TelescopeCustomBufferFind <CR>", { desc = "Find buffer - ovewritten" })
 
 -- Line movement mappings
