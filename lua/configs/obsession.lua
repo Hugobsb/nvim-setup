@@ -12,17 +12,44 @@ local function load(session_file, should_create)
   vim.fn.execute('silent! Obsession ' .. session_file)
 end
 
+local function get_tmux_data(cmd)
+  local _, result, err = xpcall(
+    function()
+      local m = vim.fn.system(cmd)
+
+      if string.match(m, 'No such file or directory') ~= nil then
+        return nil, "Failed to retrieve tmux data: " .. m
+      end
+
+      return m
+    end,
+    function()  return nil, "Unexpected failure when retrieving tmux data" end
+  )
+
+  return result, err
+end
+
 local session_path = os.getenv('HOME') .. '/.local/share/nvim/sessions/'
 
-local _, session_name = xpcall(
-  function() return vim.fn.system('tmux display-message -p "#S"') end,
-  function() end
-)
+local session_name, s_err = get_tmux_data('tmux display-message -p "#S"')
 
-local _, window_name = xpcall(
-  function() return vim.fn.system('tmux display-message -p "#W"') end,
-  function() end
-)
+if s_err ~= nil then
+  vim.notify(
+    "Failed to restore session (session name retrieval error): " .. s_err,
+    "error",
+    { title = "Session" }
+  )
+end
+
+local window_name, w_err = get_tmux_data('tmux display-message -p "#W"')
+
+if s_err ~= nil then
+  vim.notify(
+    "Failed to restore session (window name retrieval error): " .. w_err,
+    "error",
+    { title = "Session" }
+  )
+end
 
 if session_name ~= nil and window_name ~= nil then
   session_name = session_name:gsub('[^%w%.%-_]', '')
