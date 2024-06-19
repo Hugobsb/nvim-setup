@@ -24,6 +24,23 @@ vim.cmd("set sessionoptions+=winpos,terminal,folds")
 -- Set / as diff character
 vim.opt.fillchars:append { diff = "╱" }
 
+local is_running_wsl = utils.execute_os_command("cat /proc/version 2>/dev/null | grep -F 'WSL'")
+
+if is_running_wsl ~= nil then
+  vim.g.clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = true,
+  }
+end
+
 ------------------------------------ fonts -----------------------------------------
 
 local default_font = os.getenv("NVIM_FONT") or 'FiraCode Nerd Font'

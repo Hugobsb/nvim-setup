@@ -333,5 +333,7 @@ M.is_uuid_valid = function(str)
   return type(result) == 'string' and string.len(result) > 0
 end
 
+M.execute_os_command = execute_os_command
+
 return M
 
