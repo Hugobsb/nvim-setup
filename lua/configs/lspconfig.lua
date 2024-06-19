@@ -130,9 +130,17 @@ local servers = {
 
 for lsp, config in pairs(servers) do
   local setup_config = {
-    on_init = on_init,
     capabilities = capabilities,
 
+    on_init = function(client, bufnr)
+      -- Forcefully enable semantic tokens - NvChad disables it
+
+      local semanticTokensProvider = client.server_capabilities.semanticTokensProvider
+
+      on_init(client, bufnr)
+
+      client.server_capabilities.semanticTokensProvider = semanticTokensProvider
+    end,
     on_attach = function(client, bufnr)
       if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
