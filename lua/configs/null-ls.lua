@@ -58,7 +58,8 @@ local sources = {
   code_actions.refactoring,
 
   -- diagnostics
-  diagnostics_eslint_d, -- none-ls-extras
+
+  diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
   -- diagnostics.ktlint,
   diagnostics.tidy,
 
