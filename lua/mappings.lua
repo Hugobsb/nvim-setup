@@ -13,12 +13,6 @@ nomap("n", "<leader>fb")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
--- Tab remapping conflicts with C-I key binding that jumps forwardly in the jump history
--- Disabling this key mapping pointing it to itself fixes this issue
--- Note: this solution is not universal and only works for GUI or terminals that support modifyOtherKeys
--- See more at https://vimhelp.org/motion.txt.html#jump-motions
-map("n", "<C-i>", "<C-i>", { desc = "Go forwardly in jumplist", noremap = true })
-
 -- hjkl movement
 
 map("i", "<C-h>", "<Left>", { desc = "move left" })
@@ -75,8 +69,15 @@ map("n", "<leader>dpuk", "<cmd> lua require'dapui'.eval() <CR>", { desc = "Evalu
 
 -- Nvim tab management
 
-map("n", "<tab>", "<cmd> tabnext <CR>", { desc = "Go to next tab" })
-map("n", "<S-tab>", "<cmd> tabprevious <CR>", { desc = "Go to previous tab" })
+-- Disabled until I find a way to map it without causing C-i conflicts. Maybe an Alacritty configuration
+-- map("n", "<tab>", "<cmd> tabnext <CR>", { desc = "Go to next tab", noremap = true })
+-- map("n", "<S-tab>", "<cmd> tabprevious <CR>", { desc = "Go to previous tab", noremap = true })
+
+-- Tab remapping conflicts with C-I key binding that jumps forwardly in the jump history
+-- Disabling this key mapping pointing it to itself fixes this issue
+-- Note: this solution is not universal and only works for GUI or terminals that support modifyOtherKeys
+-- See more at https://vimhelp.org/motion.txt.html#jump-motions
+map("n", "<C-i>", "<C-i>", { desc = "Go forwardly in jumplist", noremap = true })
 
 -- Tabufline
 
