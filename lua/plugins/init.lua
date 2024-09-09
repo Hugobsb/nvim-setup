@@ -171,8 +171,6 @@ return {
   {
     "microsoft/java-debug",
 
-    version = "*",
-
     build = "./mvnw clean install",
   },
 
