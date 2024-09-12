@@ -1,6 +1,23 @@
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local on_init = require("nvchad.configs.lspconfig").on_init
+local capabilities = require("nvchad.configs.lspconfig").capabilities
+
 local config = {
   rootDir = require "lspconfig/util".root_pattern({ ".gradlew", ".git", "mvnw" }),
-  cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/jdtls" },
+  cmd = {
+    os.getenv("HOME") .. "/.local/share/nvim/mason/bin/jdtls",
+    "--jvm-arg=-javaagent:" .. os.getenv("HOME") .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+    "--jvm-arg=-Xbootclasspath/a:" .. os.getenv("HOME") .. "/.config/nvim/plugins/jdtls/lombok.jar"
+  },
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = capabilities,
+  contentProvider = { preferred = "fernflower" },
+  settings = {
+    java = {
+      signatureHelp = { enabled = true },
+    },
+  },
   filetypes = { "java" },
   init_options = {
     bundles = {},
@@ -26,8 +43,12 @@ xpcall(
       )
     )
 
+    local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
+    extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+
     config.init_options = {
       bundles = bundles,
+      extendedClientCapabilities = extendedClientCapabilities,
     }
 
     require("jdtls").start_or_attach(config)
