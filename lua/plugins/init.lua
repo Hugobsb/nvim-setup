@@ -192,7 +192,8 @@ return {
     },
 
     dependencies = {
-      "mfussenegger/nvim-dap"
+      "mfussenegger/nvim-dap",
+      "neovim/nvim-lspconfig"
     },
 
     config = function()
