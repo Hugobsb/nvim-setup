@@ -207,6 +207,11 @@ return {
 
       xpcall(
         function()
+          -- TODO:
+          -- The absence of the build files throws errors in jdtls
+          -- So, there must be a verification to check if the build files exist
+          -- before adding them to the bundle list.
+
           local bundles = {
             vim.fn.glob(
               os.getenv("HOME")
