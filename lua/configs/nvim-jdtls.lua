@@ -64,7 +64,18 @@ local config = {
     bundles = {},
   },
   contentProvider = { preferred = "fernflower" },
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+
+    vim.keymap.del({ "n", "v" }, "<leader>ca", { buffer = bufnr })
+
+    vim.keymap.set(
+      { "n", "v" },
+      "<leader>ca",
+      "<cmd> Lspsaga code_action <CR>",
+      { buffer = bufnr, desc = "LSP Code action", noremap = true }
+    )
+  end,
   on_init = on_init,
   capabilities = capabilities,
 
