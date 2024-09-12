@@ -1,4 +1,3 @@
--- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -18,6 +17,8 @@ local function mergeTables(dest, src)
     end
   end
 end
+
+local home = os.getenv("HOME")
 
 local servers = {
   ['bashls'] = {
@@ -71,7 +72,7 @@ local servers = {
   ['kotlin_language_server'] = {
     rootDir = util.root_pattern({ ".gradlew", ".git", "mvnw" }),
     fileTypes = { "kt", "kts" },
-    cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/kotlin-language-server" },
+    cmd = { home .. "/.local/share/nvim/mason/bin/kotlin-language-server" },
   },
   ['lua_ls'] = {
     filetypes = { "lua" },
@@ -115,7 +116,7 @@ local servers = {
     filetypes = { "sql", "mysql" }
   },
   ['tsserver'] = {
-    cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
+    cmd = { home .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
   },
   ['yamlls'] = {
@@ -158,3 +159,4 @@ for lsp, config in pairs(servers) do
 
   lspconfig[lsp].setup(setup_config)
 end
+
