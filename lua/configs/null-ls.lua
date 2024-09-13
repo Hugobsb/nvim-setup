@@ -1,5 +1,5 @@
 local null_ls = require "null-ls"
-local helpers = require "null-ls.helpers"
+-- local helpers = require "null-ls.helpers"
 
 local code_actions = null_ls.builtins.code_actions
 local completion = null_ls.builtins.completion
@@ -48,7 +48,7 @@ local sources = {
   formatting.gofumpt,
   formatting.goimports_reviser,
   formatting.golines,
-  formatting.google_java_format,
+  formatting.google_java_format.with { extra_args = { "--aosp" } },
   formatting.ktlint,
   formatting.prettierd,
   formatting.sql_formatter,
