@@ -34,6 +34,8 @@
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "neogit": { "branch": "master", "commit": "cfbdc888cdfb3cb675615eb96467d980b73b3da5" },
+  "neotest": { "branch": "master", "commit": "48f8b5fce704594eb0ff94338e080defca14f0dc" },
+  "neotest-java": { "branch": "main", "commit": "24d34fb00eb843cc2f1c9430ac93020bdc7e2f6a" },
   "none-ls-extras.nvim": { "branch": "main", "commit": "ebb09961f1c0a377f9ed1685740cdf87b5cd39a8" },
   "none-ls.nvim": { "branch": "main", "commit": "9b98991e15dce8fc502993e23caac2528b8b667f" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },

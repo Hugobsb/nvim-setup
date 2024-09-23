@@ -144,6 +144,16 @@ map("n", "<leader>db", "<cmd> lua require'dropbar.api'.pick() <CR>", { desc = "E
 map({ "n", "v" }, "<leader>dbe", "<cmd> lua require'dbee'.toggle() <CR>", { desc = "DBee toggle UI" })
 -- map({ "n", "v" }, "<leader>dbeq", "<cmd> lua require'dbee'.execute() <CR>", { desc = "DBee execute query" })
 
+-- Neotest mappings
+
+map("n", "<leader>ts", "<cmd> Neotest summary <CR>", { desc = "Open tests summary" })
+
+map("n", "<leader>tt", "<cmd> lua require'neotest'.run.run(vim.fn.expand('%')) <CR>", { desc = "Run test file" })
+map("n", "<leader>tr", "<cmd> lua require'neotest'.run.run() <CR>", { desc = "Run nearest test" })
+map("n", "<leader>tD", "<cmd> lua require'neotest'.run.run({ strategy = 'dap' }) <CR>", { desc = "Debug test file" })
+map("n", "<leader>td", "<cmd> lua require'neotest'.run.run({ vim.fn.expand('%'), strategy = 'dap' }) <CR>", { desc = "Debug nearest test" })
+
+
 -- Harpoon mappings
 
 nomap("n", "<C-j>")

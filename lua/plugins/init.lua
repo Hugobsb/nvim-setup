@@ -701,5 +701,44 @@ return {
       }
     },
   },
+
+  {
+    "nvim-neotest/neotest",
+
+    event = {
+      "BufEnter *.java",
+    },
+
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter"
+
+    },
+
+    opts = {
+      adapters = {
+          ["neotest-java"] = {
+            ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
+            junit_jar = nil,
+            -- default: .local/share/nvim/neotest-java/junit-platform-console-standalone-[version].jar
+            incremental_build = true
+          },
+      },
+    },
+
+    config = true,
+  },
+  {
+    "rcasia/neotest-java",
+
+    event = {
+      "BufEnter *.java"
+    },
+
+    dependencies = {
+      "nvim-neotest/neotest"
+    },
+  },
 }
 
