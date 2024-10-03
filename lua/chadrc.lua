@@ -4,47 +4,11 @@
 ---@type ChadrcConfig 
 local M = {}
 
-M.ui = {
+M.base46 = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
 
   transparency = vim.g.neovide == nil,
-
-  nvdash = {
-    load_on_startup = true,
-
-    header = {
-      [[ ██░ ██  █    ██      ▄████  ▒█████      ██▒   █▓ ██▓ ███▄ ▄███▓]],
-      [[▓██░ ██▒ ██  ▓██▒    ██▒ ▀█▒▒██▒  ██▒   ▓██░   █▒▓██▒▓██▒▀█▀ ██▒]],
-      [[▒██▀▀██░▓██  ▒██░   ▒██░▄▄▄░▒██░  ██▒    ▓██  █▒░▒██▒▓██    ▓██░]],
-      [[░▓█ ░██ ▓▓█  ░██░   ░▓█  ██▓▒██   ██░     ▒██ █░░░██░▒██    ▒██ ]],
-      [[░▓█▒░██▓▒▒█████▓    ░▒▓███▀▒░ ████▓▒░      ▒▀█░  ░██░▒██▒   ░██▒]],
-      [[ ▒ ░░▒░▒░▒▓▒ ▒ ▒     ░▒   ▒ ░ ▒░▒░▒░       ░ ▐░  ░▓  ░ ▒░   ░  ░]],
-      [[ ▒ ░▒░ ░░░▒░ ░ ░      ░   ░   ░ ▒ ▒░       ░ ░░   ▒ ░░  ░      ░]],
-      [[ ░  ░░ ░ ░░░ ░ ░    ░ ░   ░ ░ ░ ░ ▒          ░░   ▒ ░░      ░   ]],
-      [[ ░  ░  ░   ░              ░     ░ ░           ░   ░         ░   ]],
-      [[                                             ░                  ]],
-    },
-
-    buttons = {
-      { "  Find File", "Spc f f", "Telescope find_files" },
-      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-      { "󱑜  Save session", "Spc s s", "SessionSave" },
-      { "󰁯  Restore last session", "Spc s r", "SessionRestore" },
-      { "  Find sessions", "Spc f s", "'auto-session.session-lens'.search_session()" },
-      { "󰂽  Bookmarks", "Spc m a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
-      { "  Mappings", "Spc c h", "NvCheatsheet" },
-    },
-  },
-
-  extended_integrations = {
-    "dap",
-    "navic",
-    "notify",
-    "trouble",
-  },
 
   hl_add = {
     DevIconEncryptedFiles = {
@@ -172,6 +136,59 @@ M.ui = {
     ["@lsp.type.macro"] = { link = "@macro" },
     ["@lsp.type.decorator"] = { link = "@function" },
   },
+}
+
+M.nvdash = {
+  load_on_startup = true,
+
+  header = {
+    [[ ██░ ██  █    ██      ▄████  ▒█████      ██▒   █▓ ██▓ ███▄ ▄███▓]],
+    [[▓██░ ██▒ ██  ▓██▒    ██▒ ▀█▒▒██▒  ██▒   ▓██░   █▒▓██▒▓██▒▀█▀ ██▒]],
+    [[▒██▀▀██░▓██  ▒██░   ▒██░▄▄▄░▒██░  ██▒    ▓██  █▒░▒██▒▓██    ▓██░]],
+    [[░▓█ ░██ ▓▓█  ░██░   ░▓█  ██▓▒██   ██░     ▒██ █░░░██░▒██    ▒██ ]],
+    [[░▓█▒░██▓▒▒█████▓    ░▒▓███▀▒░ ████▓▒░      ▒▀█░  ░██░▒██▒   ░██▒]],
+    [[ ▒ ░░▒░▒░▒▓▒ ▒ ▒     ░▒   ▒ ░ ▒░▒░▒░       ░ ▐░  ░▓  ░ ▒░   ░  ░]],
+    [[ ▒ ░▒░ ░░░▒░ ░ ░      ░   ░   ░ ▒ ▒░       ░ ░░   ▒ ░░  ░      ░]],
+    [[ ░  ░░ ░ ░░░ ░ ░    ░ ░   ░ ░ ░ ░ ▒          ░░   ▒ ░░      ░   ]],
+    [[ ░  ░  ░   ░              ░     ░ ░           ░   ░         ░   ]],
+    [[                                             ░                  ]],
+  },
+
+  buttons = {
+    { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
+    { txt = "󰈚  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
+    { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
+    { txt = "󱑜  Save session", keys = "Spc s s", cmd = "SessionSave" },
+    { txt = "󰁯  Restore last session", keys = "Spc s r", cmd = "SessionRestore" },
+    { txt = "  Find sessions", keys = "Spc f s", cmd = "'auto-session.session-lens'.search_session()" },
+    { txt = "󰂽  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
+    { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
+    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
+
+    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
+
+    {
+      txt = function()
+        local stats = require("lazy").stats()
+        local ms = math.floor(stats.startuptime) .. " ms"
+        return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+      end,
+      hl = "NvDashLazy",
+      no_gap = true,
+    },
+
+    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
+  },
+}
+
+M.ui = {
+  extended_integrations = {
+    "dap",
+    "navic",
+    "notify",
+    "trouble",
+  },
+
 
   lsp_semantic_tokens = true, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 
