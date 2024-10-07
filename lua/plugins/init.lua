@@ -729,6 +729,7 @@ return {
 
     config = true,
   },
+
   {
     "rcasia/neotest-java",
 
@@ -739,6 +740,13 @@ return {
     dependencies = {
       "nvim-neotest/neotest"
     },
+  },
+
+  {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 }
 
