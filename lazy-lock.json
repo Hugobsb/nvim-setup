@@ -78,6 +78,6 @@
   "vim-wakatime": { "branch": "master", "commit": "f699e30ca1ba0c7f316847316fd0ba19d3ee51c1" },
   "volt": { "branch": "main", "commit": "4472da2e77ad240e7fc56af6357b2a8fdf6aa0ae" },
   "vscode-java-test": { "branch": "main", "commit": "ad4b37c7529e4a6825bd1f8ceb545ee783e7c837" },
-  "vscode-js-debug": { "branch": "main", "commit": "220de804b4edbe03f7e2d63812e52f409120dac5" },
+  "vscode-js-debug": { "branch": "main", "commit": "4e9f6b8cee28ea0cfaadcee586e2230ee55f9d4d" },
   "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" }
 }
