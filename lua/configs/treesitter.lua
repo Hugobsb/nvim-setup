@@ -1,6 +1,7 @@
 local config = {
   ensure_installed = {
     "c",
+    "css",
     "dart",
     "dockerfile",
     "go",
@@ -17,6 +18,7 @@ local config = {
     "query",
     "regex",
     "sql",
+    "styled",
     "todotxt",
     "toml",
     "tsx",
