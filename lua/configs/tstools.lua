@@ -16,13 +16,11 @@ config.on_attach = function(client, bufnr)
 end
 
 config.settings = {
-  settings = {
-    tsserver_plugins = {
-      -- for TypeScript v4.9+
-      "@styled/typescript-styled-plugin",
-      -- or for older TypeScript versions
-      -- "typescript-styled-plugin",
-    },
+  tsserver_plugins = {
+    -- for TypeScript v4.9+
+    "@styled/typescript-styled-plugin",
+    -- or for older TypeScript versions
+    -- "typescript-styled-plugin",
   },
 }
 
