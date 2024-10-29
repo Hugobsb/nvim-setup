@@ -761,16 +761,10 @@ return {
       "BufEnter *.jsx",
     },
 
-    opts = {
-      settings = {
-        tsserver_plugins = {
-          -- for TypeScript v4.9+
-          "@styled/typescript-styled-plugin",
-          -- or for older TypeScript versions
-          -- "typescript-styled-plugin",
-        },
-      },
-    },
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
+      require "configs.tstools"
+    end
   }
 }
 

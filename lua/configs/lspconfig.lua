@@ -115,10 +115,10 @@ local servers = {
     cmd = { "sqls" },
     filetypes = { "sql", "mysql" }
   },
-  ['ts_ls'] = {
-    cmd = { home .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
-  },
+  -- ['ts_ls'] = {
+  --   cmd = { home .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
+  --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
+  -- },
   ['yamlls'] = {
     filetypes = { "yaml", "yml" }
   }
