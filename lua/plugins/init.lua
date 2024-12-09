@@ -151,6 +151,28 @@ return {
   },
 
   {
+    "leoluz/nvim-dap-go",
+
+    version = "*",
+
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      {
+        "go-delve/delve",
+        build = "go build github.com/go-delve/delve/cmd/dlv dlv"
+      },
+    },
+
+    BufEnter = {
+      "*.go"
+    },
+
+    config = function()
+      require("configs.dap-go")
+    end
+  },
+
+  {
     "microsoft/vscode-js-debug",
 
     event = {
@@ -706,28 +728,20 @@ return {
     "nvim-neotest/neotest",
 
     event = {
+      "BufEnter *.go",
       "BufEnter *.java",
     },
 
     dependencies = {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter"
-
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
 
-    opts = {
-      adapters = {
-          ["neotest-java"] = {
-            ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
-            junit_jar = nil,
-            -- default: .local/share/nvim/neotest-java/junit-platform-console-standalone-[version].jar
-            incremental_build = true
-          },
-      },
-    },
-
-    config = true,
+    config = function()
+      require("configs.neotest")
+    end,
   },
 
   {
@@ -738,7 +752,24 @@ return {
     },
 
     dependencies = {
-      "nvim-neotest/neotest"
+      "nvim-neotest/neotest",
+      "mfussenegger/nvim-jdtls",
+      "mfussenegger/nvim-dap",
+    },
+  },
+
+  {
+    "fredrikaverpil/neotest-golang",
+
+    version = "*",
+
+    event = {
+      "BufEnter *.go"
+    },
+
+    dependencies = {
+      "nvim-neotest/neotest",
+      "leoluz/nvim-dap-go",
     },
   },
 

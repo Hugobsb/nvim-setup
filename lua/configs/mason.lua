@@ -30,7 +30,8 @@ local config = {
     "eslint_d",
 
     -- debug adapters
-    "java-debug-adapter"
+    "java-debug-adapter",
+    "go-debug-adapter"
   }
 }
 
