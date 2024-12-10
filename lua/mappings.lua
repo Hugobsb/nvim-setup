@@ -147,6 +147,7 @@ map({ "n", "v" }, "<leader>dbe", "<cmd> lua require'dbee'.toggle() <CR>", { desc
 -- Neotest mappings
 
 map("n", "<leader>ts", "<cmd> Neotest summary <CR>", { desc = "Open tests summary" })
+map("n", "<leader>to", "<cmd> lua require'neotest'.output_panel.toggle() <CR>", { desc = "Toggle test output panel" })
 
 map("n", "<leader>tt", "<cmd> lua require'neotest'.run.run(vim.fn.expand('%')) <CR>", { desc = "Run test file" })
 map("n", "<leader>tr", "<cmd> lua require'neotest'.run.run() <CR>", { desc = "Run nearest test" })
