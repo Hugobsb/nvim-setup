@@ -159,7 +159,7 @@ return {
       "mfussenegger/nvim-dap",
       {
         "go-delve/delve",
-        build = "go build github.com/go-delve/delve/cmd/dlv dlv"
+        build = "go build github.com/go-delve/delve/cmd/dlv"
       },
     },
 
