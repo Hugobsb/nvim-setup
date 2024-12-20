@@ -29,8 +29,9 @@ local servers = {
     fileTypes = { "css" }
   },
   ['docker_compose_language_service'] = {
-    rootDir = util.root_pattern("docker-compose.yaml", "docker-compose.yml"),
-    filetypes = { "yaml", "yml" }
+    root_dir = util.root_pattern('docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml'),
+    filetypes = { 'yaml.docker-compose' },
+    single_file_support = true,
   },
   ['dockerls'] = {
     filetypes = { "dockerfile" }
