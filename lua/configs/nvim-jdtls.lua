@@ -2,8 +2,6 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local utils = require "utils"
-
 -- Environment setup
 
 local home = os.getenv("HOME")
@@ -12,7 +10,7 @@ local OS = "unsupported"
 local WORKSPACE_PATH = home .. "/workspace/"
 
 if vim.fn.has("mac") == 1 then
-  local output, _ = utils.execute_os_command("uname -m")
+  local output, _ = vim.fn.system("uname -m")
 
   if output and output:match("arm64") then
     OS = "mac_arm"

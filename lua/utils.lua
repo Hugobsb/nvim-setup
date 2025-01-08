@@ -9,30 +9,12 @@ local function escape_shell_chars(str)
 	return str
 end
 
-local function execute_os_command(command)
-  local handle, err = io.popen(command)
-
-  if handle == nil then
-    return nil, 'Handle cannot be nil'
-  end
-
-  if err then
-    return nil, 'The command execution failed with the following error -> ' .. err
-  end
-
-  local result = handle:read("*a")
-
-  handle:close()
-
-  return result, nil
-end
-
 local function is_base64_valid(str)
   local base64_pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
 
   local command = string.format('echo -n "%s" | grep -E "%s"', str, base64_pattern)
 
-  local result, err = execute_os_command(command)
+  local result, err = vim.fn.system(command)
 
   if err then
     error(err)
@@ -152,9 +134,13 @@ M.base64_encode = function(str)
     vim.notify('Warning: the given string can be already encoded', 'warning', { title = 'Base64 encode utilitary' })
   end
 
-  local command = string.format('echo -n "%s" | base64', escape_shell_chars(str))
+  local escaped_str = escape_shell_chars(str)
 
-  local output, err = execute_os_command(command)
+  local string_to_encode = escaped_str:match("^'.*'$") ~= nil and escaped_str:gsub("'", "") or escaped_str
+
+  local command = string.format('echo -n "%s" | base64', string_to_encode)
+
+  local output, err = vim.fn.system(command)
 
   if err then
     error(err)
@@ -179,7 +165,7 @@ M.base64_decode = function(str)
 
   local command = string.format('echo -n "%s" | base64 --decode', escape_shell_chars(str))
 
-  local output, err = execute_os_command(command)
+  local output, err = vim.fn.system(command)
 
   if err then
     error(err)
@@ -324,7 +310,7 @@ M.is_uuid_valid = function(str)
 
   print(command)
 
-  local result, err = execute_os_command(command)
+  local result, err = vim.fn.system(command)
 
   if err then
     error(err)
@@ -332,8 +318,6 @@ M.is_uuid_valid = function(str)
 
   return type(result) == 'string' and string.len(result) > 0
 end
-
-M.execute_os_command = execute_os_command
 
 return M
 
