@@ -16,6 +16,19 @@ local code_actions_eslint_d = require("none-ls.code_actions.eslint_d")
 -- beauty_sh
 local formatting_beautysh = require("none-ls.formatting.beautysh")
 
+local CODE_QUALITY_CHECKSTYLE_PATH = "./.code_quality/checkstyle_rules.xml"
+-- local CODE_QUALITY_PMD_PATH = "/.code_quality/pmd_rules.xml"
+
+local function with_file_verification(args, file_path)
+  local file_exists = vim.fn.filereadable(file_path) == 1
+
+  if not file_exists then
+    return nil
+  end
+
+  return args
+end
+
 -- custom sources
 
 -- local detekt = {
@@ -42,22 +55,6 @@ local formatting_beautysh = require("none-ls.formatting.beautysh")
 --
 -- null_ls.register(detekt)
 
-local checkstyle_exists = vim.fn.filereadable("./.code_quality/checkstyle_rules.xml") == 1
-
-local checkstyle_args = nil
-
-if checkstyle_exists then
-  checkstyle_args = function(params)
-    return {
-      "-f",
-      "sarif",
-      "-c",
-      "./.code_quality/checkstyle_rules.xml",
-      params.bufname
-    }
-  end
-end
-
 local sources = {
   formatting_beautysh,
   formatting_eslint_d,
@@ -73,18 +70,38 @@ local sources = {
   code_actions_eslint_d, -- none-ls-extras
   code_actions.refactoring,
 
-  -- diagnostics
-
   diagnostics.checkstyle.with {
     timeout = 20000,
     filetypes = { "java" },
-    args = checkstyle_args,
+    args = with_file_verification(
+      function(params)
+        return {
+          "-f",
+          "sarif",
+          "-c",
+          CODE_QUALITY_CHECKSTYLE_PATH,
+          params.bufname
+        }
+      end,
+      CODE_QUALITY_CHECKSTYLE_PATH
+    )
   },
   diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
   -- diagnostics.ktlint,
+  -- diagnostics.pmd.with {
+  --   timeout = 20000,
+  --   filetypes = { "java" },
+  --   extra_args = with_file_verification(
+  --     {
+  --       "check",
+  --       "--rulesets",
+  --       CODE_QUALITY_PMD_PATH,
+  --     },
+  --     CODE_QUALITY_PMD_PATH
+  --   ),
+  -- },
   diagnostics.tidy,
 
-  -- completion
   completion.spell,
 }
 
