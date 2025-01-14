@@ -42,6 +42,22 @@ local formatting_beautysh = require("none-ls.formatting.beautysh")
 --
 -- null_ls.register(detekt)
 
+local checkstyle_exists = vim.fn.filereadable("./.code_quality/checkstyle_rules.xml") == 1
+
+local checkstyle_args = nil
+
+if checkstyle_exists then
+  checkstyle_args = function(params)
+    return {
+      "-f",
+      "sarif",
+      "-c",
+      "./.code_quality/checkstyle_rules.xml",
+      params.bufname
+    }
+  end
+end
+
 local sources = {
   formatting_beautysh,
   formatting_eslint_d,
@@ -59,6 +75,11 @@ local sources = {
 
   -- diagnostics
 
+  diagnostics.checkstyle.with {
+    timeout = 20000,
+    filetypes = { "java" },
+    args = checkstyle_args,
+  },
   diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
   -- diagnostics.ktlint,
   diagnostics.tidy,
