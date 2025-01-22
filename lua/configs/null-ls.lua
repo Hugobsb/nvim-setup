@@ -29,6 +29,16 @@ local function with_file_verification(args, file_path)
   return args
 end
 
+local function with_optional_activation(env_var, source)
+  local is_activated = vim.fn.getenv(env_var) ~= "false"
+
+  if is_activated then
+    return source
+  end
+
+  return nil
+end
+
 -- custom sources
 
 -- local detekt = {
@@ -70,22 +80,25 @@ local sources = {
   code_actions_eslint_d, -- none-ls-extras
   code_actions.refactoring,
 
-  diagnostics.checkstyle.with {
-    timeout = 20000,
-    filetypes = { "java" },
-    args = with_file_verification(
-      function(params)
-        return {
-          "-f",
-          "sarif",
-          "-c",
-          CODE_QUALITY_CHECKSTYLE_PATH,
-          params.bufname
-        }
-      end,
-      CODE_QUALITY_CHECKSTYLE_PATH
-    )
-  },
+  with_optional_activation(
+    "CODE_QUALITY_CHECKSTYLE",
+    diagnostics.checkstyle.with {
+      timeout = 20000,
+      filetypes = { "java" },
+      args = with_file_verification(
+        function(params)
+          return {
+            "-f",
+            "sarif",
+            "-c",
+            CODE_QUALITY_CHECKSTYLE_PATH,
+            params.bufname
+          }
+        end,
+        CODE_QUALITY_CHECKSTYLE_PATH
+      )
+    }
+  ),
   diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
   -- diagnostics.ktlint,
   -- diagnostics.pmd.with {
