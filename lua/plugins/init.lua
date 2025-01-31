@@ -720,6 +720,10 @@ return {
     opts = {
       suppress_missing_scope = {
         projects_v2 = true,
+      },
+      ssh_aliases = {
+        ["github.com%-hugobsb"] = "github.com",
+        ["github.com%-emu"] = "github.com"
       }
     },
   },
