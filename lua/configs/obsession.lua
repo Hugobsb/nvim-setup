@@ -44,7 +44,7 @@ end
 
 local window_name, w_err = get_tmux_data('tmux display-message -p "#W"')
 
-if s_err ~= nil then
+if w_err ~= nil then
   vim.notify(
     "Failed to restore session (window name retrieval error): " .. w_err,
     "error",
@@ -52,11 +52,24 @@ if s_err ~= nil then
   )
 end
 
-if session_name ~= nil and window_name ~= nil then
+local panel_number, p_err = get_tmux_data('tmux display-message -p "#P"')
+
+if p_err ~= nil then
+  vim.notify(
+    "Failed to restore session (panel name retrieval error): " .. p_err,
+    "error",
+    { title = "Session" }
+  )
+end
+
+if session_name ~= nil and window_name ~= nil and panel_number ~= nil then
   session_name = session_name:gsub('[^%w%.%-_]', '')
   window_name = window_name:gsub('[^%w%.%-_]', '')
+  panel_number = panel_number:gsub('[^%w%.%-_]', '')
 
-  local session_file = session_path .. session_name .. '-' .. window_name .. '.vim'
+  local session_data = {session_name, window_name, panel_number}
+
+  local session_file = session_path .. table.concat(session_data, '-') .. '.vim'
 
   local has_session = tonumber(
     vim.fn.system(
