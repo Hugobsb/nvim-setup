@@ -50,6 +50,11 @@ map("n", "gP", "<cmd> Lspsaga peek_type_definition <CR>", { desc = "Open LSP Sag
 
 map("n", "<leader>ng", "<cmd> Neogit  <CR>", { desc =  "Open Neogit" })
 
+-- Git signs
+
+map("n", "<leader>gB", "<cmd> Gitsigns blame<CR>", { desc = "Toggle Gitsigns blame" })
+map("n", "<leader>gb", "<cmd> Gitsigns blame_line <CR>", { desc = "Toggle Gitsigns blame line" })
+
 -- Dap
 
 map("n", "<F5>", "<cmd> lua require'dap'.continue() <CR>", { desc = "Debug controls | Continue" })
