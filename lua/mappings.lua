@@ -54,6 +54,9 @@ map("n", "<leader>ng", "<cmd> Neogit  <CR>", { desc =  "Open Neogit" })
 
 map("n", "<leader>gB", "<cmd> Gitsigns blame<CR>", { desc = "Toggle Gitsigns blame" })
 map("n", "<leader>gb", "<cmd> Gitsigns blame_line <CR>", { desc = "Toggle Gitsigns blame line" })
+map("n", "]h", "<cmd> Gitsigns next_hunk<CR>", { desc = "Go to next Git hunk" })
+map("n", "[h", "<cmd> Gitsigns prev_hunk <CR>", { desc = "Go to previous Git hunk" })
+map("n", "<leader>gh", "<cmd> Gitsigns preview_hunk <CR>", { desc = "Preview the Git hunk of the current line" })
 
 -- Dap
 
