@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function(opts)
   opts.console_timeout = 10000
+  opts.auto_show_console = false
 
   require("neogit").setup(opts)
 
