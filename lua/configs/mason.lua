@@ -16,8 +16,7 @@ local config = {
 
     -- formatters
     "gofumpt",
-    "goimports-reviser",
-    "golines",
+    "goimports",
     "google-java-format",
     "ktlint",
     "prettierd",

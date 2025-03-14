@@ -43,6 +43,7 @@ local servers = {
     settings = {
       gopls = {
         completeUnimported = true,
+        gofumpt = true,
         usePlaceholders = true,
         analyses = {
           unusedparams = true,
