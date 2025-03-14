@@ -15,6 +15,12 @@ vim.g.neovide_cursor_vfx_mode = 'pixiedust'
 
 --------------------------------- manual sets --------------------------------------
 
+-- Enable diagnostic severity sort
+-- without it, functionalities like Lspsaga show_line_diagnostics does not work
+vim.diagnostic.config({
+  severity_sort = true,
+})
+
 -- Disable line wrapping
 vim.cmd("set nowrap")
 
