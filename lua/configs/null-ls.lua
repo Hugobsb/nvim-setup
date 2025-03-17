@@ -112,6 +112,7 @@ local sources = {
   --     CODE_QUALITY_PMD_PATH
   --   ),
   -- },
+  diagnostics.golangci_lint,
   diagnostics.tidy,
 
   completion.spell,

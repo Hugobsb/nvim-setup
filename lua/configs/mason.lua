@@ -27,6 +27,7 @@ local config = {
     "checkstyle",
     "detekt",
     "eslint_d",
+    "golangci-lint-langserver",
 
     -- debug adapters
     "java-debug-adapter",
