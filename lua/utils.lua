@@ -308,8 +308,6 @@ M.is_uuid_valid = function(str)
 
   local command = string.format('echo -n "%s" | grep -E "%s"', escape_shell_chars(str), uuid_pattern)
 
-  print(command)
-
   local result, err = vim.fn.system(command)
 
   if err then
