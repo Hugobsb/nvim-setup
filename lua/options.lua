@@ -389,6 +389,54 @@ new_cmd('TelescopeCustomBufferFind', function()
   get_buffers()
 end, {})
 
+new_cmd('GenerateTarballHash', function()
+  local no_selection_found_message = 'A tarball URL must be selected to generate its hash.'
+
+  local selection = utils.get_visually_selected_text(no_selection_found_message)
+
+  if selection == nil then
+    return
+  end
+
+  if string.match(selection, "^https?://[%w%-%./]+/-/[%w%-]+%-%d+%.%d+%.%d+%.tgz$") == nil then
+    vim.notify(
+      'The selected text is not a valid tarball URL. The hash will not be generated.',
+      'warning',
+      { title = 'GenerateTarballHash command' }
+    )
+    return
+  end
+
+  local ok, hash = xpcall(
+    utils.generate_tarball_hash,
+    function(err)
+      vim.notify(
+        'Failed to hash the file for the selected URL: ' .. err,
+        'error',
+        { title = 'GenerateTarballHash command' }
+      )
+      return false
+    end,
+    selection
+  )
+
+  if ok then
+    vim.fn.setreg('"', 'sha512-' .. hash, 'v')
+
+    -- Cleaning visual selection
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+
+    vim.notify(
+      'The hash for the selected tarball URL was generated successfully and copied to the unnamed registry `"`.',
+      'info',
+      { title = 'GenerateTarballHash command' }
+    )
+  end
+
+  -- Cleaning the visual selection
+  vim.cmd('normal! gv')
+end, { addr = 'lines', range = '%' })
+
 ---------------------------------- bugfixes ----------------------------------------
 
 -- Neogit message filetype

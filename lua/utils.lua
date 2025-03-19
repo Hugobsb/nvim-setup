@@ -317,5 +317,22 @@ M.is_uuid_valid = function(str)
   return type(result) == 'string' and string.len(result) > 0
 end
 
+---@param url string
+M.generate_tarball_hash = function(url)
+	local command = string.format('curl -sSL "%s" | openssl dgst -sha512 -binary | openssl base64 -A', url)
+
+	local result, err = vim.fn.system(command)
+
+	if err then
+		error(err)
+	end
+
+	if type(result) ~= 'string' or string.len(result) == 0 then
+		error('An error occurred while generating the tarball hash. The hash generator function evaluated an empty result.')
+	end
+
+	return result
+end
+
 return M
 
