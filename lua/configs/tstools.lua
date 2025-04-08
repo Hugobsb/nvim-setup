@@ -5,7 +5,11 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 config.on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
-  vim.keymap.del({ "n", "v" }, "<leader>ca", { buffer = bufnr })
+  pcall(
+    function()
+      vim.keymap.del({ "n", "v" }, "<leader>ca", { buffer = bufnr })
+    end
+  )
 
   vim.keymap.set(
     { "n", "v" },
