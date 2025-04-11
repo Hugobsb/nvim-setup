@@ -20,6 +20,12 @@ config.on_attach = function(client, bufnr)
 end
 
 config.settings = {
+  -- Some projects I'm working on with React are pure javascript
+  jsx_close_tag = {
+    enable = true,
+    filetypes = { "javascript" },
+  },
+
   tsserver_plugins = {
     -- for TypeScript v4.9+
     "@styled/typescript-styled-plugin",
