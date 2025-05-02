@@ -541,20 +541,20 @@ return {
     lazy = false
   },
 
-  {
-    "David-Kunz/jester",
-
-    version = "*",
-
-    event = {
-      "BufEnter *.js",
-      "BufEnter *.jsx",
-      "BufEnter *.ts",
-      "BufEnter *.tsx"
-    },
-
-    config = require "configs.jester"
-  },
+  -- {
+  --   "David-Kunz/jester",
+  --
+  --   version = "*",
+  --
+  --   event = {
+  --     "BufEnter *.js",
+  --     "BufEnter *.jsx",
+  --     "BufEnter *.ts",
+  --     "BufEnter *.tsx"
+  --   },
+  --
+  --   config = require "configs.jester"
+  -- },
 
   {
     "Hugobsb/ccryptor.nvim",
