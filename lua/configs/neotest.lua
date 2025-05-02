@@ -16,6 +16,24 @@ local adapters_list = {
       incremental_build = true
     },
   },
+  ["neotest-jest"] = {
+    should_load = vim.fn.glob("package.json") ~= "",
+    config = {
+      jestCommand = "npm test --",
+      -- jestConfigFile = "jest.config.js",
+
+      env = { CI = true },
+
+      cwd = function()
+        return vim.fn.getcwd()
+      end,
+
+      jest_test_discovery = false,
+      discovery = {
+        enabled = false,
+      },
+    },
+  },
 }
 
 local adapters = {}

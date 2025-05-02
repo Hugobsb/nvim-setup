@@ -765,6 +765,24 @@ return {
   },
 
   {
+    "nvim-neotest/neotest-jest",
+
+    version = "*",
+
+    event = {
+      "BufEnter *.js",
+      "BufEnter *.jsx",
+      "BufEnter *.ts",
+      "BufEnter *.tsx"
+    },
+
+    dependencies = {
+      "nvim-neotest/neotest",
+      "mxsdev/nvim-dap-vscode-js",
+    },
+  },
+
+  {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",

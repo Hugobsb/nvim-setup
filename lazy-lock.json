@@ -41,6 +41,7 @@
   "neotest": { "branch": "master", "commit": "6267dcd577aa519c828d2526b05844770d3a2c6a" },
   "neotest-golang": { "branch": "main", "commit": "5d1fdb068914ac23593495e71ecf9b1fad309b45" },
   "neotest-java": { "branch": "main", "commit": "3cc0bceb0b0957e918939ba95434197e6b3775e7" },
+  "neotest-jest": { "branch": "main", "commit": "514fd4eae7da15fd409133086bb8e029b65ac43f" },
   "none-ls-extras.nvim": { "branch": "main", "commit": "80dfc30b674c45ad892726f656440cc9e69b82e3" },
   "none-ls.nvim": { "branch": "main", "commit": "a49f5a79cdb76e0dc1a98899c8598f4db014c5e7" },
   "nui.nvim": { "branch": "main", "commit": "8d5b0b568517935d3c84f257f272ef004d9f5a59" },
