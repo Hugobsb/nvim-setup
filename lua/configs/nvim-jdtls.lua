@@ -167,6 +167,7 @@ xpcall(
 
     local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+    extendedClientCapabilities.classFileContentsSupport = true
 
     config.init_options = {
       bundles = bundles,
