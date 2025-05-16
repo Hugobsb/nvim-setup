@@ -26,8 +26,8 @@ local config = {
   rootDir = require "lspconfig/util".root_pattern({ ".gradlew", ".git", "mvnw" }),
 
   cmd = {
-    "java", -- or '/path/to/java11_or_newer/bin/java'
     -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+    "java", -- or '/path/to/java11_or_newer/bin/java'
 
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
@@ -57,11 +57,12 @@ local config = {
     WORKSPACE_PATH .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
 
   },
+
   filetypes = { "java" },
-  init_options = {
-    bundles = {},
-  },
-  contentProvider = { preferred = "fernflower" },
+
+  init_options = { bundles = {} },
+  on_init = on_init,
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
 
@@ -78,12 +79,11 @@ local config = {
       { buffer = bufnr, desc = "LSP Code action", noremap = true }
     )
   end,
-  on_init = on_init,
-  capabilities = capabilities,
 
   settings = {
     java = {
       signatureHelp = { enabled = true },
+      contentProvider = { preferred = "fernflower" },
       configuration = {
         updateBuildConfiguration = "interactive",
         -- runtimes = {
@@ -148,37 +148,35 @@ local config = {
 
 xpcall(
   function()
-    local bundles = {
-      vim.fn.glob(
-        os.getenv("HOME")
-        .. "/.local/share/nvim/lazy/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
-        true
-      )
-    }
-
-    vim.list_extend(
-      bundles,
-      vim.split(
-        os.getenv("HOME")
-        .. vim.fn.glob("/.local/share/nvim/lazy/vscode-java-test/server/*.jar", true),
-        "\n"
-      )
-    )
-
-    local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
-    extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-    extendedClientCapabilities.classFileContentsSupport = true
-
-    config.init_options = {
-      bundles = bundles,
-      extendedClientCapabilities = extendedClientCapabilities,
-    }
-
-    require("jdtls").start_or_attach(config)
-
-    vim.api.nvim_create_autocmd("BufRead", {
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
       pattern = { "*.java", "*.class", "*.jar" },
       callback = function()
+        local bundles = {
+          vim.fn.glob(
+            os.getenv("HOME")
+            .. "/.local/share/nvim/lazy/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+            true
+          )
+        }
+
+        vim.list_extend(
+          bundles,
+          vim.split(
+            os.getenv("HOME")
+            .. vim.fn.glob("/.local/share/nvim/lazy/vscode-java-test/server/*.jar", true),
+            "\n"
+          )
+        )
+
+        local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
+        extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+        extendedClientCapabilities.classFileContentsSupport = true
+
+        config.init_options = {
+          bundles = bundles,
+          extendedClientCapabilities = extendedClientCapabilities,
+        }
+
         require("jdtls").start_or_attach(config)
       end,
     })
