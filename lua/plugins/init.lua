@@ -382,6 +382,23 @@ return {
   },
 
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+
+    version = "*",
+
+    event = "VeryLazy",
+
+    build = "make tiktoken",
+
+    opts = require "configs.copilotchat",
+  },
+
+  {
     "sindrets/diffview.nvim",
 
     version = "*",
