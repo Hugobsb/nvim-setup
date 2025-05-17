@@ -25,6 +25,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "7010000889bfb6c26065e0b0f7f1e6aa9163edd9" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "hbac.nvim": { "branch": "main", "commit": "2c85485ea28e5e3754650829e0bca612960e1b73" },
+  "hererocks": { "branch": "master", "commit": "344c46ed54df9a4dbc2d2bf510dcd9a9d90497bf" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "indent-o-matic": { "branch": "master", "commit": "4d11e98f523d3c4500b1dc33f0d1a248a4f69719" },
   "java-debug": { "branch": "main", "commit": "54058b9eb466576a7a77c9303963ca88967ec58b" },
@@ -84,6 +85,6 @@
   "vim-wakatime": { "branch": "master", "commit": "cb037fb53e718c4f0027a491782ad99efdcd789a" },
   "volt": { "branch": "main", "commit": "c45d5f48da8e802e608b5c6da471ca4d84276dfb" },
   "vscode-java-test": { "branch": "main", "commit": "58860a4243b784989df5e54114f5efe49a3db495" },
-  "vscode-js-debug": { "branch": "main", "commit": "0ca17f3ffdcae07311d32a742bad44eaaaca52a7" },
+  "vscode-js-debug": { "branch": "main", "commit": "1032e9280164bb2e14472aab8bf71dfdabf1f254" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
 }
