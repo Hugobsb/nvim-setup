@@ -8,7 +8,7 @@ M.base46 = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
 
-  transparency = vim.g.neovide == nil,
+  -- transparency = vim.g.neovide == nil,
 
   hl_add = {
     DevIconEncryptedFiles = {
