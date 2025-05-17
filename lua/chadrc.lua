@@ -250,7 +250,7 @@ M.ui = {
       end,
 
       line_break_encoding = function()
-        local encoding = vim.api.nvim_buf_get_option(0, 'fileformat')
+        local encoding = vim.bo.fileformat
 
         if (encoding == "unix") then
           return "LF  "
@@ -264,7 +264,7 @@ M.ui = {
       end,
 
       unsaved_buffer = function ()
-        if vim.api.nvim_buf_get_option(0, 'modified') then
+        if vim.bo.modified then
           return ' • Modified '
         end
 
