@@ -8,7 +8,7 @@ M.base46 = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
 
-  transparency = os.getenv("ENABLE_NVIM_TRANSPARENCY") == 1,
+  transparency = os.getenv("ENABLE_NVIM_TRANSPARENCY") == "1",
 
   hl_add = {
     DevIconEncryptedFiles = {
