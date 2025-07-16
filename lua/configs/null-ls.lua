@@ -70,7 +70,13 @@ local sources = {
   formatting_eslint_d,
   formatting.gofumpt,
   formatting.goimports,
-  formatting.google_java_format.with { extra_args = { "--aosp" } },
+  formatting.google_java_format.with {
+    extra_args = {
+      "--aosp",
+      "--skip-sorting-imports",
+      "--skip-removing-unused-imports",
+    }
+  },
   formatting.ktlint,
   formatting.prettierd,
   formatting.sql_formatter,
