@@ -72,7 +72,6 @@ local sources = {
   formatting.goimports,
   formatting.google_java_format.with {
     extra_args = {
-      "--aosp",
       "--skip-sorting-imports",
       "--skip-removing-unused-imports",
     }
