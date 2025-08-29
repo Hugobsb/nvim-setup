@@ -7,7 +7,6 @@ require "nvchad.options"
 
 local utils = require'utils'
 local screenshot = require'modules.screenshot'
-local uuid = require'modules.uuid'
 
 ----------------------------------- globals ----------------------------------------
 
@@ -145,10 +144,7 @@ end, { addr = 'lines', range = '%' })
 
 new_cmd('GenerateUUID', function()
   local ok, id = xpcall(
-    function ()
-      uuid.seed()
-      return uuid()
-    end,
+    utils.generate_uuid,
     function(err)
       vim.notify(
         'Failed to generate UUID: ' .. err,
@@ -160,6 +156,41 @@ new_cmd('GenerateUUID', function()
 
   if ok then
     utils.insert_text_before_cursor(id)
+  end
+end, {})
+
+new_cmd('GenerateUUIDFromString', function()
+  local no_selection_found_message = 'A text must be selected to generate the UUID from the string.'
+
+  local selection = utils.get_visually_selected_text(no_selection_found_message)
+
+  if selection == nil then
+    return
+  end
+
+  local ok, id = xpcall(
+    utils.generate_uuid_from_string,
+    function(err)
+      vim.notify(
+        'Failed to generate UUID from string: ' .. err,
+        'error',
+        { title = 'GenerateUUIDFromString command' }
+      )
+    end,
+    selection
+  )
+
+  if ok then
+    vim.fn.setreg('"', id, 'v')
+
+    -- Cleaning visual selection
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+
+    vim.notify(
+      'The UUID for the selected string was generated successfully and copied to the unnamed registry `"`.',
+      'info',
+      { title = 'GenerateUUIDFromString command' }
+    )
   end
 end, { addr = 'lines', range = '%' })
 

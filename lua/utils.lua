@@ -180,6 +180,45 @@ M.base64_decode = function(str)
   return result
 end
 
+---@param str string
+---@return string
+M.generate_uuid = function(str)
+	local command = string.format('echo -n $(uuidgen)', str)
+
+	local result, err = vim.fn.system(command)
+
+	if err then
+		error(err)
+	end
+
+	if type(result) ~= 'string' or string.len(result) == 0 then
+		error('An error occurred while generating the UUID. The UUID generator function evaluated an empty result.')
+	end
+
+	return result
+end
+
+---@param str string
+---@return string
+M.generate_uuid_from_string = function(str)
+	local command = string.format([[
+		hash=$(echo -n "%s" | sha1sum | awk '{print $1}' | cut -c1-32)
+		echo "${hash:0:8}-${hash:8:4}-4${hash:13:3}-a${hash:17:3}-${hash:20:12}"
+	]], str)
+
+	local result, err = vim.fn.system(command)
+
+	if err then
+		error(err)
+	end
+
+	if type(result) ~= 'string' or string.len(result) == 0 then
+		error('An error occurred while generating the UUID from string. The UUID generator function evaluated an empty result.')
+	end
+
+	return result
+end
+
 M.sort_alphabetically = function(option, no_selection_found_message)
   local text = M.get_visually_selected_text(no_selection_found_message)
 
