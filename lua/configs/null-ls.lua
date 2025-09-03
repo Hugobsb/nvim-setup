@@ -103,6 +103,15 @@ local sources = {
       )
     }
   ),
+  with_optional_activation(
+    "COMMITLINT_CONFIG_PATH",
+    diagnostics.commitlint.with {
+      extra_args = {
+        "--config",
+        vim.fn.getenv("COMMITLINT_CONFIG_PATH")
+      }
+    }
+  ),
   diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
   -- diagnostics.ktlint,
   -- diagnostics.pmd.with {

@@ -25,6 +25,7 @@ local config = {
 
     -- linters / code actions
     "checkstyle",
+    "commitlint",
     "detekt",
     "eslint_d",
     "golangci-lint-langserver",
