@@ -64,6 +64,19 @@ local function sort_text_alphabetically(text, ascending)
   return sorted_text
 end
 
+M.log_table_to_console = function(table)
+   if type(table) == 'table' then
+      local str = '{ '
+      for key, value in pairs(table) do
+         if type(key) ~= 'number' then key = '"'..key..'"' end
+         str = str .. '['..key..'] = ' .. M.log_table_to_console(value) .. ','
+      end
+      return str .. '} '
+   else
+      return tostring(table)
+   end
+end
+
 M.get_visually_selected_text = function(no_selection_found_message)
   local start_pos = vim.fn.getpos("'<")
   local end_pos = vim.fn.getpos("'>")
@@ -371,6 +384,36 @@ M.generate_tarball_hash = function(url)
 	end
 
 	return result
+end
+
+M.get_repo_with_ssh_prefix = function(repo)
+  local prefix = os.getenv("LAZY_SSH_PREFIX")
+  if not prefix or prefix == "" then
+		return repo
+	end
+
+	if type(repo) == "string" and not repo:match("^" .. prefix) then
+		return prefix .. repo
+	end
+
+	return repo
+end
+
+M.mutate_lazy_plugins_list_with_ssh_prefix = function(plugins)
+  for _, plugin in ipairs(plugins) do
+    if type(plugin[1]) == "string" then
+      plugin[1] = M.get_repo_with_ssh_prefix(plugin[1])
+    end
+    if plugin.dependencies then
+      for i, dep in ipairs(plugin.dependencies) do
+        if type(dep) == "string" then
+          plugin.dependencies[i] = M.get_repo_with_ssh_prefix(dep)
+        elseif type(dep) == "table" and type(dep[1]) == "string" then
+          dep[1] = M.get_repo_with_ssh_prefix(dep[1])
+        end
+      end
+    end
+  end
 end
 
 return M

@@ -1,4 +1,6 @@
-return {
+local utils = require "utils"
+
+local plugins = {
   {
     "stevearc/conform.nvim",
 
@@ -24,7 +26,7 @@ return {
   },
 
   {
-    'nvim-tree/nvim-web-devicons',
+    "nvim-tree/nvim-web-devicons",
 
     opts = {
       override_by_filename = {
@@ -41,7 +43,7 @@ return {
   },
 
   {
-    'nvimdev/lspsaga.nvim',
+    "nvimdev/lspsaga.nvim",
 
     event = 'LspAttach',
 
@@ -139,7 +141,7 @@ return {
     },
 
     dependencies = {
-      "nvim-dap"
+      "mfussenegger/nvim-dap"
     },
 
     config = function()
@@ -184,7 +186,7 @@ return {
     },
 
     dependencies = {
-      "nvim-dap"
+      "mfussenegger/nvim-dap"
     },
 
     build = "rm -rf dist out && npm ci --cache .npm && npx gulp vsDebugServerBundle && mv dist out"
@@ -460,7 +462,7 @@ return {
   },
 
   {
-    'Bekaboo/dropbar.nvim',
+    "Bekaboo/dropbar.nvim",
 
     version = "*",
 
@@ -474,7 +476,7 @@ return {
   },
 
   {
-    'NeogitOrg/neogit',
+    "NeogitOrg/neogit",
 
     lazy = false,
 
@@ -845,4 +847,8 @@ return {
     end
   }
 }
+
+utils.mutate_lazy_plugins_list_with_ssh_prefix(plugins)
+
+return plugins
 

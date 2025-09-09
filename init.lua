@@ -1,3 +1,5 @@
+local utils = require "utils"
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
@@ -16,7 +18,7 @@ local lazy_config = require "configs.lazy"
 -- load plugins
 require("lazy").setup({
   {
-    "NvChad/NvChad",
+    utils.get_repo_with_ssh_prefix("NvChad/NvChad"),
     lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",
