@@ -2,8 +2,6 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
-
 local navic = require "nvim-navic"
 
 local util = require "lspconfig/util"
@@ -163,6 +161,6 @@ for lsp, config in pairs(servers) do
 
   mergeTables(setup_config, config)
 
-  lspconfig[lsp].setup(setup_config)
+  vim.lsp.config(lsp, setup_config)
 end
 
