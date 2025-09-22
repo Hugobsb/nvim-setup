@@ -5,9 +5,6 @@ local nomap = vim.keymap.del
 
 -- add yours here
 
-nomap("n", "<tab>")
-nomap("n", "<S-tab>")
-nomap("n", "<leader>x")
 pcall(function() nomap({ "n", "i" }, "<C-s>") end)
 nomap("n", "<leader>fb")
 
