@@ -30,7 +30,7 @@ local function with_file_verification(args, file_path)
 end
 
 local function with_optional_activation(env_var, source)
-  local is_activated = vim.fn.getenv(env_var) ~= "false"
+  local is_activated = os.getenv(env_var) ~= nil
 
   if is_activated then
     return source
