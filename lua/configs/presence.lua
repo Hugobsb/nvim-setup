@@ -1,6 +1,6 @@
 local utils = require "utils"
 
-local blacklist = { "shipping", "noh" }
+local blacklist = { "shipping", "noh", "route" }
 
 local function is_black_listed (...)
   local args = { ... }
