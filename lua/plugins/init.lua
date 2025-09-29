@@ -364,7 +364,7 @@ local plugins = {
   },
 
   {
-    "simrat39/symbols-outline.nvim",
+    "e-roux/symbols-outline.nvim",
 
     version = "*",
 
