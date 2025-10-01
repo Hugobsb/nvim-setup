@@ -364,16 +364,6 @@ local plugins = {
   },
 
   {
-    "e-roux/symbols-outline.nvim",
-
-    version = "*",
-
-    event = "BufEnter",
-
-    config = true
-  },
-
-  {
     "github/copilot.vim",
 
     version = "*",
