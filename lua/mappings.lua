@@ -32,6 +32,7 @@ map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 -- Done at the LSP Config on LSP attach to be able to override NvChad's one
 -- map({ "n", "v" }, "<leader>ca",  "<cmd> Lspsaga code_action <CR>", { desc =  "Open LSP Saga code action" })
+map("n", "K", "<cmd> Lspsaga hover_doc <CR>", { desc = "Open LSP Saga hover" })
 map("n", "<leader>o", "<cmd> Lspsaga outline <CR>", { desc = "Toggle LSP Saga outline" })
 map("n", "<leader>wd", "<cmd> Lspsaga show_workspace_diagnostics <CR>", { desc = "Show LSP Saga workspace diagnostics" })
 map("n", "<leader>f", "<cmd> Lspsaga show_cursor_diagnostics <CR>", { desc = "Show LSP Saga cursor diagnostics", noremap = true })
