@@ -7,6 +7,7 @@ local config = {
     "go",
     "http",
     "java",
+    "javadoc",
     "javascript",
     "jsdoc",
     "json",
