@@ -15,9 +15,7 @@ local config = {
         "Keep the title under 50 characters and wrap message at 72 characters. " ..
         "Every single line must not have more than 72 characters. " ..
         "Format as a gitcommit code block. " ..
-        "In case the commit has more than one scope of change, format separated ideas with hyphens and lines breaks, " ..
-        "otherwise if the commit only has one scope of change, do not format it with hyphens and line breaks, explain it " ..
-        "breifly and clearly in continuous text."
+        "Format separated ideas with hyphens and lines breaks."
     },
   },
 }
