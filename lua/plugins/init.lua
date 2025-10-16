@@ -835,6 +835,17 @@ local plugins = {
         skip_multiline = true,
       }
     end
+  },
+
+  {
+    "ethersync/ethersync-nvim",
+    keys = { 
+      { "<leader>ej", "<cmd>EthersyncJumpToCursor<cr>" },
+      { "<leader>ef", "<cmd>EthersyncFollow<cr>" },
+      { "<esc>", mode = { "n" }, "<cmd>EthersyncUnfollow<cr>" },
+    },
+    lazy = false,
+    enabled = utils.with_optional_activation("ENABLE_ETHERSYNC", true) or false,
   }
 }
 
