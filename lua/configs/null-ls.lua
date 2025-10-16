@@ -1,6 +1,8 @@
 local null_ls = require "null-ls"
 -- local helpers = require "null-ls.helpers"
 
+local utils = require "utils"
+
 local code_actions = null_ls.builtins.code_actions
 local completion = null_ls.builtins.completion
 local diagnostics = null_ls.builtins.diagnostics
@@ -18,26 +20,6 @@ local formatting_beautysh = require("none-ls.formatting.beautysh")
 
 local CODE_QUALITY_CHECKSTYLE_PATH = "./.code_quality/checkstyle_rules.xml"
 -- local CODE_QUALITY_PMD_PATH = "/.code_quality/pmd_rules.xml"
-
-local function with_file_verification(args, file_path)
-  local file_exists = vim.fn.filereadable(file_path) == 1
-
-  if not file_exists then
-    return nil
-  end
-
-  return args
-end
-
-local function with_optional_activation(env_var, source)
-  local is_activated = os.getenv(env_var) ~= nil
-
-  if is_activated then
-    return source
-  end
-
-  return nil
-end
 
 -- custom sources
 
@@ -84,12 +66,12 @@ local sources = {
   code_actions_eslint_d, -- none-ls-extras
   code_actions.refactoring,
 
-  with_optional_activation(
+  utils.with_optional_activation(
     "CODE_QUALITY_CHECKSTYLE",
     diagnostics.checkstyle.with {
       timeout = 20000,
       filetypes = { "java" },
-      args = with_file_verification(
+      args = utils.with_file_verification(
         function(params)
           return {
             "-f",
@@ -103,7 +85,7 @@ local sources = {
       )
     }
   ),
-  with_optional_activation(
+  utils.with_optional_activation(
     "COMMITLINT_CONFIG_PATH",
     diagnostics.commitlint.with {
       extra_args = {
@@ -117,7 +99,7 @@ local sources = {
   -- diagnostics.pmd.with {
   --   timeout = 20000,
   --   filetypes = { "java" },
-  --   extra_args = with_file_verification(
+  --   extra_args = utils.with_file_verification(
   --     {
   --       "check",
   --       "--rulesets",

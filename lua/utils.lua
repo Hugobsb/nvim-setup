@@ -416,5 +416,25 @@ M.mutate_lazy_plugins_list_with_ssh_prefix = function(plugins)
   end
 end
 
+M.with_file_verification = function(args, file_path)
+  local file_exists = vim.fn.filereadable(file_path) == 1
+
+  if not file_exists then
+    return nil
+  end
+
+  return args
+end
+
+M.with_optional_activation = function(env_var, source)
+  local is_activated = os.getenv(env_var) ~= nil
+
+  if is_activated then
+    return source
+  end
+
+  return nil
+end
+
 return M
 
