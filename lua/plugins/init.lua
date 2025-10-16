@@ -586,29 +586,6 @@ local plugins = {
   },
 
   {
-    "rest-nvim/rest.nvim",
-
-    version = "*",
-
-    ft = "http",
-
-    dependencies = {
-      {
-        "vhyrro/luarocks.nvim",
-        priority = 1000,
-        config = true,
-        opts = {
-          rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-        }
-      },
-    },
-
-    config = function()
-      require("rest-nvim").setup()
-    end
-  },
-
-  {
     "0x100101/lab.nvim",
 
     version = "*",

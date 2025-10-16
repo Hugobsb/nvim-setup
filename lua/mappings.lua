@@ -133,14 +133,6 @@ map({ "n", "i" }, "<C-->", "<cmd> DecreaseFontSize <CR>", { desc = "Decrease fon
 -- map("n", "<leader>jdf", "<cmd> lua require'jester'.debug_file() <CR>", { desc = "Debug test(s) in the current file" })
 -- map("n", "<leader>jdl", "<cmd> lua require'jester'.debug_last() <CR>", { desc = "Debug last test(s)" })
 
--- Rest mappings
-
-map("n", "<leader>rr", "<cmd> lua require'rest-nvim'.run() <CR>", { desc = "Run HTTP request" })
-map("n", "<leader>rp", "<cmd> lua require'rest-nvim'.run(true) <CR>", { desc = "Preview HTTP request" })
-map("n", "<leader>rl", "<cmd> lua require'rest-nvim'.last() <CR>", { desc = "Run last HTTP request" })
--- Currently the file run is glitched and cannot be run twice, but it's a plugin issue
-map("n", "<leader>rf", "<cmd> lua require'rest-nvim'.last() <CR>", { desc = "Select HTTP request file to run" })
-
 -- Dropbar mappings
 
 map("n", "<leader>db", "<cmd> lua require'dropbar.api'.pick() <CR>", { desc = "Enter dropbar interactive pick mode" })
