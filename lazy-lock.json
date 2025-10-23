@@ -20,7 +20,7 @@
   "dropbar.nvim": { "branch": "master", "commit": "418897fe7828b2749ca78056ec8d8ad43136b695" },
   "ethersync-nvim": { "branch": "main", "commit": "24b9f609088971c90ab6cbcb385b3a0be176fcd2" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fzf-lua": { "branch": "main", "commit": "7839b7f1f6253e237cc9263eb238e681757e8f1d" },
+  "fzf-lua": { "branch": "main", "commit": "9244bd48e0e6167ffe521209d0cfddc70bb70c21" },
   "fzf.vim": { "branch": "master", "commit": "879db51d0965515cdaef9b7f6bdeb91c65d2829e" },
   "git-conflict.nvim": { "branch": "main", "commit": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4" },
   "gitsigns.nvim": { "branch": "main", "commit": "7010000889bfb6c26065e0b0f7f1e6aa9163edd9" },
