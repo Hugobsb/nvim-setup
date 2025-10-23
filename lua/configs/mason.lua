@@ -31,6 +31,7 @@ local config = {
     "golangci-lint-langserver",
 
     -- debug adapters
+    "js-debug-adapter",
     "java-debug-adapter",
     "go-debug-adapter"
   }

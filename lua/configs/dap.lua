@@ -1,5 +1,6 @@
 local dap = require "dap"
 local dap_utils = require "dap.utils"
+local utils = require "utils"
 
 vim.fn.sign_define('DapBreakpoint', { text = '😡', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '🥶', texthl = '', linehl = '', numhl = '' })
@@ -9,13 +10,32 @@ vim.fn.sign_define('DapStopped', { text = '✋🏻', texthl = '', linehl = '', n
 
 -- Adapters
 
+-- Kotlin
+
 dap.adapters.kotlin = {
   type = 'executable',
   command = os.getenv("HOME") .. "/.local/share/nvim/lazy/kotlin-debug-adapter/adapter/build/install/adapter/bin/kotlin-debug-adapter",
   options = { auto_continue_if_many_stopped = false },
 }
 
--- JS/TS adapter is configured by a separate module
+-- JS/TS
+
+for _, language in ipairs({ "pwa-node", "pwa-chrome", "node-terminal", "pwa-extensionHost" }) do
+  dap.adapters[language] = {
+    type = 'server',
+    host = 'localhost',
+    port = '${port}',
+    executable = {
+      command = 'node',
+      args = {
+        utils.get_pkg_path('js-debug-adapter', '/js-debug/src/dapDebugServer.js'),
+        '${port}',
+      },
+    }
+  }
+end
+
+-- Configuration
 
 -- JS/TS
 
@@ -41,7 +61,8 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       rootPath = "${workspaceFolder}",
       cwd = "${workspaceFolder}",
       console = "integratedTerminal",
-      internalConsoleOptions = "neverOpen"
+      internalConsoleOptions = "neverOpen",
+      port = 9229
     },
     {
       name = "Attach to Node process",
@@ -51,9 +72,9 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       cwd = "${workspaceFolder}"
     },
     {
+      name = "Debug Jest Tests",
       type = "pwa-node",
       request = "launch",
-      name = "Debug Jest Tests",
       -- trace = true, -- include debugger info
       runtimeExecutable = "node",
       runtimeArgs = {

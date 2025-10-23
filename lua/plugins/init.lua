@@ -131,28 +131,6 @@ local plugins = {
   },
 
   {
-    "mxsdev/nvim-dap-vscode-js",
-
-    event = {
-      "BufEnter *.ts",
-      "BufEnter *.tsx",
-      "BufEnter *.js",
-      "BufEnter *.jsx",
-    },
-
-    dependencies = {
-      "mfussenegger/nvim-dap"
-    },
-
-    config = function()
-      require "dap"
-      require "dap.utils"
-      require "dap-vscode-js"
-      require "configs.dap-vscode"
-    end
-  },
-
-  {
     "leoluz/nvim-dap-go",
 
     version = "*",
@@ -172,24 +150,6 @@ local plugins = {
     config = function()
       require("configs.dap-go")
     end
-  },
-
-  {
-    "microsoft/vscode-js-debug",
-
-    event = {
-      "BufEnter *.js",
-      "BufEnter *.js",
-      "BufEnter *.jsx",
-      "BufEnter *.ts",
-      "BufEnter *.tsx"
-    },
-
-    dependencies = {
-      "mfussenegger/nvim-dap"
-    },
-
-    build = "rm -rf dist out && npm ci --cache .npm && npx gulp vsDebugServerBundle && mv dist out"
   },
 
   {
@@ -764,7 +724,6 @@ local plugins = {
 
     dependencies = {
       "nvim-neotest/neotest",
-      "mxsdev/nvim-dap-vscode-js",
     },
   },
 
