@@ -98,19 +98,16 @@ local plugins = {
   },
 
   {
-    "rcarriga/nvim-dap-ui",
+    "igorlfs/nvim-dap-view",
 
     event = "BufEnter",
 
     dependencies = {
-      "nvim-neotest/nvim-nio",
       "mfussenegger/nvim-dap"
     },
 
     config = function()
-      require "dapui".setup(
-        require "configs.dapui"
-      )
+      require "configs.dap-interface"
     end
   },
 

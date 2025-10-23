@@ -67,11 +67,10 @@ map("n", "<leader>BP", "<cmd> lua require'dap'.set_breakpoint(vim.fn.input('Brea
 map("n", "<leader>lp", "<cmd> lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) <CR>", { desc = "Set line conditional breakpoint for logging" })
 map("n", "<leader>dr", "<cmd> lua require'dap'.repl.open() <CR>", { desc = "Open REPL" })
 
--- Dapui
+-- Dap interface
 
-map("n", "<leader>dpu", "<cmd> lua require'dapui'.open() <CR>", { desc = "Open debugger" })
-map("n", "<leader>dpU", "<cmd> lua require'dapui'.close() <CR>", { desc = "Close debugger" })
-map("n", "<leader>dpuk", "<cmd> lua require'dapui'.eval() <CR>", { desc = "Evaluate expression" })
+map("n", "<leader>dpu", "<cmd> lua require'dap-view'.toggle(true) <CR>", { desc = "Toggle debugger hiding the terminal" })
+map("n", "<leader>dpU", "<cmd> lua require'dap-view'.toggle(false) <CR>", { desc = "Toggle debugger keeping the terminal" })
 
 -- Nvim tab management
 
