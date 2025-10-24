@@ -162,7 +162,24 @@ map("n", "<leader>a", "<cmd> lua require'harpoon':list():add() <CR>", { desc = "
 map("n", "<leader>ar", "<cmd> lua require'harpoon':list():remove() <CR>", { desc = "Harpoon remove entry", noremap = true })
 map("n", "<leader>h", "<cmd> lua require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) <CR>", { desc = "Harpoon open list", noremap = true })
 
+-- Package Info mappings
+
+map("n", "<LEADER>ps", "<cmd> lua require'package-info'.show() <CR>", { desc = "Show dependency versions", silent = true, noremap = true })
+
+map("n", "<LEADER>ph", "<cmd> lua require'package-info'.hide() <CR>", { desc = "Hide dependency versions", silent = true, noremap = true })
+
+map("n", "<LEADER>pt", "<cmd> lua require'package-info'.toggle() <CR>", { desc = "Toggle dependency versions", silent = true, noremap = true })
+
+map("n", "<LEADER>pu", "<cmd> lua require'package-info'.update() <CR>", { desc = "Update dependency on the line", silent = true, noremap = true })
+
+map("n", "<LEADER>pd", "<cmd> lua require'package-info'.delete() <CR>", { desc = "Delete dependency on the line", silent = true, noremap = true })
+
+map("n", "<LEADER>pi", "<cmd> lua require'package-info'.install() <CR>", { desc = "Install a new dependency", silent = true, noremap = true })
+
+map("n", "<LEADER>pc", "<cmd> lua require'package-info'.change_version() <CR>", { desc = "Install a different dependency version", silent = true, noremap = true })
+
 -- Select buffers stored within Harpoon list
+
 -- map("n", "<C-h>", function() harpoon:list():select(1) end)
 -- map("n", "<C-t>", function() harpoon:list():select(2) end)
 -- map("n", "<C-n>", function() harpoon:list():select(3) end)

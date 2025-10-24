@@ -779,6 +779,22 @@ local plugins = {
     },
     lazy = false,
     enabled = utils.with_optional_activation("ENABLE_ETHERSYNC", true) or false,
+  },
+
+  {
+    "vuki656/package-info.nvim",
+
+    dependencies = {
+      "MunifTanjim/nui.nvim"
+    },
+
+    event = {
+      "BufEnter package.json",
+    },
+
+    config = function()
+      require("package-info").setup()
+    end,
   }
 }
 
