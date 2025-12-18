@@ -379,7 +379,7 @@ new_cmd('GenerateTarballHash', function()
     return
   end
 
-  if string.match(selection, "^https?://[%w%-%./]+/-/[%w%-]+%-%d+%.%d+%.%d+%.tgz$") == nil then
+  if string.match(selection, "^https?://[%w%-%./@]+/-/[%w%-]+%-%d+%.%d+%.%d+%.tgz$") == nil then
     vim.notify(
       'The selected text is not a valid tarball URL. The hash will not be generated.',
       'warning',
