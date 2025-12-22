@@ -121,12 +121,12 @@ local config = {
       },
       completion = {
         favoriteStaticMembers = {
-          "org.hamcrest.MatcherAssert.assertThat",
+          "org.assertj.core.api.AssertionsForClassTypes.*",
+          "org.hamcrest.MatcherAssert.*",
           "org.hamcrest.Matchers.*",
           "org.hamcrest.CoreMatchers.*",
           "org.junit.jupiter.api.Assertions.*",
-          "java.util.Objects.requireNonNull",
-          "java.util.Objects.requireNonNullElse",
+          "java.util.Objects.*",
           "org.mockito.Mockito.*",
         },
       },
