@@ -325,7 +325,7 @@ local plugins = {
   {
     "github/copilot.vim",
 
-    version = "*",
+    version = "v1.57.0",
 
     event = "VeryLazy",
 
