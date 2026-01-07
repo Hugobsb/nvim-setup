@@ -29,6 +29,9 @@ vim.cmd("set sessionoptions+=winpos,terminal,folds")
 -- Set / as diff character
 vim.opt.fillchars:append { diff = "╱" }
 
+-- Disable behavior of automatically adding/removing a newline at the end of file when saving
+vim.opt.fixeol = false
+
 local is_running_wsl = vim.fn.system("cat /proc/version 2>/dev/null | grep -F 'WSL'")
 
 if is_running_wsl ~= '' and is_running_wsl ~= nil then
