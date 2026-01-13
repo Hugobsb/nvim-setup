@@ -14,7 +14,6 @@ local function mergeTables(dest, src)
   end
 end
 
-local home = os.getenv("HOME")
 local data_dir = vim.fn.stdpath("data")
 
 local servers = {
