@@ -150,9 +150,9 @@ map("n", "<leader>ts", "<cmd> Neotest summary <CR>", { desc = "Open tests summar
 map("n", "<leader>to", "<cmd> lua require'neotest'.output_panel.toggle() <CR>", { desc = "Toggle test output panel" })
 
 map("n", "<leader>tt", "<cmd> lua require'neotest'.run.run(vim.fn.expand('%')) <CR>", { desc = "Run test file" })
-map("n", "<leader>td", "<cmd> lua require'neotest'.run.run({ vim.fn.expand('%'), strategy = 'dap' }) <CR>", { desc = "Debug all tests" })
+map("n", "<leader>tD", "<cmd> lua require'neotest'.run.run({ vim.fn.expand('%'), strategy = 'dap' }) <CR>", { desc = "Debug all tests" })
 map("n", "<leader>tr", "<cmd> lua require'neotest'.run.run() <CR>", { desc = "Run nearest test" })
-map("n", "<leader>trd", "<cmd> lua require'neotest'.run.run({ strategy = 'dap' }) <CR>", { desc = "Debug nearest test" })
+map("n", "<leader>td", "<cmd> lua require'neotest'.run.run({ strategy = 'dap' }) <CR>", { desc = "Debug nearest test" })
 
 
 -- Harpoon mappings
@@ -193,4 +193,3 @@ map("n", "<C-k>", "<cmd> lua require'harpoon':list():prev() <CR>", { desc = "Har
 map("n", "<C-j>", "<cmd> lua require'harpoon':list():next() <CR>", { desc = "Harpoon next buffer" })
 
 map("n", "<leader>hh", "<cmd> HarpoonTelescope <CR>", { desc = "Harpoon open Telescope window", noremap = true })
-

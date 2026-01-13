@@ -80,6 +80,20 @@ local config = {
       "<cmd> Lspsaga code_action <CR>",
       { buffer = bufnr, desc = "LSP Code action", noremap = true }
     )
+
+    -- Java-specific test debugging (overrides neotest debug for Java buffers)
+    -- Uses nvim-jdtls directly which is more reliable than neotest-java debug
+    vim.keymap.set("n", "<leader>td", function()
+      require("jdtls").test_nearest_method()
+    end, { buffer = bufnr, desc = "Debug nearest test (jdtls)" })
+
+    vim.keymap.set("n", "<leader>tD", function()
+      require("jdtls").test_class()
+    end, { buffer = bufnr, desc = "Debug test class (jdtls)" })
+
+    vim.keymap.set("n", "<leader>tp", function()
+      require("jdtls").pick_test()
+    end, { buffer = bufnr, desc = "Pick test to debug (jdtls)" })
   end,
 
   settings = {
