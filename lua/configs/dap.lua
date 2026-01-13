@@ -14,7 +14,7 @@ vim.fn.sign_define('DapStopped', { text = '✋🏻', texthl = '', linehl = '', n
 
 dap.adapters.kotlin = {
   type = 'executable',
-  command = os.getenv("HOME") .. "/.local/share/nvim/lazy/kotlin-debug-adapter/adapter/build/install/adapter/bin/kotlin-debug-adapter",
+  command = vim.fn.stdpath("data") .. "/lazy/kotlin-debug-adapter/adapter/build/install/adapter/bin/kotlin-debug-adapter",
   options = { auto_continue_if_many_stopped = false },
 }
 

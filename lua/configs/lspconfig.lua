@@ -15,6 +15,7 @@ local function mergeTables(dest, src)
 end
 
 local home = os.getenv("HOME")
+local data_dir = vim.fn.stdpath("data")
 
 local servers = {
   ['bashls'] = {
@@ -70,7 +71,7 @@ local servers = {
   ['kotlin_language_server'] = {
     rootDir = util.root_pattern({ ".gradlew", ".git", "mvnw" }),
     fileTypes = { "kt", "kts" },
-    cmd = { home .. "/.local/share/nvim/mason/bin/kotlin-language-server" },
+    cmd = { data_dir .. "/mason/bin/kotlin-language-server" },
   },
   ['lua_ls'] = {
     filetypes = { "lua" },
@@ -114,7 +115,7 @@ local servers = {
     filetypes = { "sql", "mysql" }
   },
   -- ['ts_ls'] = {
-  --   cmd = { home .. "/.local/share/nvim/mason/bin/typescript-language-server", "--stdio" },
+  --   cmd = { data_dir .. "/mason/bin/typescript-language-server", "--stdio" },
   --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
   -- },
   ['yamlls'] = {

@@ -30,7 +30,7 @@ local function get_tmux_data(cmd)
 end
 
 -- TODO: create "sessions" folder if it does not exist
-local session_path = os.getenv('HOME') .. '/.local/share/nvim/sessions/'
+local session_path = vim.fn.stdpath("data") .. '/sessions/'
 
 local session_name, s_err = get_tmux_data('tmux display-message -p "#S"')
 

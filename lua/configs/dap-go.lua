@@ -10,7 +10,7 @@ local config = {
     },
   },
   delve = {
-    path = os.getenv("HOME") .. "/.local/share/nvim/lazy/delve/dlv",
+    path = vim.fn.stdpath("data") .. "/lazy/delve/dlv",
   },
 }
 
