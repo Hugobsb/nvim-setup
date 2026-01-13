@@ -8,6 +8,10 @@ vim.fn.sign_define('DapBreakpointRejected', { text = '😭', texthl = '', linehl
 vim.fn.sign_define('DapLogPoint', { text = '🧐', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped', { text = '✋🏻', texthl = '', linehl = '', numhl = '' })
 
+-- When hitting a breakpoint, reuse existing window if buffer is already open
+-- This prevents DAP from overwriting the current buffer layout
+dap.defaults.fallback.switchbuf = 'useopen,uselast'
+
 -- Adapters
 
 -- Kotlin
@@ -129,4 +133,3 @@ dap.configurations.kotlin = {
 }
 
 return {}
-
