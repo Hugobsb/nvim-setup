@@ -1,6 +1,4 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local nvchad_config = require("nvchad.configs.lspconfig")
 
 local navic = require "nvim-navic"
 
@@ -126,14 +124,14 @@ local servers = {
 
 for lsp, config in pairs(servers) do
   local setup_config = {
-    capabilities = capabilities,
+    capabilities = nvchad_config.capabilities,
 
     on_init = function(client, bufnr)
       -- Forcefully enable semantic tokens - NvChad disables it
 
       local semanticTokensProvider = client.server_capabilities.semanticTokensProvider
 
-      on_init(client, bufnr)
+      nvchad_config.on_init(client, bufnr)
 
       client.server_capabilities.semanticTokensProvider = semanticTokensProvider
     end,
@@ -142,7 +140,7 @@ for lsp, config in pairs(servers) do
         navic.attach(client, bufnr)
       end
 
-      on_attach(client, bufnr)
+      nvchad_config.on_attach(client, bufnr)
 
       pcall(
         function()

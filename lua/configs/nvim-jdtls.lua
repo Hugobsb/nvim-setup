@@ -1,13 +1,16 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local nvchad_config = require "nvchad.configs.lspconfig"
+
+local jdtls_setup = require "jdtls.setup"
 
 -- Environment setup
 
 local home = os.getenv("HOME")
+local data_dir = vim.fn.stdpath("data")
+local root_dir = jdtls_setup.find_root { ".git", "mvnw", "gradlew" }
+local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 
 local OS = "unsupported"
-local WORKSPACE_PATH = home .. "/workspace/"
 
 if vim.fn.has("mac") == 1 then
   local output, _ = vim.fn.system("uname -m")
@@ -34,7 +37,7 @@ local config = {
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
-    "-javaagent:" .. home .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+    "-javaagent:" .. data_dir .. "/mason/packages/jdtls/lombok.jar",
     "-Xms1g",
     "--add-modules=ALL-SYSTEM",
     "--add-opens",
@@ -44,27 +47,26 @@ local config = {
 
     -- 💀
     "-jar",
-    vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+    vim.fn.glob(data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
     -- 💀
     "-configuration",
-    home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. OS,
+    data_dir .. "/mason/packages/jdtls/config_" .. OS,
 
     "-data",
-    WORKSPACE_PATH .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
-
+    workspace_dir
   },
 
   filetypes = { "java" },
 
   init_options = { bundles = {} },
-  on_init = on_init,
-  capabilities = capabilities,
+  on_init = nvchad_config.on_init,
+  capabilities = nvchad_config.capabilities,
   on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
+    nvchad_config.on_attach(client, bufnr)
 
     pcall(
       function()
@@ -153,8 +155,7 @@ xpcall(
       callback = function()
         local bundles = {
           vim.fn.glob(
-            os.getenv("HOME")
-            .. "/.local/share/nvim/lazy/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+            data_dir .. "/lazy/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
             true
           )
         }
@@ -162,8 +163,7 @@ xpcall(
         vim.list_extend(
           bundles,
           vim.split(
-            os.getenv("HOME")
-            .. vim.fn.glob("/.local/share/nvim/lazy/vscode-java-test/server/*.jar", true),
+            vim.fn.glob(data_dir .. "/lazy/vscode-java-test/server/*.jar", true),
             "\n"
           )
         )
