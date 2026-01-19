@@ -20,17 +20,26 @@ local adapters_list = {
     should_load = vim.fn.glob("package.json") ~= "",
     config = {
       jestCommand = "npm test --",
-      -- jestConfigFile = "jest.config.js",
-
+      jestArguments = function(defaultArguments, context)
+        return defaultArguments
+      end,
+      jestConfigFile = vim.fn.glob(vim.fn.getcwd() .. "/*{jest,config}*{jest,config}*.{js,ts,json}"),
       env = { CI = true },
-
       cwd = function()
         return vim.fn.getcwd()
       end,
-
-      jest_test_discovery = false,
+      isTestFile = function(file_path)
+        if not file_path then
+          return false
+        end
+        local extension = "%.[jt]sx?$"
+        return file_path:match("_test" .. extension)
+            or file_path:match("%.test" .. extension)
+            or file_path:match("%.spec" .. extension)
+      end,
+      jest_test_discovery = true,
       discovery = {
-        enabled = false,
+        enabled = false, -- disables neotest discovery to use jest's own test discovery
       },
     },
   },
