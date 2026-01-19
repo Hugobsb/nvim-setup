@@ -19,7 +19,7 @@ local adapters_list = {
   ["neotest-jest"] = {
     should_load = vim.fn.glob("package.json") ~= "",
     config = {
-      jestCommand = "npm test --",
+      jestCommand = "npx jest",
       jestArguments = function(defaultArguments, context)
         return defaultArguments
       end,
@@ -71,4 +71,3 @@ local config = {
 }
 
 require("neotest").setup(config)
-
