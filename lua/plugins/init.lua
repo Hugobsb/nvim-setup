@@ -519,21 +519,6 @@ local plugins = {
     lazy = false
   },
 
-  -- {
-  --   "David-Kunz/jester",
-  --
-  --   version = "*",
-  --
-  --   event = {
-  --     "BufEnter *.js",
-  --     "BufEnter *.jsx",
-  --     "BufEnter *.ts",
-  --     "BufEnter *.tsx"
-  --   },
-  --
-  --   config = require "configs.jester"
-  -- },
-
   {
     "Hugobsb/ccryptor.nvim",
 
@@ -815,4 +800,3 @@ local plugins = {
 utils.mutate_lazy_plugins_list_with_ssh_prefix(plugins)
 
 return plugins
-
