@@ -15,6 +15,7 @@
   "conform.nvim": { "branch": "master", "commit": "238f542a118984a88124fc915d5b981680418707" },
   "copilot.vim": { "branch": "release", "commit": "f89e977c87180519ba3b942200e3d05b17b1e2fc" },
   "delve": { "branch": "master", "commit": "efcc1fe030882f5768a0421b808d8b1e6b9ef75b" },
+  "cursor-agent.nvim": { "branch": "main", "commit": "e0b86624ccfd5f98af46a780049037fa07521331" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "3a45525bb182730fe462325c99395529308f431e" },
   "dropbar.nvim": { "branch": "master", "commit": "418897fe7828b2749ca78056ec8d8ad43136b695" },

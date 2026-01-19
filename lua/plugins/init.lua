@@ -350,6 +350,16 @@ local plugins = {
   },
 
   {
+    "xTacobaco/cursor-agent.nvim",
+
+    version = "*",
+
+    event = "BufEnter",
+
+    config = require "configs.cursor-agent"
+  },
+
+  {
     "sindrets/diffview.nvim",
 
     version = "*",
