@@ -102,17 +102,28 @@ local config = {
       contentProvider = { preferred = "fernflower" },
       configuration = {
         updateBuildConfiguration = "interactive",
-        -- runtimes = {
-        --   {
-        --     name = "JavaSE-11",
-        --     path = "/usr/lib/jvm/java-11-openjdk/",
-        --     default = true
-        --   },
-        --   -- {
-        --   --   name = "JavaSE-17",
-        --   --   path = "/usr/lib/jvm/java-17-openjdk/",
-        --   -- },
-        -- },
+        runtimes = (function()
+          local runtimes = {}
+          local sdkman_java_dir = home .. "/.sdkman/candidates/java"
+          local java_dirs = vim.fn.glob(sdkman_java_dir .. "/*", false, true)
+          local current_java = vim.fn.resolve(sdkman_java_dir .. "/current")
+
+          for _, java_path in ipairs(java_dirs) do
+            local dir_name = vim.fn.fnamemodify(java_path, ":t")
+            if dir_name ~= "current" then
+              local major_version = dir_name:match("^(%d+)")
+              if major_version then
+                table.insert(runtimes, {
+                  name = "JavaSE-" .. major_version,
+                  path = java_path,
+                  default = (java_path == current_java),
+                })
+              end
+            end
+          end
+
+          return runtimes
+        end)(),
       },
 
       eclipse = {
