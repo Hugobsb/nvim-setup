@@ -678,9 +678,7 @@ local plugins = {
   {
     "rcasia/neotest-java",
 
-    -- Pinned to v0.24.1: versions >= v0.25.0 have broken LSP handling
-    -- (request_sync without fallbacks causes "No response from lsp server" errors)
-    version = "0.24.1",
+    version = "0.32.6",
 
     event = {
       "BufEnter *.java"
