@@ -75,12 +75,6 @@ map("n", "<leader>dr", "<cmd> lua require'dap'.repl.open() <CR>", { desc = "Open
 map("n", "<leader>dpu", "<cmd> lua require'dap-view'.toggle(true) <CR>", { desc = "Toggle debugger hiding the terminal" })
 map("n", "<leader>dpU", "<cmd> lua require'dap-view'.toggle(false) <CR>", { desc = "Toggle debugger keeping the terminal" })
 
--- Cursor Agent plugin
-
-map("n", "<leader>cua", "<cmd> CursorAgent <CR>", { desc = "Cursor Agent: Toggle" })
-map("v", "<leader>cua", "<cmd> CursorAgentSelection <CR>", { desc = "Send selection" })
-map("n", "<leader>cuA", "<cmd> CursorAgentBuffer <CR>", { desc = "Send buffer" })
-
 -- Nvim tab management
 
 -- Disabled until I find a way to map it without causing C-i conflicts. Maybe an Alacritty configuration

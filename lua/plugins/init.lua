@@ -359,16 +359,6 @@ local plugins = {
   },
 
   {
-    "xTacobaco/cursor-agent.nvim",
-
-    version = "*",
-
-    event = "BufEnter",
-
-    config = require "configs.cursor-agent"
-  },
-
-  {
     "sindrets/diffview.nvim",
 
     version = "*",
@@ -788,6 +778,16 @@ local plugins = {
     config = function()
       require("package-info").setup()
     end,
+  },
+
+  {
+    "folke/sidekick.nvim",
+
+    event = "BufEnter",
+
+    opts = require "configs.sidekick".opts,
+
+    keys = require "configs.sidekick".keys,
   }
 }
 
