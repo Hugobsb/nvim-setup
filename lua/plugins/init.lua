@@ -257,6 +257,15 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
 
+    branch = "main",
+
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main"
+      }
+    },
+
     opts = require "configs.treesitter"
   },
 
@@ -404,21 +413,6 @@ local plugins = {
     config = require "configs.nvim-scrollbar"
   },
 
-  {
-    "gorbit99/codewindow.nvim",
-
-    version = "*",
-
-    event = "BufEnter",
-
-    config = function(_, opts)
-      local codewindow = require "codewindow"
-      codewindow.setup(opts)
-      codewindow.apply_default_keybinds()
-    end,
-
-    opts = require "configs.codewindow",
-  },
 
   {
     "Bekaboo/dropbar.nvim",
