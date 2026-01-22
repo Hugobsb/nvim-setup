@@ -23,7 +23,10 @@ local CODE_QUALITY_CHECKSTYLE_PATH = utils.get_first_existing_path({
   "./config/checkstyle/checkstyle.xml"
 })
 
--- local CODE_QUALITY_PMD_PATH = "/.code_quality/pmd_rules.xml"
+local CODE_QUALITY_PMD_PATH = utils.get_first_existing_path({
+  "./config/pmd/pmd.xml",
+  "./.code_quality/pmd_rules.xml"
+})
 
 -- custom sources
 
@@ -100,18 +103,21 @@ local sources = {
   ),
   diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
   -- diagnostics.ktlint,
-  -- diagnostics.pmd.with {
-  --   timeout = 20000,
-  --   filetypes = { "java" },
-  --   extra_args = utils.with_file_verification(
-  --     {
-  --       "check",
-  --       "--rulesets",
-  --       CODE_QUALITY_PMD_PATH,
-  --     },
-  --     CODE_QUALITY_PMD_PATH
-  --   ),
-  -- },
+  diagnostics.pmd.with {
+    timeout = 20000,
+    filetypes = { "java" },
+    args = utils.with_file_verification(
+      {
+        "check",
+        "-f", "json",
+        "-d", "$FILENAME",
+        "-R", CODE_QUALITY_PMD_PATH,
+        "--no-progress",
+        "--no-cache",
+      },
+      CODE_QUALITY_PMD_PATH
+    ),
+  },
   diagnostics.golangci_lint,
   diagnostics.tidy,
 
