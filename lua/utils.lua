@@ -451,4 +451,31 @@ M.get_pkg_path = function(pkg, path)
   return root .. '/packages/' .. pkg .. '/' .. path
 end
 
+--- Returns the file at the given path if it exists, nil otherwise.
+---@param path string
+---@return string|nil
+M.get_path_if_exists = function(path)
+  local file = vim.fn.glob(path)
+
+  if file ~= "" then
+    return file
+  end
+
+  return nil
+end
+
+--- Returns the first existing path from a list of paths, nil if none exist.
+---@param paths string[]
+---@return string|nil
+M.get_first_existing_path = function(paths)
+  for _, path in ipairs(paths) do
+    local file = M.get_path_if_exists(path)
+    if file then
+      return file
+    end
+  end
+
+  return nil
+end
+
 return M

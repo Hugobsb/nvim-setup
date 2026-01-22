@@ -18,7 +18,11 @@ local code_actions_eslint_d = require("none-ls.code_actions.eslint_d")
 -- beauty_sh
 local formatting_beautysh = require("none-ls.formatting.beautysh")
 
-local CODE_QUALITY_CHECKSTYLE_PATH = "./.code_quality/checkstyle_rules.xml"
+local CODE_QUALITY_CHECKSTYLE_PATH = utils.get_first_existing_path({
+  "./.code_quality/checkstyle_rules.xml",
+  "./config/checkstyle/checkstyle.xml"
+})
+
 -- local CODE_QUALITY_PMD_PATH = "/.code_quality/pmd_rules.xml"
 
 -- custom sources
