@@ -5,6 +5,8 @@ local config = {
     "dart",
     "dockerfile",
     "go",
+    "gitcommit",
+    "gitignore",
     "http",
     "java",
     "javadoc",
