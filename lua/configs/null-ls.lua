@@ -28,6 +28,8 @@ local CODE_QUALITY_PMD_PATH = utils.get_first_existing_path({
   "./.code_quality/pmd_rules.xml"
 })
 
+local pmd_debug_notified = false
+
 -- custom sources
 
 -- local detekt = {
@@ -117,6 +119,16 @@ local sources = {
       },
       CODE_QUALITY_PMD_PATH
     ),
+    filter = function(diagnostic)
+      if not pmd_debug_notified then
+        pmd_debug_notified = true
+        vim.notify(
+          "There might be errors in the PMD file. Message: " .. diagnostic.message,
+          vim.log.levels.WARN
+        )
+      end
+      return diagnostic.code ~= "stderr"
+    end,
   },
   diagnostics.golangci_lint,
   diagnostics.tidy,
