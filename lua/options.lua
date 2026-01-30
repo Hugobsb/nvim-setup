@@ -7,6 +7,7 @@ require "nvchad.options"
 
 local utils = require'utils'
 local screenshot = require'modules.screenshot'
+local patches = require'patches'
 
 ----------------------------------- globals ----------------------------------------
 
@@ -420,6 +421,40 @@ new_cmd('GenerateTarballHash', function()
   -- Cleaning the visual selection
   vim.cmd('normal! gv')
 end, { addr = 'lines', range = '%' })
+
+new_cmd('PatchApply', function(opts)
+  if opts.args ~= "" then
+    patches.apply(opts.args)
+  else
+    patches.apply_all()
+  end
+end, {
+  nargs = "?",
+  complete = function()
+    return patches.list()
+  end,
+  desc = "Apply plugin patches (optionally for a specific plugin)",
+})
+
+new_cmd('PatchReset', function(opts)
+  if opts.args ~= "" then
+    patches.reset(opts.args)
+  else
+    patches.reset_all()
+  end
+end, {
+  nargs = "?",
+  complete = function()
+    return patches.list()
+  end,
+  desc = "Reset plugin to original state (optionally for a specific plugin)",
+})
+
+new_cmd('PatchStatus', function()
+  patches.status()
+end, {
+  desc = "Show status of all plugin patches",
+})
 
 ---------------------------------- bugfixes ----------------------------------------
 
