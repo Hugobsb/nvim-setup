@@ -673,6 +673,10 @@ local plugins = {
       "mfussenegger/nvim-jdtls",
       "mfussenegger/nvim-dap",
     },
+
+    build = function(plugin)
+      require("patches").apply(plugin)
+    end,
   },
 
   {

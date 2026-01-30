@@ -13,7 +13,15 @@ local adapters_list = {
       ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
       junit_jar = nil,
       -- default: .local/share/nvim/neotest-java/junit-platform-console-standalone-[version].jar
-      incremental_build = true
+      incremental_build = true,
+      jvm_args = {
+        -- Allow bean definition overriding (common in test contexts with mocks)
+        "-Dspring.main.allow-bean-definition-overriding=true",
+        -- Activate test profile (when the application uses application-test.properties/yml)
+        "-Dspring.profiles.active=test",
+        -- Disable lazy initialization issues
+        "-Dspring.main.lazy-initialization=false",
+      },
     },
   },
   ["neotest-jest"] = {

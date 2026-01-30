@@ -1,0 +1,39 @@
+diff --git a/lua/neotest-java/build_tool/gradle.lua b/lua/neotest-java/build_tool/gradle.lua
+index ab13d07..399404e 100644
+--- a/lua/neotest-java/build_tool/gradle.lua
++++ b/lua/neotest-java/build_tool/gradle.lua
+@@ -7,7 +7,7 @@ local PROJECT_FILENAME = "build.gradle"
+ local gradle = {}
+ 
+ gradle.get_build_dirname = function()
+-	return Path("bin")
++	return Path("build/classes/java/main")
+ end
+ 
+ function gradle.get_project_filename()
+@@ -21,8 +21,8 @@ function gradle.get_spring_property_filepaths(roots)
+ 		--- @param root neotest-java.Path
+ 		:map(function(root)
+ 			return {
+-				root:append("main"),
+-				root:append("test"),
++				root:append("build/resources/main"),
++				root:append("build/resources/test"),
+ 			}
+ 		end)
+ 		:flatten()
+diff --git a/lua/neotest-java/build_tool/maven.lua b/lua/neotest-java/build_tool/maven.lua
+index c27f313..22f0f3b 100644
+--- a/lua/neotest-java/build_tool/maven.lua
++++ b/lua/neotest-java/build_tool/maven.lua
+@@ -22,8 +22,8 @@ function maven.get_spring_property_filepaths(roots)
+ 		--- @param r neotest-java.Path
+ 		:map(function(r)
+ 			return {
+-				r:append("classes"),
+-				r:append("test-classes"),
++				r:append("target/classes"),
++				r:append("target/test-classes"),
+ 			}
+ 		end)
+ 		:flatten()
