@@ -17,6 +17,7 @@ local config = {
     "kotlin",
     "lua",
     "markdown",
+    "markdown_inline",
     "mermaid",
     "query",
     "regex",
