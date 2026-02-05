@@ -662,7 +662,7 @@ local plugins = {
   {
     "rcasia/neotest-java",
 
-    version = "0.32.6",
+    version = "0.34.1",
 
     event = {
       "BufEnter *.java"
