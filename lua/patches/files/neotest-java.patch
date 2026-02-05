@@ -37,3 +37,38 @@ index c27f313..22f0f3b 100644
  			}
  		end)
  		:flatten()
+diff --git a/lua/neotest-java/core/result_builder.lua b/lua/neotest-java/core/result_builder.lua
+index 6262ee2..3ec9624 100644
+--- a/lua/neotest-java/core/result_builder.lua
++++ b/lua/neotest-java/core/result_builder.lua
+@@ -95,14 +95,27 @@ function ResultBuilder.build_results(spec, result, tree, scan, read_file, remove
+ 	local testcases = load_all_testcases(report_files, read_file)
+ 	local groups = group_by_method_base(testcases)
+ 
++	-- Helper function to find matching tree position ID for a JUnit result ID
++	-- This is needed because JUnit result IDs don't include () but neotest tree IDs do
++	local function find_tree_id(junit_id)
++		return vim
++			.iter(tree:iter())
++			:map(function(_, pos)
++				return pos.id
++			end)
++			:find(function(pos_id)
++				return clean_id(pos_id) == clean_id(junit_id)
++			end)
++	end
++
+ 	local results = {}
+ 
+ 	for id, items in pairs(groups) do
+ 		if #items == 1 then
+-			--- @type neotest-java.JunitResult
+ 			local jres = items[1]
+-
+-			results[id] = jres:result()
++			-- Use the tree position ID if found, otherwise fall back to JUnit result ID
++			local tree_id = find_tree_id(id) or id
++			results[tree_id] = jres:result()
+ 		else
+ 			local _id = vim
+ 				.iter(tree:iter())
