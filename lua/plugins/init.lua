@@ -168,20 +168,12 @@ local plugins = {
   {
     "mfussenegger/nvim-jdtls",
 
-    event = {
-      "BufEnter *.java",
-      "BufEnter *.class",
-      "BufEnter *.jar"
-    },
+    ft = "java",
 
     dependencies = {
       "mfussenegger/nvim-dap",
       "neovim/nvim-lspconfig"
     },
-
-    config = function()
-      require "configs.nvim-jdtls"
-    end,
   },
 
   {

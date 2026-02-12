@@ -173,42 +173,34 @@ local config = {
   },
 }
 
-xpcall(
-  function()
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-      pattern = { "*.java", "*.class", "*.jar" },
-      callback = function()
-        local bundles = {
-          vim.fn.glob(
-            data_dir .. "/lazy/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
-            true
-          )
-        }
+local function start_jdtls()
+  local bundles = {
+    vim.fn.glob(
+      data_dir .. "/lazy/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+      true
+    )
+  }
 
-        vim.list_extend(
-          bundles,
-          vim.split(
-            vim.fn.glob(data_dir .. "/lazy/vscode-java-test/server/*.jar", true),
-            "\n"
-          )
-        )
+  vim.list_extend(
+    bundles,
+    vim.split(
+      vim.fn.glob(data_dir .. "/lazy/vscode-java-test/server/*.jar", true),
+      "\n"
+    )
+  )
 
-        local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
-        extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-        extendedClientCapabilities.classFileContentsSupport = true
+  local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
+  extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+  extendedClientCapabilities.classFileContentsSupport = true
 
-        config.init_options = {
-          bundles = bundles,
-          extendedClientCapabilities = extendedClientCapabilities,
-        }
+  config.init_options = {
+    bundles = bundles,
+    extendedClientCapabilities = extendedClientCapabilities,
+  }
 
-        require("jdtls").start_or_attach(config)
-      end,
-    })
-  end,
-  function(err)
-    print("Error on jdtls attach: " .. err)
-  end
-)
+  require("jdtls").start_or_attach(config)
+end
+
+config.start = start_jdtls
 
 return config
