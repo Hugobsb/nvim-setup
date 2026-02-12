@@ -2,7 +2,6 @@ local nvchad_config = require("nvchad.configs.lspconfig")
 
 local navic = require "nvim-navic"
 
-local util = require "lspconfig/util"
 
 local function mergeTables(dest, src)
   for key, value in pairs(src) do
@@ -25,7 +24,7 @@ local servers = {
     fileTypes = { "css" }
   },
   ['docker_compose_language_service'] = {
-    root_dir = util.root_pattern('docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml'),
+    root_markers = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' },
     filetypes = { 'yaml.docker-compose' },
     single_file_support = true,
   },
@@ -35,7 +34,7 @@ local servers = {
   ['gopls'] = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    rootDir = util.root_pattern("go.work", "go.mod", ".git"),
+    root_markers = { "go.work", "go.mod", ".git" },
     settings = {
       gopls = {
         completeUnimported = true,
@@ -68,7 +67,7 @@ local servers = {
     },
   },
   ['kotlin_language_server'] = {
-    rootDir = util.root_pattern({ ".gradlew", ".git", "mvnw" }),
+    root_markers = { ".gradlew", ".git", "mvnw" },
     fileTypes = { "kt", "kts" },
     cmd = { data_dir .. "/mason/bin/kotlin-language-server" },
   },
@@ -160,5 +159,6 @@ for lsp, config in pairs(servers) do
   mergeTables(setup_config, config)
 
   vim.lsp.config(lsp, setup_config)
+  vim.lsp.enable(lsp)
 end
 
