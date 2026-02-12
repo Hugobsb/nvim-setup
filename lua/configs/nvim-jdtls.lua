@@ -148,13 +148,47 @@ local config = {
       },
       completion = {
         favoriteStaticMembers = {
+          -- JUnit 5
+          "org.junit.jupiter.api.Assertions.*",
+          "org.junit.jupiter.api.Assumptions.*",
+          "org.junit.jupiter.api.DynamicContainer.*",
+          "org.junit.jupiter.api.DynamicTest.*",
+          -- JUnit 4
+          "org.junit.Assert.*",
+          "org.junit.Assume.*",
+          -- AssertJ
+          "org.assertj.core.api.Assertions.*",
           "org.assertj.core.api.AssertionsForClassTypes.*",
+          "org.assertj.core.api.AssertionsForInterfaceTypes.*",
+          "org.assertj.core.api.BDDAssertions.*",
+          -- Hamcrest
           "org.hamcrest.MatcherAssert.*",
           "org.hamcrest.Matchers.*",
           "org.hamcrest.CoreMatchers.*",
-          "org.junit.jupiter.api.Assertions.*",
-          "java.util.Objects.*",
+          -- Mockito
           "org.mockito.Mockito.*",
+          "org.mockito.BDDMockito.*",
+          "org.mockito.ArgumentMatchers.*",
+          "org.mockito.AdditionalMatchers.*",
+          "org.mockito.AdditionalAnswers.*",
+          -- Spring Test
+          "org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
+          "org.springframework.test.web.servlet.result.MockMvcResultMatchers.*",
+          "org.springframework.test.web.servlet.result.MockMvcResultHandlers.*",
+          "org.springframework.test.web.servlet.setup.MockMvcBuilders.*",
+          -- Java standard library
+          "java.util.Objects.*",
+          "java.util.Collections.*",
+          "java.util.stream.Collectors.*",
+          "java.util.Map.entry",
+          "java.util.Optional.*",
+        },
+        filteredTypes = {
+          "com.sun.*",
+          "io.micrometer.shaded.*",
+          "java.awt.*",
+          "jdk.*",
+          "sun.*",
         },
       },
       sources = {
