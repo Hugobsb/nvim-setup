@@ -458,6 +458,31 @@ end, {
 
 ---------------------------------- bugfixes ----------------------------------------
 
+-- Treesitter markdown highlights query corruption from LSP hover
+--
+-- When Lspsaga hover_doc (or Neovim's LSP floating preview) renders markdown,
+-- it calls vim.treesitter.query.set("markdown", "highlights", ...) with a
+-- minimal conceal-only query. Since query.set() operates at the language level
+-- (not buffer level), this globally replaces the highlights query for ALL
+-- markdown buffers, breaking syntax highlighting until Neovim is restarted.
+--
+-- Fix: intercept query.set() and block replacements that would strip away the
+-- real markdown highlights, leaving only conceal captures.
+
+do
+  local original_query_set = vim.treesitter.query.set
+
+  vim.treesitter.query.set = function(lang, query_name, text)
+    if lang == "markdown" and query_name == "highlights" and type(text) == "string" then
+      if not text:match("@markup") then
+        return
+      end
+    end
+
+    return original_query_set(lang, query_name, text)
+  end
+end
+
 -- Neogit message filetype
 
 vim.api.nvim_create_augroup("neogit-additions", {})
