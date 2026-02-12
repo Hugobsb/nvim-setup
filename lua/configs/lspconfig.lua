@@ -21,7 +21,7 @@ local servers = {
     filetypes = { "sh" }
   },
   ['cssls'] = {
-    fileTypes = { "css" }
+    filetypes = { "css" }
   },
   ['docker_compose_language_service'] = {
     root_markers = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' },
@@ -50,9 +50,12 @@ local servers = {
     filetypes = { "html" }
   },
   ['jsonls'] = {
-    fileTypes = { "json", "jsonc" },
+    filetypes = { "json", "jsonc" },
     settings = {
       json = {
+        validate = {
+          enable = true,
+        },
         schemas = {
           {
             fileMatch = { "package.json" },
@@ -68,7 +71,7 @@ local servers = {
   },
   ['kotlin_language_server'] = {
     root_markers = { ".gradlew", ".git", "mvnw" },
-    fileTypes = { "kt", "kts" },
+    filetypes = { "kt", "kts" },
     cmd = { data_dir .. "/mason/bin/kotlin-language-server" },
   },
   ['lua_ls'] = {
