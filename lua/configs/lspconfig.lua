@@ -18,7 +18,7 @@ local data_dir = vim.fn.stdpath("data")
 local servers = {
   ['bashls'] = {
     cmd = { "bash-language-server", "start" },
-    filetypes = { "sh" }
+    filetypes = { "sh", "bash", "zsh", "ksh" }
   },
   ['cssls'] = {
     filetypes = { "css" }
