@@ -123,18 +123,6 @@ map({ "n", "i" }, "<A-=>", "<cmd> RestoreFontSize <CR>", { desc = "Restore font 
 map({ "n", "i" }, "<C-=>", "<cmd> IncreaseFontSize <CR>", { desc = "Increase font size" })
 map({ "n", "i" }, "<C-->", "<cmd> DecreaseFontSize <CR>", { desc = "Decrease font size" })
 
--- Jester mappings
-
--- Run only
--- map("n", "<leader>jc", "<cmd> lua require'jester'.run() <CR>", { desc = "Run nearest test(s) under the cursor" })
--- map("n", "<leader>jf", "<cmd> lua require'jester'.run_file() <CR>", { desc = "Run test(s) in the current file" })
--- map("n", "<leader>jl", "<cmd> lua require'jester'.run_last() <CR>", { desc = "Run last test(s)" })
-
--- Run and debug
--- map("n", "<leader>jdc", "<cmd> lua require'jester'.debug() <CR>", { desc = "Debug nearest test(s) under the cursor" })
--- map("n", "<leader>jdf", "<cmd> lua require'jester'.debug_file() <CR>", { desc = "Debug test(s) in the current file" })
--- map("n", "<leader>jdl", "<cmd> lua require'jester'.debug_last() <CR>", { desc = "Debug last test(s)" })
-
 -- Dropbar mappings
 
 map("n", "<leader>db", "<cmd> lua require'dropbar.api'.pick() <CR>", { desc = "Enter dropbar interactive pick mode" })
