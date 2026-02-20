@@ -32,7 +32,7 @@ return function()
   local code = utils.url_encode(utils.base64_encode(selection))
 
   local url = 'https://ray.so/#code=' .. code
-    .. '?colors=' .. COLORS
+    .. '&colors=' .. COLORS
     .. '&background=' .. BACKGROUND
     .. '&darkMode=' .. DARK_MODE
     .. '&padding=' .. PADDING
