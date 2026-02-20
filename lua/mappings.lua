@@ -40,7 +40,7 @@ map("n", "<leader>ld", "<cmd> Lspsaga show_line_diagnostics <CR>", { desc = "Sho
 map("n", "<leader>zd", "<cmd> Lspsaga show_buf_diagnostics <CR>", { desc = "Show LSP Saga current buffer diagnostics" })
 map("n", "<leader>fd", "<cmd> Lspsaga finder <CR>", { desc = "Open LSP Saga finder" })
 map("n", "<leader>ic", "<cmd> Lspsaga incoming_calls <CR>", { desc = "Open LSP Saga incoming calls" })
-map("n", "<leader>oc", "<cmd> Lspsaga incoming_calls <CR>", { desc = "Open LSP Saga outcoming calls" })
+map("n", "<leader>oc", "<cmd> Lspsaga outgoing_calls <CR>", { desc = "Open LSP Saga outgoing calls" })
 map("n", "gp", "<cmd> Lspsaga peek_definition <CR>", { desc = "Open LSP Saga definition peek" })
 map("n", "gP", "<cmd> Lspsaga peek_type_definition <CR>", { desc = "Open LSP Saga type definition peek" })
 

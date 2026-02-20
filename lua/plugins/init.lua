@@ -140,9 +140,7 @@ local plugins = {
       },
     },
 
-    BufEnter = {
-      "*.go"
-    },
+    ft = "go",
 
     config = function()
       require("configs.dap-go")
