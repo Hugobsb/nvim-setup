@@ -1,6 +1,6 @@
 local adapters_list = {
   ["neotest-golang"] = {
-    should_load = vim.fn.glob("go.mod") ~= "",
+    should_load = vim.fn.filereadable("go.mod") == 1,
     config = {
       go_test_args = {
         "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
@@ -8,7 +8,7 @@ local adapters_list = {
     },
   },
   ["neotest-java"] = {
-    should_load = vim.fn.glob("pom.xml") ~= "" or vim.fn.glob("build.gradle") ~= "",
+    should_load = vim.fn.filereadable("pom.xml") == 1 or vim.fn.filereadable("build.gradle") == 1,
     config = {
       ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
       junit_jar = nil,
@@ -25,7 +25,7 @@ local adapters_list = {
     },
   },
   ["neotest-jest"] = {
-    should_load = vim.fn.glob("package.json") ~= "",
+    should_load = vim.fn.filereadable("package.json") == 1,
     config = {
       jestCommand = "npx jest",
       jestArguments = function(defaultArguments, context)

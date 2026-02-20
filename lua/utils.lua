@@ -422,10 +422,8 @@ end
 ---@param path string
 ---@return string|nil
 M.get_path_if_exists = function(path)
-  local file = vim.fn.glob(path)
-
-  if file ~= "" then
-    return file
+  if vim.fn.filereadable(path) == 1 then
+    return path
   end
 
   return nil

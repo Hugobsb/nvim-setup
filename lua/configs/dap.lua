@@ -2,6 +2,10 @@ local dap = require "dap"
 local dap_utils = require "dap.utils"
 local utils = require "utils"
 
+local NODE_DEBUG_PORT = 7473
+local NODE_INSPECTOR_PORT = 9229
+local KOTLIN_DEBUG_PORT = 5005
+
 vim.fn.sign_define('DapBreakpoint', { text = '😡', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '🥶', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointRejected', { text = '😭', texthl = '', linehl = '', numhl = '' })
@@ -51,7 +55,7 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       request = "launch",
       program = "${file}",
       cwd = "${workspaceFolder}",
-      port = 7473
+      port = NODE_DEBUG_PORT
     },
     {
       name = "Launch process",
@@ -66,7 +70,7 @@ for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       cwd = "${workspaceFolder}",
       console = "integratedTerminal",
       internalConsoleOptions = "neverOpen",
-      port = 9229
+      port = NODE_INSPECTOR_PORT
     },
     {
       name = "Attach to Node process",
@@ -124,7 +128,7 @@ dap.configurations.kotlin = {
     type = "kotlin",
     request = "attach",
     name = "Attach to debugging session",
-    port = 5005,
+    port = KOTLIN_DEBUG_PORT,
     args = {},
     projectRoot = vim.fn.getcwd,
     hostName = "localhost",

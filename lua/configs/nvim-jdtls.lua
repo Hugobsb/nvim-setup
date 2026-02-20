@@ -13,7 +13,7 @@ local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 local OS = "unsupported"
 
 if vim.fn.has("mac") == 1 then
-  local output, _ = vim.fn.system("uname -m")
+  local output = vim.fn.system("uname -m")
 
   if output and output:match("arm64") then
     OS = "mac_arm"
