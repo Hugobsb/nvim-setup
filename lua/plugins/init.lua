@@ -194,11 +194,7 @@ local plugins = {
 
     event = "VeryLazy",
 
-    config = function()
-      require "nvim-surround".setup(
-        require "configs.nvim-surround"
-      )
-    end,
+    opts = require "configs.nvim-surround",
 
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
