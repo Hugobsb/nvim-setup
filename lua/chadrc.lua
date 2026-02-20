@@ -252,11 +252,11 @@ M.ui = {
       line_break_encoding = function()
         local encoding = vim.bo.fileformat
 
-        if (encoding == "unix") then
+        if encoding == "unix" then
           return "LF  "
         end
 
-        if (encoding == "dos") then
+        if encoding == "dos" then
           return "CRLF  "
         end
 

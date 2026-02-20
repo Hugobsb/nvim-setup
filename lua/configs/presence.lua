@@ -20,7 +20,7 @@ local function display_text_file(action)
   return function(filename)
     local directory = utils.get_buffer_directory()
 
-    if (is_black_listed(filename, directory)) then
+    if is_black_listed(filename, directory) then
       return string.format("%s a confidential file", action)
     end
 
@@ -43,7 +43,7 @@ end
 local function display_buttons(_, repo_url)
   local converted_url = utils.validate_and_convert_github_url(repo_url)
 
-  if (converted_url == nil) then
+  if converted_url == nil then
     return nil
   end
 

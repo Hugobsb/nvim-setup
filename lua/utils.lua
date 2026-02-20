@@ -119,8 +119,7 @@ M.replace_selected_text_visually = function(replace_with)
   vim.api.nvim_command('normal! gv')
 
   if vim.fn.visualmode() ~= 'V' then
-    -- Estamos no modo visual (não linha)
-    -- Trocar para o modo visual de linha
+    -- Switch from characterwise visual to linewise visual
     vim.api.nvim_feedkeys('V', 'x', true)
   end
 
@@ -222,7 +221,7 @@ M.sort_alphabetically = function(option, no_selection_found_message)
 end
 
 M.validate_and_convert_github_url = function(url)
-    if (url == nil) then return nil end
+    if url == nil then return nil end
 
     local httpsPattern = "^https://github.com/.+/.+$"
 
@@ -261,7 +260,7 @@ M.generate_iso_date = function()
 end
 
 M.resize_font_size = function(amount, exact, bounds)
-  if (bounds == nil) then
+  if bounds == nil then
     bounds = {
       maximum = 24,
       minimum = 8
@@ -289,7 +288,7 @@ end
 ---@param text string
 ---@param separator string|nil
 M.break_list_items = function(text, separator)
-  if (separator == nil) then
+  if separator == nil then
     separator = ','
   end
 

@@ -58,7 +58,7 @@ local default_font = os.getenv("NVIM_FONT") or 'FiraCode Nerd Font'
 local default_font_size = 10
 
 if vim.fn.has('gui_running') then
-  if (vim.fn.has('unix')) then
+  if vim.fn.has('unix') then
     vim.opt.guifont = { default_font, ':h' .. default_font_size }
   else
     vim.opt.guifont = { default_font, 'h' .. default_font_size }
@@ -292,7 +292,7 @@ if vim.fn.has('gui_running') then
   new_cmd('IncreaseFontSize', function(cmd)
     local increase_by = tonumber(cmd.args)
 
-    if (increase_by ~= nil) then
+    if increase_by ~= nil then
       return utils.resize_font_size(math.abs(increase_by))
     end
 
@@ -302,7 +302,7 @@ if vim.fn.has('gui_running') then
   new_cmd('DecreaseFontSize', function(cmd)
     local decrease_by = tonumber(cmd.args)
 
-    if (decrease_by ~= nil) then
+    if decrease_by ~= nil then
       return utils.resize_font_size(-math.abs(decrease_by))
     end
 
