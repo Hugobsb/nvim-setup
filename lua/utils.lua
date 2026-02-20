@@ -1,26 +1,9 @@
 local M = {}
 
----@param str string
-local function escape_shell_chars(str)
-	if str:match("[^A-Za-z0-9_/:=-]") then
-    	str = "'"..str:gsub("'", "'\\''").."'"
-	end
-
-	return str
-end
-
 local function is_base64_valid(str)
-  local base64_pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$"
-
-  local command = string.format('echo -n "%s" | grep -E "%s"', str, base64_pattern)
-
-  local result, err = vim.fn.system(command)
-
-  if err then
-    error(err)
-  end
-
-  return type(result) == 'string' and string.len(result) > 0
+  return str:match("^[A-Za-z0-9+/]*=?=?$") ~= nil
+    and #str % 4 == 0
+    and #str > 0
 end
 
 ---@param text string
@@ -83,7 +66,11 @@ M.get_visually_selected_text = function(no_selection_found_message)
   local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
 
   if #lines == 0 then
-    vim.notify(no_selection_found_message, "warning", { title = 'Visual selection utilitary' })
+    vim.notify(
+      no_selection_found_message,
+      vim.log.levels.WARN,
+      { title = 'Visual selection utilitary' }
+    )
     return ""
   elseif #lines == 1 then
     return string.sub(lines[1], start_pos[3], end_pos[3])
@@ -144,28 +131,20 @@ end
 ---@return string
 M.base64_encode = function(str)
   if is_base64_valid(str) then
-    vim.notify('Warning: the given string can be already encoded', 'warning', { title = 'Base64 encode utilitary' })
+    vim.notify(
+      'Warning: the given string can be already encoded',
+      vim.log.levels.WARN,
+      { title = 'Base64 encode utilitary' }
+    )
   end
 
-  local escaped_str = escape_shell_chars(str)
+  local output = vim.fn.system({ 'base64' }, str)
 
-  local string_to_encode = escaped_str:match("^'.*'$") ~= nil and escaped_str:gsub("'", "") or escaped_str
-
-  local command = string.format('echo -n "%s" | base64', string_to_encode)
-
-  local output, err = vim.fn.system(command)
-
-  if err then
-    error(err)
+  if vim.v.shell_error ~= 0 then
+    error('base64 encode failed: ' .. output)
   end
 
-  local result = tostring(output)
-
-  if type(output) == "string" and not str:match("\n$") then
-    result = string.gsub(output, "\n$", "")
-  end
-
-  return result
+  return (output:gsub("\n$", ""))
 end
 
 ---@param str string
@@ -173,21 +152,29 @@ end
 M.base64_decode = function(str)
   if not is_base64_valid(str) then
     error('The given string is not a valid base64')
-    return str
   end
 
-  local command = string.format('echo -n "%s" | base64 --decode', escape_shell_chars(str))
+  local output = vim.fn.system({ 'base64', '--decode' }, str)
 
-  local output, err = vim.fn.system(command)
-
-  if err then
-    error(err)
+  if vim.v.shell_error ~= 0 then
+    error('base64 decode failed: ' .. output)
   end
 
-  local result = tostring(output)
+  return (output:gsub("\n$", ""))
+end
 
-  if type(output) == "string" and not str:match("\n$") then
-    result = string.gsub(output, "\n$", "")
+---@return string
+M.generate_uuid = function()
+  local result = vim.fn.system({ 'uuidgen' })
+
+  if vim.v.shell_error ~= 0 then
+    error('Failed to generate UUID: ' .. result)
+  end
+
+  result = vim.trim(result)
+
+  if result == '' then
+    error('An error occurred while generating the UUID. The UUID generator function evaluated an empty result.')
   end
 
   return result
@@ -195,41 +182,31 @@ end
 
 ---@param str string
 ---@return string
-M.generate_uuid = function(str)
-	local command = string.format('echo -n $(uuidgen)', str)
-
-	local result, err = vim.fn.system(command)
-
-	if err then
-		error(err)
-	end
-
-	if type(result) ~= 'string' or string.len(result) == 0 then
-		error('An error occurred while generating the UUID. The UUID generator function evaluated an empty result.')
-	end
-
-	return result
-end
-
----@param str string
----@return string
 M.generate_uuid_from_string = function(str)
-	local command = string.format([[
-		hash=$(echo -n "%s" | sha1sum | awk '{print $1}' | cut -c1-32)
-		echo "${hash:0:8}-${hash:8:4}-4${hash:13:3}-a${hash:17:3}-${hash:20:12}"
-	]], str)
+  local sha1_output = vim.fn.system({ 'sha1sum' }, str)
 
-	local result, err = vim.fn.system(command)
+  if vim.v.shell_error ~= 0 then
+    error('Failed to compute sha1: ' .. sha1_output)
+  end
 
-	if err then
-		error(err)
-	end
+  local hash = sha1_output:match('^(%x+)')
 
-	if type(result) ~= 'string' or string.len(result) == 0 then
-		error('An error occurred while generating the UUID from string. The UUID generator function evaluated an empty result.')
-	end
+  if not hash or #hash < 32 then
+    error('An error occurred while generating the UUID from string. Invalid sha1 output.')
+  end
 
-	return result
+  hash = hash:sub(1, 32)
+
+  local uuid = string.format(
+    '%s-%s-4%s-a%s-%s',
+    hash:sub(1, 8),
+    hash:sub(9, 12),
+    hash:sub(14, 16),
+    hash:sub(18, 20),
+    hash:sub(21, 32)
+  )
+
+  return uuid
 end
 
 M.sort_alphabetically = function(option, no_selection_found_message)
@@ -355,35 +332,26 @@ M.url_decode = function(text)
 end
 
 ---@param str string
+---@return boolean
 M.is_uuid_valid = function(str)
-  local uuid_pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-
-  local command = string.format('echo -n "%s" | grep -E "%s"', escape_shell_chars(str), uuid_pattern)
-
-  local result, err = vim.fn.system(command)
-
-  if err then
-    error(err)
-  end
-
-  return type(result) == 'string' and string.len(result) > 0
+  return str:lower():match('^%x%x%x%x%x%x%x%x%-%x%x%x%x%-4%x%x%x%-[89ab]%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x$') ~= nil
 end
 
 ---@param url string
 M.generate_tarball_hash = function(url)
-	local command = string.format('curl -sSL "%s" | openssl dgst -sha512 -binary | openssl base64 -A', url)
+  local command = 'curl -sSL ' .. vim.fn.shellescape(url) .. ' | openssl dgst -sha512 -binary | openssl base64 -A'
 
-	local result, err = vim.fn.system(command)
+  local result = vim.fn.system(command)
 
-	if err then
-		error(err)
-	end
+  if vim.v.shell_error ~= 0 then
+    error('Failed to generate tarball hash: ' .. result)
+  end
 
-	if type(result) ~= 'string' or string.len(result) == 0 then
-		error('An error occurred while generating the tarball hash. The hash generator function evaluated an empty result.')
-	end
+  if type(result) ~= 'string' or #result == 0 then
+    error('An error occurred while generating the tarball hash. The hash generator function evaluated an empty result.')
+  end
 
-	return result
+  return result
 end
 
 M.get_repo_with_ssh_prefix = function(repo)

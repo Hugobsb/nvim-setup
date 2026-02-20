@@ -37,7 +37,7 @@ local session_name, s_err = get_tmux_data('tmux display-message -p "#S"')
 if s_err ~= nil then
   vim.notify(
     "Failed to restore session (session name retrieval error): " .. s_err,
-    "error",
+    vim.log.levels.ERROR,
     { title = "Session" }
   )
 end
@@ -47,7 +47,7 @@ local window_name, w_err = get_tmux_data('tmux display-message -p "#W"')
 if w_err ~= nil then
   vim.notify(
     "Failed to restore session (window name retrieval error): " .. w_err,
-    "error",
+    vim.log.levels.ERROR,
     { title = "Session" }
   )
 end
@@ -57,7 +57,7 @@ local panel_number, p_err = get_tmux_data('tmux display-message -p "#P"')
 if p_err ~= nil then
   vim.notify(
     "Failed to restore session (panel name retrieval error): " .. p_err,
-    "error",
+    vim.log.levels.ERROR,
     { title = "Session" }
   )
 end

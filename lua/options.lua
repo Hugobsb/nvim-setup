@@ -100,7 +100,7 @@ new_cmd('Base64Encode', function()
     function(err)
       vim.notify(
         'Failed to encode the selected text: ' .. err,
-        'error',
+        vim.log.levels.ERROR,
         { title = 'Base64Encode command' }
       )
       return false
@@ -130,7 +130,7 @@ new_cmd('Base64Decode', function()
     function(err)
       vim.notify(
         'Failed to decode the selected text: ' .. err,
-        'error',
+        vim.log.levels.ERROR,
         { title = 'Base64Decode command' }
       )
       return false
@@ -152,7 +152,7 @@ new_cmd('GenerateUUID', function()
     function(err)
       vim.notify(
         'Failed to generate UUID: ' .. err,
-        'error',
+        vim.log.levels.ERROR,
         { title = 'GenerateUUID command' }
       )
     end
@@ -177,7 +177,7 @@ new_cmd('GenerateUUIDFromString', function()
     function(err)
       vim.notify(
         'Failed to generate UUID from string: ' .. err,
-        'error',
+        vim.log.levels.ERROR,
         { title = 'GenerateUUIDFromString command' }
       )
     end,
@@ -192,7 +192,7 @@ new_cmd('GenerateUUIDFromString', function()
 
     vim.notify(
       'The UUID for the selected string was generated successfully and copied to the unnamed registry `"`.',
-      'info',
+        vim.log.levels.INFO,
       { title = 'GenerateUUIDFromString command' }
     )
   end
@@ -207,7 +207,7 @@ new_cmd('SortAlphabetically', function()
     if choice ~= options[1] and choice ~= options[2] then
       vim.notify(
         " " .. string.format("Invalid option. You must select between '%s' and %s.", options[1], options[2]),
-        'warning',
+        vim.log.levels.WARN,
         { title = 'SortAlphabetically command' }
       )
     else
@@ -216,7 +216,7 @@ new_cmd('SortAlphabetically', function()
         function(err)
           vim.notify(
             'Failed to sort the selected text: ' .. err,
-            'error',
+            vim.log.levels.ERROR,
             { title = 'SortAlphabetically command' }
           )
           return false
@@ -250,7 +250,7 @@ new_cmd('ValidateUUID', function()
     if choice ~= options[1] then
       vim.notify(
         " " .. string.format("Invalid option. You must select between the following options: ['%s']", options[1]),
-        'warning',
+        vim.log.levels.WARN,
         { title = 'CheckUUID command' }
       )
     else
@@ -261,7 +261,7 @@ new_cmd('ValidateUUID', function()
         function(err)
           vim.notify(
             'Failed to validate the selected text: ' .. err,
-            'error',
+            vim.log.levels.ERROR,
             { title = 'CheckUUID command' }
           )
           return false
@@ -275,7 +275,7 @@ new_cmd('ValidateUUID', function()
 
       local message = is_valid and 'The selected text is a valid UUID.' or 'The selected text is not a valid UUID.'
 
-      vim.notify(message, 'info', { title = 'CheckUUID command' })
+      vim.notify(message, vim.log.levels.INFO, { title = 'CheckUUID command' })
     end
 
     -- Cleaning the visual selection
@@ -318,7 +318,7 @@ new_cmd('Screenshot', function()
     function (err)
         vim.notify(
           'Failed to take screenshot of the selected text:' .. err,
-          'error',
+          vim.log.levels.ERROR,
           { title = 'Screenshot command' }
         )
       return false
@@ -386,7 +386,7 @@ new_cmd('GenerateTarballHash', function()
   if string.match(selection, "^https?://[%w%-%./@]+/-/[%w%-]+%-%d+%.%d+%.%d+%.tgz$") == nil then
     vim.notify(
       'The selected text is not a valid tarball URL. The hash will not be generated.',
-      'warning',
+      vim.log.levels.WARN,
       { title = 'GenerateTarballHash command' }
     )
     return
@@ -397,7 +397,7 @@ new_cmd('GenerateTarballHash', function()
     function(err)
       vim.notify(
         'Failed to hash the file for the selected URL: ' .. err,
-        'error',
+        vim.log.levels.ERROR,
         { title = 'GenerateTarballHash command' }
       )
       return false
@@ -413,7 +413,7 @@ new_cmd('GenerateTarballHash', function()
 
     vim.notify(
       'The hash for the selected tarball URL was generated successfully and copied to the unnamed registry `"`.',
-      'info',
+      vim.log.levels.INFO,
       { title = 'GenerateTarballHash command' }
     )
   end

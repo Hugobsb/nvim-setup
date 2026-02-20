@@ -29,11 +29,16 @@ return function()
 
   local selection = utils.get_visually_selected_text(no_selection_found_message)
 
-  -- Urlencode any + symbols in the base64 encoded string
-  CODE = utils.url_encode(utils.base64_encode(selection))
+  local code = utils.url_encode(utils.base64_encode(selection))
 
-  vim.fn.system(
-    "open 'https://ray.so/#code=" .. CODE .. "?colors=" .. COLORS .."&background="..BACKGROUND.."&darkMode="..DARK_MODE.."&padding="..PADDING.."&title="..TITLE.."&language="..LANGUAGE.. "'"
-  )
+  local url = 'https://ray.so/#code=' .. code
+    .. '?colors=' .. COLORS
+    .. '&background=' .. BACKGROUND
+    .. '&darkMode=' .. DARK_MODE
+    .. '&padding=' .. PADDING
+    .. '&title=' .. TITLE
+    .. '&language=' .. LANGUAGE
+
+  vim.ui.open(url)
 end
 
