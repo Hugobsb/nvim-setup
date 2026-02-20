@@ -59,7 +59,7 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
 
-    event = "BufEnter",
+    event = "BufReadPost",
 
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
@@ -90,7 +90,7 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     config = function()
       require "configs.dap"
@@ -100,7 +100,7 @@ local plugins = {
   {
     "igorlfs/nvim-dap-view",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     dependencies = {
       "mfussenegger/nvim-dap"
@@ -114,7 +114,7 @@ local plugins = {
   {
     "theHamsta/nvim-dap-virtual-text",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     dependencies = {
       "mfussenegger/nvim-dap"
@@ -229,7 +229,7 @@ local plugins = {
   {
     "tpope/vim-rhubarb",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     config = false
   },
@@ -286,7 +286,7 @@ local plugins = {
   {
     "folke/trouble.nvim",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
@@ -312,7 +312,7 @@ local plugins = {
 
     version = "*",
 
-    event = "BufEnter",
+    event = "BufReadPost",
 
     config = true
   },
@@ -349,7 +349,7 @@ local plugins = {
 
     version = "*",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     config = function ()
       require "configs.diffview"
@@ -361,7 +361,7 @@ local plugins = {
 
     version = "*",
 
-    event = "BufEnter",
+    event = "BufReadPost",
 
     config = true
   },
@@ -379,7 +379,7 @@ local plugins = {
 
     version = "*",
 
-    event = "BufEnter",
+    event = "BufReadPost",
 
     dependencies = {
       "kevinhwang91/nvim-hlslens",
@@ -399,7 +399,7 @@ local plugins = {
       'nvim-telescope/telescope-fzf-native.nvim'
     },
 
-    event = "BufEnter",
+    event = "BufReadPost",
 
     config = true
   },
@@ -430,7 +430,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",  -- optional
     },
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     opts = {
       background_colour = "#000000"
@@ -494,7 +494,7 @@ local plugins = {
 
     version = "*",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     opts = {
       dir_path = os.getenv('NVIM_SAFE_DIR') or os.getenv('HOME') .. '/Projects/safe/'
@@ -713,7 +713,7 @@ local plugins = {
   {
     "Darazaki/indent-o-matic",
 
-    event = "BufEnter",
+    event = "BufReadPost",
 
     config = function()
       require('indent-o-matic').setup {
@@ -761,7 +761,7 @@ local plugins = {
   {
     "folke/sidekick.nvim",
 
-    event = "BufEnter",
+    event = "VeryLazy",
 
     opts = require "configs.sidekick".opts,
 
