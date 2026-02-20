@@ -290,7 +290,7 @@ local plugins = {
 
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
-    config = require "configs.trouble"
+    config = true
   },
 
   {
@@ -371,7 +371,7 @@ local plugins = {
 
     version = "*",
 
-    config = require "configs.gitsigns"
+    opts = {}
   },
 
   {
@@ -386,7 +386,7 @@ local plugins = {
       "lewis6991/gitsigns.nvim"
     },
 
-    config = require "configs.nvim-scrollbar"
+    opts = require "configs.nvim-scrollbar"
   },
 
 
@@ -452,7 +452,7 @@ local plugins = {
 
     lazy = false,
 
-    config = require "configs.dressing"
+    config = true
   },
 
   {
