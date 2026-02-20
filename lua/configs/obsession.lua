@@ -1,10 +1,10 @@
-# Sessions are only managed for TMUX sessions
+-- Sessions are only managed for TMUX sessions
 if os.getenv('TMUX') == nil then
   return
 end
 
-local function load(session_file, should_create)
-  if should_create == 1 then
+local function load(session_file, should_restore)
+  if should_restore then
     vim.cmd('silent! source ' .. session_file)
     return
   end
@@ -12,73 +12,39 @@ local function load(session_file, should_create)
   vim.fn.execute('silent! Obsession ' .. session_file)
 end
 
-local function get_tmux_data(cmd)
-  local _, result, err = xpcall(
-    function()
-      local m = vim.fn.system(cmd)
+local tmux_info = vim.fn.system({ 'tmux', 'display-message', '-p', '#S/#W/#P' })
 
-      if string.match(m, 'No such file or directory') ~= nil then
-        return nil, "Failed to retrieve tmux data: " .. m
-      end
-
-      return m
-    end,
-    function()  return nil, "Unexpected failure when retrieving tmux data" end
+if vim.v.shell_error ~= 0 then
+  vim.notify(
+    "Failed to retrieve tmux session data",
+    vim.log.levels.ERROR,
+    { title = "Session" }
   )
-
-  return result, err
+  return
 end
 
--- TODO: create "sessions" folder if it does not exist
+local session_name, window_name, panel_number = vim.trim(tmux_info):match("^(.-)/(.-)/(.-)$")
+
+if not session_name or not window_name or not panel_number then
+  vim.notify(
+    "Failed to parse tmux session data: " .. tmux_info,
+    vim.log.levels.ERROR,
+    { title = "Session" }
+  )
+  return
+end
+
+session_name = session_name:gsub('[^%w%.%-_]', '')
+window_name = window_name:gsub('[^%w%.%-_]', '')
+panel_number = panel_number:gsub('[^%w%.%-_]', '')
+
 local session_path = vim.fn.stdpath("data") .. '/sessions/'
-
-local session_name, s_err = get_tmux_data('tmux display-message -p "#S"')
-
-if s_err ~= nil then
-  vim.notify(
-    "Failed to restore session (session name retrieval error): " .. s_err,
-    vim.log.levels.ERROR,
-    { title = "Session" }
-  )
+if vim.fn.isdirectory(session_path) == 0 then
+  vim.fn.mkdir(session_path, "p")
 end
 
-local window_name, w_err = get_tmux_data('tmux display-message -p "#W"')
+local session_file = session_path .. session_name .. '-' .. window_name .. '-' .. panel_number .. '.vim'
 
-if w_err ~= nil then
-  vim.notify(
-    "Failed to restore session (window name retrieval error): " .. w_err,
-    vim.log.levels.ERROR,
-    { title = "Session" }
-  )
-end
+local has_session = vim.fn.filereadable(session_file) == 1
 
-local panel_number, p_err = get_tmux_data('tmux display-message -p "#P"')
-
-if p_err ~= nil then
-  vim.notify(
-    "Failed to restore session (panel name retrieval error): " .. p_err,
-    vim.log.levels.ERROR,
-    { title = "Session" }
-  )
-end
-
-if session_name ~= nil and window_name ~= nil and panel_number ~= nil then
-  session_name = session_name:gsub('[^%w%.%-_]', '')
-  window_name = window_name:gsub('[^%w%.%-_]', '')
-  panel_number = panel_number:gsub('[^%w%.%-_]', '')
-
-  local session_data = {session_name, window_name, panel_number}
-
-  local session_file = session_path .. table.concat(session_data, '-') .. '.vim'
-
-  local has_session = tonumber(
-    vim.fn.system(
-      'cat '
-      .. session_file ..
-      ' >/dev/null 2>&1 && echo "1" || echo "0"'
-    )
-  )
-
-  load(session_file, has_session)
-end
-
+load(session_file, has_session)
