@@ -144,18 +144,7 @@ for lsp, config in pairs(servers) do
 
       nvchad_config.on_attach(client, bufnr)
 
-      pcall(
-        function()
-          vim.keymap.del({ "n", "v" }, "<leader>ca", { buffer = bufnr })
-        end
-      )
-
-      vim.keymap.set(
-        { "n", "v" },
-        "<leader>ca",
-        "<cmd> Lspsaga code_action <CR>",
-        { buffer = bufnr, desc = "LSP Code action", noremap = true }
-      )
+      require("utils").override_code_action_with_lspsaga(bufnr)
     end,
   }
 

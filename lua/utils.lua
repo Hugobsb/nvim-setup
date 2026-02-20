@@ -446,4 +446,16 @@ M.get_first_existing_path = function(paths)
   return nil
 end
 
+--- Override NvChad's <leader>ca with Lspsaga code_action for a buffer.
+---@param bufnr number
+M.override_code_action_with_lspsaga = function(bufnr)
+  pcall(vim.keymap.del, { "n", "v" }, "<leader>ca", { buffer = bufnr })
+  vim.keymap.set(
+    { "n", "v" },
+    "<leader>ca",
+    "<cmd>Lspsaga code_action<CR>",
+    { buffer = bufnr, desc = "LSP Code action", noremap = true }
+  )
+end
+
 return M
