@@ -356,14 +356,14 @@ end
 M.get_repo_with_ssh_prefix = function(repo)
   local prefix = os.getenv("LAZY_SSH_PREFIX")
   if not prefix or prefix == "" then
-		return repo
-	end
+    return repo
+  end
 
-	if type(repo) == "string" and not repo:match("^" .. prefix) then
-		return prefix .. repo
-	end
+  if type(repo) == "string" and not repo:match("^" .. prefix) then
+    return prefix .. repo
+  end
 
-	return repo
+  return repo
 end
 
 M.mutate_lazy_plugins_list_with_ssh_prefix = function(plugins)
