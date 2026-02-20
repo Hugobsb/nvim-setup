@@ -115,10 +115,6 @@ local servers = {
     cmd = { "sqls" },
     filetypes = { "sql", "mysql" }
   },
-  -- ['ts_ls'] = {
-  --   cmd = { data_dir .. "/mason/bin/typescript-language-server", "--stdio" },
-  --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
-  -- },
   ['yamlls'] = {
     filetypes = { "yaml", "yml" }
   }

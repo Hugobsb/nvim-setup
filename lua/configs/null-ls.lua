@@ -1,5 +1,4 @@
 local null_ls = require "null-ls"
--- local helpers = require "null-ls.helpers"
 
 local utils = require "utils"
 
@@ -29,32 +28,6 @@ local CODE_QUALITY_PMD_PATH = utils.get_first_existing_path({
 })
 
 local pmd_debug_notified = false
-
--- custom sources
-
--- local detekt = {
---   name = "Detekt",
---   meta = {
---     url = "https://github.com/detekt/detekt",
---     description = "Static code analysis for Kotlin",
---   },
---   method = null_ls.methods.DIAGNOSTICS,
---   filetypes = { "kotlin" },
---   generator = null_ls.generator({
---     command = "detekt",
---     args = { "--input", "$FILENAME" },
---     from_stderr = true,
---     format = "line",
---     on_output = helpers.diagnostics.from_patterns({
---       {
---         pattern = [[.*:(%d+):(%d+): [%w-/]+ (.*)]],
---         groups = { "row", "col", "message" }
---       }
---     })
---   })
--- }
---
--- null_ls.register(detekt)
 
 local sources = {
   formatting_beautysh,
@@ -104,7 +77,6 @@ local sources = {
     }
   ),
   diagnostics_eslint_d.with { filter = function(diagnostic) return diagnostic.code ~= nil end },
-  -- diagnostics.ktlint,
   diagnostics.pmd.with {
     timeout = 20000,
     filetypes = { "java" },

@@ -28,10 +28,8 @@ end, { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
--- Lsp saga
+-- Lspsaga
 
--- Done at the LSP Config on LSP attach to be able to override NvChad's one
--- map({ "n", "v" }, "<leader>ca",  "<cmd> Lspsaga code_action <CR>", { desc =  "Open LSP Saga code action" })
 map("n", "K", "<cmd> Lspsaga hover_doc <CR>", { desc = "Open LSP Saga hover" })
 map("n", "<leader>o", "<cmd> Lspsaga outline <CR>", { desc = "Toggle LSP Saga outline" })
 map("n", "<leader>wd", "<cmd> Lspsaga show_workspace_diagnostics <CR>", { desc = "Show LSP Saga workspace diagnostics" })
@@ -75,22 +73,9 @@ map("n", "<leader>dr", "<cmd> lua require'dap'.repl.open() <CR>", { desc = "Open
 map("n", "<leader>dpu", "<cmd> lua require'dap-view'.toggle(true) <CR>", { desc = "Toggle debugger hiding the terminal" })
 map("n", "<leader>dpU", "<cmd> lua require'dap-view'.toggle(false) <CR>", { desc = "Toggle debugger keeping the terminal" })
 
--- Nvim tab management
-
--- Disabled until I find a way to map it without causing C-i conflicts. Maybe an Alacritty configuration
--- map("n", "<tab>", "<cmd> tabnext <CR>", { desc = "Go to next tab", noremap = true })
--- map("n", "<S-tab>", "<cmd> tabprevious <CR>", { desc = "Go to previous tab", noremap = true })
-
--- Tab remapping conflicts with C-I key binding that jumps forwardly in the jump history
--- Disabling this key mapping pointing it to itself fixes this issue
--- Note: this solution is not universal and only works for GUI or terminals that support modifyOtherKeys
--- See more at https://vimhelp.org/motion.txt.html#jump-motions
+-- Preserve C-i jump forward (avoid tab remap conflict)
+-- See https://vimhelp.org/motion.txt.html#jump-motions
 map("n", "<C-i>", "<C-i>", { desc = "Go forwardly in jumplist", noremap = true })
-
--- Tabufline
-
--- map("n", "<leader>bm", "<cmd> lua require'nvchad.tabufline'.move_buf(1) <CR>", { desc = "Move tab forward" })
--- map("n", "<leader>bM", "<cmd> lua require'nvchad.tabufline'.move_buf(-1) <CR>", { desc = "Move tab backward" })
 
 -- Diffview
 
@@ -130,7 +115,6 @@ map("n", "<leader>db", "<cmd> lua require'dropbar.api'.pick() <CR>", { desc = "E
 -- DBee
 
 map({ "n", "v" }, "<leader>dbe", "<cmd> lua require'dbee'.toggle() <CR>", { desc = "DBee toggle UI" })
--- map({ "n", "v" }, "<leader>dbeq", "<cmd> lua require'dbee'.execute() <CR>", { desc = "DBee execute query" })
 
 -- Neotest mappings
 
@@ -155,28 +139,21 @@ map("n", "<leader>h", "<cmd> lua require'harpoon'.ui:toggle_quick_menu(require'h
 
 -- Package Info mappings
 
-map("n", "<LEADER>ps", "<cmd> lua require'package-info'.show() <CR>", { desc = "Show dependency versions", silent = true, noremap = true })
+map("n", "<leader>ps", "<cmd> lua require'package-info'.show() <CR>", { desc = "Show dependency versions", silent = true, noremap = true })
 
-map("n", "<LEADER>ph", "<cmd> lua require'package-info'.hide() <CR>", { desc = "Hide dependency versions", silent = true, noremap = true })
+map("n", "<leader>ph", "<cmd> lua require'package-info'.hide() <CR>", { desc = "Hide dependency versions", silent = true, noremap = true })
 
-map("n", "<LEADER>pt", "<cmd> lua require'package-info'.toggle() <CR>", { desc = "Toggle dependency versions", silent = true, noremap = true })
+map("n", "<leader>pt", "<cmd> lua require'package-info'.toggle() <CR>", { desc = "Toggle dependency versions", silent = true, noremap = true })
 
-map("n", "<LEADER>pu", "<cmd> lua require'package-info'.update() <CR>", { desc = "Update dependency on the line", silent = true, noremap = true })
+map("n", "<leader>pu", "<cmd> lua require'package-info'.update() <CR>", { desc = "Update dependency on the line", silent = true, noremap = true })
 
-map("n", "<LEADER>pd", "<cmd> lua require'package-info'.delete() <CR>", { desc = "Delete dependency on the line", silent = true, noremap = true })
+map("n", "<leader>pd", "<cmd> lua require'package-info'.delete() <CR>", { desc = "Delete dependency on the line", silent = true, noremap = true })
 
-map("n", "<LEADER>pi", "<cmd> lua require'package-info'.install() <CR>", { desc = "Install a new dependency", silent = true, noremap = true })
+map("n", "<leader>pi", "<cmd> lua require'package-info'.install() <CR>", { desc = "Install a new dependency", silent = true, noremap = true })
 
-map("n", "<LEADER>pc", "<cmd> lua require'package-info'.change_version() <CR>", { desc = "Install a different dependency version", silent = true, noremap = true })
+map("n", "<leader>pc", "<cmd> lua require'package-info'.change_version() <CR>", { desc = "Install a different dependency version", silent = true, noremap = true })
 
--- Select buffers stored within Harpoon list
-
--- map("n", "<C-h>", function() harpoon:list():select(1) end)
--- map("n", "<C-t>", function() harpoon:list():select(2) end)
--- map("n", "<C-n>", function() harpoon:list():select(3) end)
--- map("n", "<C-s>", function() harpoon:list():select(4) end)
-
--- Toggle previous & next buffers stored within Harpoon list
+-- Harpoon navigation
 map("n", "<C-k>", "<cmd> lua require'harpoon':list():prev() <CR>", { desc = "Harpoon previous buffer" })
 map("n", "<C-j>", "<cmd> lua require'harpoon':list():next() <CR>", { desc = "Harpoon next buffer" })
 

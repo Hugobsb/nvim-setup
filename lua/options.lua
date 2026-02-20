@@ -1,10 +1,5 @@
 require "nvchad.options"
 
--- add yours here!
-
--- local o = vim.o
--- o.cursorlineopt ='both' -- to enable cursorline!
-
 local utils = require'utils'
 local screenshot = require'modules.screenshot'
 local patches = require'patches'
