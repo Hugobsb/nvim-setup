@@ -188,6 +188,16 @@ local plugins = {
   },
 
   {
+    "alessio-vivaldelli/java-creator-nvim",
+
+    event = "VeryLazy",
+
+    ft = "java",
+
+    config = true,
+  },
+
+  {
     "kylechui/nvim-surround",
 
     version = "*",

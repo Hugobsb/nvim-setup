@@ -26,6 +26,7 @@
   "hbac.nvim": { "branch": "main", "commit": "2c85485ea28e5e3754650829e0bca612960e1b73" },
   "indent-blankline.nvim": { "branch": "master", "commit": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03" },
   "indent-o-matic": { "branch": "master", "commit": "764da1f30b5bb4a49035c3abc9a586322296b812" },
+  "java-creator-nvim": { "branch": "main", "commit": "6889eb8fb67f0efc5fda5c5c4e1c323623c9bd5a" },
   "java-debug": { "branch": "main", "commit": "5c7562ade22977b15f76f46d13c098e82cc58ced" },
   "kotlin-debug-adapter": { "branch": "main", "commit": "7f05669b642d21afa46ac7b75307fa5d523a7263" },
   "lab.nvim": { "branch": "main", "commit": "0d02cecd5281da43b9c3ae1658a4eb16ca33ed8e" },
