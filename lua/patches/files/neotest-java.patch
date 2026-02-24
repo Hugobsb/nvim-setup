@@ -72,3 +72,34 @@ index 6262ee2..3ec9624 100644
  		else
  			local _id = vim
  				.iter(tree:iter())
+diff --git a/lua/neotest-java/core/root_finder.lua b/lua/neotest-java/core/root_finder.lua
+index b1b59ac..eaaa6d2 100644
+--- a/lua/neotest-java/core/root_finder.lua
++++ b/lua/neotest-java/core/root_finder.lua
+@@ -16,6 +16,8 @@ function RootFinder.find_root(dir, matcher)
+ 		"pom.xml",
+ 		"settings.gradle",
+ 		"settings.gradle.kts",
++		"build.gradle",
++		"build.gradle.kts",
+ 		".git",
+ 	}
+ 
+diff --git a/lua/neotest-java/util/detect_project_type.lua b/lua/neotest-java/util/detect_project_type.lua
+index beb38e5..88ef972 100644
+--- a/lua/neotest-java/util/detect_project_type.lua
++++ b/lua/neotest-java/util/detect_project_type.lua
+@@ -16,7 +16,12 @@ local function detect_project_type(root_dir, scandir)
+ 		local name = path:match("([^/\\]+)$")
+ 		if name == "pom.xml" then
+ 			return "maven"
+-		elseif name == "settings.gradle" or name == "settings.gradle.kts" then
++		elseif
++			name == "settings.gradle"
++			or name == "settings.gradle.kts"
++			or name == "build.gradle"
++			or name == "build.gradle.kts"
++		then
+ 			return "gradle"
+ 		end
+ 	end
