@@ -4,6 +4,11 @@ local config = {
       mux = {
         backend = "tmux",
         enabled = true,
+        create = "split",
+        split = {
+          vertical = true,
+          size = 0.3,
+        },
       },
       context = {
         gitstaged = function()
