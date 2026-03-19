@@ -7,6 +7,7 @@ local config = {
     "go",
     "gitcommit",
     "gitignore",
+    "html",
     "http",
     "java",
     "javadoc",
