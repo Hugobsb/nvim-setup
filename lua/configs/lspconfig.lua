@@ -115,6 +115,9 @@ local servers = {
     cmd = { "sqls" },
     filetypes = { "sql", "mysql" }
   },
+  ['terraformls'] = {
+    filetypes = { "terraform", "tf" }
+  },
   ['yamlls'] = {
     filetypes = { "yaml", "yml" }
   }

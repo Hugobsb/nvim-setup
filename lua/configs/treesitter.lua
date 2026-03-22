@@ -24,6 +24,7 @@ local config = {
     "regex",
     "sql",
     "styled",
+    "terraform",
     "todotxt",
     "toml",
     "tsx",

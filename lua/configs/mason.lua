@@ -11,6 +11,7 @@ local config = {
     "json-lsp",
     "kotlin-language-server",
     "lua-language-server",
+    "terraform-ls",
     "typescript-language-server",
     "yaml-language-server",
 
@@ -21,6 +22,7 @@ local config = {
     "ktlint",
     "prettierd",
     "sql-formatter",
+    "terraform",
     "yamlfix",
 
     -- linters / code actions
