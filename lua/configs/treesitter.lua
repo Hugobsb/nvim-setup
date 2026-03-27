@@ -5,6 +5,8 @@ local config = {
     "dart",
     "dockerfile",
     "go",
+    "gomod",
+    "gosum",
     "gitcommit",
     "gitignore",
     "html",
