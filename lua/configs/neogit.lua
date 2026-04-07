@@ -18,6 +18,8 @@ M.setup = function(opts)
   vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "#363636" })
   vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "#2c2c2c" })
   vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#b8bb26", bg = "#62693e" })
+  vim.api.nvim_set_hl(0, "NeogitDiffDeleteInline", { bold = true, fg = "#fb4934", bg = "#943232" })
+  vim.api.nvim_set_hl(0, "NeogitDiffAddInline",    { bold = true, fg = "#b8bb26", bg = "#4d5a1e" })
 end
 
 return M
