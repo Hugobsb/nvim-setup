@@ -1,0 +1,15 @@
+diff --git a/lua/dap-view/console/scroll.lua b/lua/dap-view/console/scroll.lua
+index b388a78..33b60e5 100644
+--- a/lua/dap-view/console/scroll.lua
++++ b/lua/dap-view/console/scroll.lua
+@@ -66,7 +66,9 @@ end
+ M.scroll_to_bottom = function(winnr, bufnr)
+     if util.is_win_valid(winnr) and util.is_buf_valid(bufnr) then
+         vim.schedule(function()
+-            api.nvim_win_set_cursor(winnr, { api.nvim_buf_line_count(bufnr), 0 })
++            if util.is_win_valid(winnr) and util.is_buf_valid(bufnr) then
++                api.nvim_win_set_cursor(winnr, { api.nvim_buf_line_count(bufnr), 0 })
++            end
+         end)
+
+         termbuf_is_autoscrolling[bufnr] = true
