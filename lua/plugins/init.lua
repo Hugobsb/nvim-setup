@@ -2,6 +2,14 @@ local utils = require "utils"
 
 local plugins = {
   {
+    "nvchad/ui",
+
+    build = function(plugin)
+      require("patches").apply(plugin)
+    end,
+  },
+
+  {
     "stevearc/conform.nvim",
 
     -- event = 'BufWritePre' -- uncomment for format on save

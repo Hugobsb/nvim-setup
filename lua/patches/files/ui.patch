@@ -1,0 +1,11 @@
+diff --git a/lua/nvchad/au.lua b/lua/nvchad/au.lua
+--- a/lua/nvchad/au.lua
++++ b/lua/nvchad/au.lua
+@@ -18,6 +18,7 @@ if config.lsp.signature then
+   autocmd("LspAttach", {
+     callback = function(args)
+       vim.schedule(function()
++        if not vim.api.nvim_buf_is_valid(args.buf) then return end
+         local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+         if client then
