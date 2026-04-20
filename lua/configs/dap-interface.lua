@@ -14,3 +14,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapview.close(true)
 end
 
+dap.listeners.before.disconnect["dapui_config"] = function()
+  dapview.close(true)
+end
+
