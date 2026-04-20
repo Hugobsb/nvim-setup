@@ -106,10 +106,6 @@ local plugins = {
       "mfussenegger/nvim-dap"
     },
 
-    build = function(plugin)
-      require("patches").apply(plugin)
-    end,
-
     config = function()
       require "configs.dap-interface"
     end
