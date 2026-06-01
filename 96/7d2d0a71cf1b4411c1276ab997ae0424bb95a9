@@ -1,0 +1,20 @@
+lua/configs/copilotchat.lua
+  s_eed812c630d994::t_8667371bb64902 3
+  ai_agent 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "967d2d0a71cf1b4411c1276ab997ae0424bb95a9",
+  "prompts": {},
+  "sessions": {
+    "s_eed812c630d994": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "35d889a3-54d8-4f98-8d3c-d262fe78e823",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Hugo B. S. Benedicto <hugo.bsbenedicto@gmail.com>"
+    }
+  }
+}
