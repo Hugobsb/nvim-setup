@@ -1,4 +1,6 @@
 local config = {
+  model = 'claude-sonnet-4.6',
+
   prompts = {
     JavaDoc = {
       sticky = '#buffer',
