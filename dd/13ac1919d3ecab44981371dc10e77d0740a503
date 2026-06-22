@@ -1,0 +1,21 @@
+lua/patches/files/nvim-hlslens.patch
+  s_89e6b594624cc9::t_c0f933b1519e9f 1-12
+lua/plugins/init.lua
+  s_89e6b594624cc9::t_c0f933b1519e9f 384-387
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "dd13ac1919d3ecab44981371dc10e77d0740a503",
+  "prompts": {},
+  "sessions": {
+    "s_89e6b594624cc9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ef115-828f-7461-9b8e-1e53bc6d4ee3",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Hugo B. S. Benedicto <hugo.bsbenedicto@gmail.com>"
+    }
+  }
+}
