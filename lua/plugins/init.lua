@@ -381,6 +381,10 @@ local plugins = {
 
     event = "BufReadPost",
 
+    build = function(plugin)
+      require("patches").apply(plugin)
+    end,
+
     config = true
   },
 
