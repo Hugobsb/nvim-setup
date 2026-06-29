@@ -11,7 +11,6 @@ local formatting = null_ls.builtins.formatting
 
 -- eslint_d
 local diagnostics_eslint_d = require("none-ls.diagnostics.eslint_d")
-local formatting_eslint_d = require("none-ls.formatting.eslint_d")
 local code_actions_eslint_d = require("none-ls.code_actions.eslint_d")
 
 -- beauty_sh
@@ -31,7 +30,6 @@ local pmd_debug_notified = false
 
 local sources = {
   formatting_beautysh,
-  formatting_eslint_d,
   formatting.gofumpt,
   formatting.goimports,
   formatting.google_java_format.with {
