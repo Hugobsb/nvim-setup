@@ -1,0 +1,20 @@
+lua/plugins/init.lua
+  s_a92f4b2275927d::t_8483bf8a789814 170
+  s_a92f4b2275927d::t_d53631fda9077b 169
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "55e70c1f388bae79beb58d4c9fad2302ed6bb467",
+  "prompts": {},
+  "sessions": {
+    "s_a92f4b2275927d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f3799-89c4-7772-a64b-c96dfe8f85a5",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Hugo B. S. Benedicto <hugo.bsbenedicto@gmail.com>"
+    }
+  }
+}
