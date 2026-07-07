@@ -1,0 +1,19 @@
+README.md
+  s_f539dff8d863ec::t_a9d8a54ed727f1 70,72,75,88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d8282911ec23d2e93adbddc6e04fbd5718ceb553",
+  "prompts": {},
+  "sessions": {
+    "s_f539dff8d863ec": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe8c780d-afe8-45fd-8a06-87aa26d9d025",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Hugo B. S. Benedicto <hugo.bsbenedicto@gmail.com>"
+    }
+  }
+}
