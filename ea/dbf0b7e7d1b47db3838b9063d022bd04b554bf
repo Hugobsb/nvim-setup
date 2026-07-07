@@ -1,0 +1,29 @@
+README.md
+  s_f539dff8d863ec::t_121371fb79beb9 108
+  s_f539dff8d863ec::t_ce5a27110983dd 54-71,73-105,107,109-118,120-160
+  s_f539dff8d863ec::t_4320558cf3692a 72,106,119
+.dockerignore
+  s_f539dff8d863ec::t_affc4b9ff2bba2 1-3
+docker-compose.yml
+  s_f539dff8d863ec::t_62e101b92c5af6 1-28
+Dockerfile
+  s_f539dff8d863ec::t_4136036546ebdd 33-34
+  s_f539dff8d863ec::t_861c1668afcb29 43
+  s_f539dff8d863ec::t_1172cb1da71a08 1-32,35-42,44-92
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "eadbf0b7e7d1b47db3838b9063d022bd04b554bf",
+  "prompts": {},
+  "sessions": {
+    "s_f539dff8d863ec": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe8c780d-afe8-45fd-8a06-87aa26d9d025",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": null
+    }
+  }
+}
