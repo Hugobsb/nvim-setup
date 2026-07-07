@@ -51,6 +51,113 @@ nvim
 :MasonInstallAll
 ```
 
+## Running in Docker
+
+A `Dockerfile` and `docker-compose.yml` are included for running this setup fully containerised. The image bundles all language runtimes (Node.js 22, Go, Java 21, Rust) and bootstraps lazy.nvim plugins at build time. Mason packages (LSP servers, formatters, DAP adapters) install on first launch and are then cached in a Docker volume.
+
+> **Build time:** ~15–20 minutes (language runtimes + plugin compilation).
+> **First launch:** ~5–10 minutes (39 Mason packages download and install into the volume).
+> **Subsequent launches:** instant.
+
+### Build the image
+
+```bash
+docker build -t nvim-setup ~/.config/nvim
+```
+
+---
+
+### Persistent
+
+Mason packages, plugin state, and Neovim history (marks, shada, sessions) survive between runs via named Docker volumes. Mount the volumes, everything else is discarded on exit.
+
+```bash
+docker run --rm -it \
+  -v "$(pwd):/workspace" \
+  -v nvim-data:/root/.local/share/nvim \
+  -v nvim-state:/root/.local/state/nvim \
+  -v "$HOME/.gitconfig:/root/.gitconfig:ro" \
+  -v "$HOME/.ssh:/root/.ssh:ro" \
+  -w /workspace \
+  nvim-setup
+```
+
+**Convenience alias** (add to `~/.zshrc` or `~/.bashrc`):
+
+```bash
+alias dnvim='docker run --rm -it \
+  -v "$(pwd):/workspace" \
+  -v nvim-data:/root/.local/share/nvim \
+  -v nvim-state:/root/.local/state/nvim \
+  -v "$HOME/.gitconfig:/root/.gitconfig:ro" \
+  -v "$HOME/.ssh:/root/.ssh:ro" \
+  -w /workspace \
+  nvim-setup'
+```
+
+With docker compose (run from `~/.config/nvim/`, set `WORKSPACE` to your project):
+
+```bash
+WORKSPACE=/path/to/project docker compose run --rm nvim
+```
+
+---
+
+### Ephemeral
+
+Same command without the `nvim-data`/`nvim-state` volumes. Mason packages are **not** installed (no LSP/formatting/debugging) — useful for quick edits only.
+
+```bash
+docker run --rm -it \
+  -v "$(pwd):/workspace" \
+  -v "$HOME/.gitconfig:/root/.gitconfig:ro" \
+  -v "$HOME/.ssh:/root/.ssh:ro" \
+  -w /workspace \
+  nvim-setup
+```
+
+Nothing outside `/workspace` survives after exit.
+
+**Convenience alias:**
+
+```bash
+alias dnvim-tmp='docker run --rm -it \
+  -v "$(pwd):/workspace" \
+  -v "$HOME/.gitconfig:/root/.gitconfig:ro" \
+  -v "$HOME/.ssh:/root/.ssh:ro" \
+  -w /workspace \
+  nvim-setup'
+```
+
+---
+
+### Pre-warming an ephemeral image
+
+To bake Mason packages into the image so ephemeral runs have full IDE features:
+
+```bash
+docker run --name nvim-warm nvim-setup --headless \
+  -c "lua vim.defer_fn(function() vim.cmd('MasonInstallAll') end, 3000)" \
+  -c "sleep 300" \
+  -c "qa!"
+docker commit nvim-warm nvim-setup-full
+docker rm nvim-warm
+```
+
+Then replace `nvim-setup` with `nvim-setup-full` in any of the commands above.
+
+---
+
+### GitHub Copilot
+
+Authenticate inside a persistent container — credentials are stored in the `nvim-state` volume and persist across sessions:
+
+```vim
+:Copilot auth
+```
+
+---
+
 ## Environment Variables
 
 | Variable                      | Description                                                                               |
