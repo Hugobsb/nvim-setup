@@ -1,0 +1,34 @@
+README.md
+  s_f539dff8d863ec::t_4320558cf3692a 72,106,119
+  s_f539dff8d863ec::t_121371fb79beb9 108
+  s_f539dff8d863ec::t_ce5a27110983dd 54-71,73-105,107,109-118,120-160
+Dockerfile
+  s_f539dff8d863ec::t_6cb5a8e14f1726 69,71
+  s_f539dff8d863ec::t_1d066cce669c51 40-43
+  s_f539dff8d863ec::t_4136036546ebdd 33
+  s_f539dff8d863ec::t_9a7f50c7c98876 54-57
+  s_f539dff8d863ec::t_4b1e1af7d04e40 76
+  s_f539dff8d863ec::t_1172cb1da71a08 1-32,44-48,50-53,58-68,70,72-75,77-100
+  s_f539dff8d863ec::t_861c1668afcb29 49
+  s_f539dff8d863ec::t_2e921b4ca89883 34-39
+docker-compose.yml
+  s_f539dff8d863ec::t_62e101b92c5af6 1-28
+.dockerignore
+  s_f539dff8d863ec::t_affc4b9ff2bba2 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "6c7f90486508abdeeebe2640878fb91d6e52ab0e",
+  "prompts": {},
+  "sessions": {
+    "s_f539dff8d863ec": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe8c780d-afe8-45fd-8a06-87aa26d9d025",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": null
+    }
+  }
+}
