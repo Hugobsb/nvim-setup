@@ -160,7 +160,10 @@ local plugins = {
 
     version = "*",
 
-    build = "./mvnw clean install",
+    build = function(plugin)
+      require("patches").apply(plugin)
+      vim.fn.system("cd " .. plugin.dir .. " && ./mvnw clean install")
+    end,
   },
 
   {

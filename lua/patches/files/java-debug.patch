@@ -1,0 +1,13 @@
+diff --git a/com.microsoft.java.debug.target/com.microsoft.java.debug.tp.target b/com.microsoft.java.debug.target/com.microsoft.java.debug.tp.target
+index 8a85443..d0334b1 100644
+--- a/com.microsoft.java.debug.target/com.microsoft.java.debug.tp.target
++++ b/com.microsoft.java.debug.target/com.microsoft.java.debug.tp.target
+@@ -2,7 +2,7 @@
+     <locations>
+         <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+             <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
+-            <repository location="https://download.eclipse.org/eclipse/updates/4.36-I-builds/"/>
++            <repository location="https://download.eclipse.org/eclipse/updates/4.36"/>
+         </location>
+         <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+             <unit id="org.eclipse.jdt.ls.core" version="0.0.0"/>
