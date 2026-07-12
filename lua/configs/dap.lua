@@ -43,6 +43,23 @@ for _, language in ipairs({ "pwa-node", "pwa-chrome", "node-terminal", "pwa-exte
   }
 end
 
+-- Rust (codelldb)
+
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = utils.get_pkg_path('codelldb', '/extension/adapter/codelldb'),
+    args = { '--port', '${port}' },
+  },
+  env = {
+    LLDB_LIBRARY_PATH = utils.get_first_existing_path {
+      utils.get_pkg_path('codelldb', '/extension/lldb/lib/liblldb.so'),
+      utils.get_pkg_path('codelldb', '/extension/lldb/lib/liblldb.dylib'),
+    },
+  },
+}
+
 -- Configuration
 
 -- JS/TS
@@ -133,6 +150,79 @@ dap.configurations.kotlin = {
     projectRoot = vim.fn.getcwd,
     hostName = "localhost",
     timeout = 2000,
+  },
+}
+
+-- Rust
+
+dap.configurations.rust = {
+  {
+    name = "Debug executable (cargo)",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      local handle = io.popen("cargo metadata --no-deps --format-version 1")
+      if not handle then
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+      end
+      local raw = handle:read("*a")
+      handle:close()
+
+      local ok, metadata = pcall(vim.json.decode, raw)
+      if not ok then
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+      end
+
+      local binaries = {}
+      for _, pkg in ipairs(metadata.packages or {}) do
+        for _, target in ipairs(pkg.targets or {}) do
+          if target.kind[1] == "bin" then
+            table.insert(binaries, target.name)
+          end
+        end
+      end
+
+      if #binaries == 0 then
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+      end
+
+      local bin = binaries[1]
+      if #binaries > 1 then
+        bin = vim.fn.input("Binary: ", bin, "customlist,v:lua.vim.fn.getcompletion")
+      end
+
+      os.execute("cargo build --bin " .. bin .. " > /dev/null 2>&1")
+      return vim.fn.getcwd() .. "/target/debug/" .. bin
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+  {
+    name = "Debug current file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      local handle = io.popen("rustc --print cfg | grep target_file | cut -d'\"' -f2")
+      if not handle then
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+      end
+      local result = handle:read("*a")
+      handle:close()
+      result = result:gsub("%s+", "")
+      if result ~= "" then
+        return result
+      end
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+  {
+    name = "Attach to process",
+    type = "codelldb",
+    request = "attach",
+    pid = require("dap.utils").pick_process,
+    cwd = "${workspaceFolder}",
   },
 }
 
