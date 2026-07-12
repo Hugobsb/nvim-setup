@@ -779,6 +779,25 @@ local plugins = {
     opts = require "configs.sidekick".opts,
 
     keys = require "configs.sidekick".keys,
+  },
+
+  {
+    "mistweaverco/kulala.nvim",
+
+    -- Load before session save/restore so VimLeavePre and SessionLoadPost hooks are registered.
+    event = { "SessionLoadPost", "VimLeavePre" },
+
+    ft = {"http", "rest", "javascript", "lua"},
+
+    opts = {
+      lsp = {
+        -- Restrict kulala LSP to *.http, *.http.js, *.http.ts and *.http.lua files.
+        enforce_external_script_naming_convention = true,
+      },
+      ui = {
+        display_mode = "float",
+      },
+    },
   }
 }
 

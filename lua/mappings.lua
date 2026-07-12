@@ -158,3 +158,11 @@ map("n", "<C-k>", "<cmd> lua require'harpoon':list():prev() <CR>", { desc = "Har
 map("n", "<C-j>", "<cmd> lua require'harpoon':list():next() <CR>", { desc = "Harpoon next buffer" })
 
 map("n", "<leader>hh", "<cmd> HarpoonTelescope <CR>", { desc = "Harpoon open Telescope window", noremap = true })
+
+-- Kulala
+
+-- Setup the following keys:
+map("n", "<leader>Rs", "<cmd> lua require'kulala'.run() <CR>", { desc = "Send request" })
+map("n", "<leader>Ra", "<cmd> lua require'kulala'.run_all() <CR>", { desc = "Send all requests" })
+map("n", "<leader>Ro", "<cmd> lua require'kulala'.open() <CR>", { desc = "Open Kulala view" })
+map("n", "<leader>Rc", "<cmd> lua require'kulala'.close() <CR>", { desc = "Close Kulala view" })
