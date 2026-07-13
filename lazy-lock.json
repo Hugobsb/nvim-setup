@@ -29,7 +29,7 @@
   "java-creator-nvim": { "branch": "main", "commit": "6889eb8fb67f0efc5fda5c5c4e1c323623c9bd5a" },
   "java-debug": { "branch": "main", "commit": "54058b9eb466576a7a77c9303963ca88967ec58b" },
   "kotlin-debug-adapter": { "branch": "main", "commit": "7f05669b642d21afa46ac7b75307fa5d523a7263" },
-  "kulala.nvim": { "branch": "main", "commit": "91cf892008c773ce74ac392c4c12ddff775b7619" },
+  "kulala.nvim": { "branch": "main", "commit": "a9e17ae0236e886371671a7a9f01f070201a9cc1" },
   "lab.nvim": { "branch": "main", "commit": "0d02cecd5281da43b9c3ae1658a4eb16ca33ed8e" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lspsaga.nvim": { "branch": "main", "commit": "3e33a6a6c5d379f3d4fae77fae6b53b762a0a30f" },
