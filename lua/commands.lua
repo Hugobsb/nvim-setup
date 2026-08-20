@@ -345,3 +345,12 @@ new_cmd('PatchStatus', function()
 end, {
   desc = "Show status of all plugin patches",
 })
+
+new_cmd('CopyPath', function(opts)
+  local path = vim.fn.expand('%:p')
+  local start_line = opts.line1
+  local end_line = opts.line2
+
+  local result = string.format("%s:%d-%d", path, start_line, end_line)
+  vim.fn.setreg('+', result)
+end, { range = true })
