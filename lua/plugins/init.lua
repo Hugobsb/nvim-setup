@@ -172,7 +172,10 @@ local plugins = {
     -- Keep behind latest until vscode-java-test/JDTLS/Jacoco ASM versions resolve cleanly together.
     version = "0.45.0",
 
-    build = "npm ci && npm run build-plugin"
+    build = function(plugin)
+      require("patches").apply(plugin)
+      vim.fn.system("cd " .. plugin.dir .. " && npm ci && npm run build-plugin")
+    end,
   },
 
   {

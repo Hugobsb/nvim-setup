@@ -1,0 +1,30 @@
+diff --git a/scripts/buildJdtlsExt.js b/scripts/buildJdtlsExt.js
+index 2699ee3..15190a8 100644
+--- a/scripts/buildJdtlsExt.js
++++ b/scripts/buildJdtlsExt.js
+@@ -35,7 +35,13 @@ const bundleList = [
+ // Set MAVEN_OPTS to disable XML entity size limits for JDK XML parser
+ const env = { ...process.env };
+ env.MAVEN_OPTS = (env.MAVEN_OPTS || '') + ' -Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0 -DentityExpansionLimit=0';
+-cp.execSync(`${mvnw()} clean verify`, { cwd: serverDir, stdio: [0, 1, 2], env });
++// -DskipTests: the eclipse-test-plugin module cannot start its OSGi test runtime. The
++// target platform pulls the rolling jdtls/snapshots/repository/latest/, which now bundles
++// junit-platform-* 1.14.4 alongside the JUnit 6 (6.0.1) stack the plugin manifest also
++// requires, so both export org.junit.platform.commons and resolution fails. The reactor
++// then aborts before the update site module that the bundle copy below reads from,
++// leaving server/ empty. Fixed upstream in 33e1424 (PR #1882), unreleased as of 0.46.0.
++cp.execSync(`${mvnw()} clean verify -DskipTests`, { cwd: serverDir, stdio: [0, 1, 2], env });
+ copy(path.join(serverDir, 'com.microsoft.java.test.plugin/target'), path.resolve('server'), (file) => path.extname(file) === '.jar');
+ copy(path.join(serverDir, 'com.microsoft.java.test.runner/target'), path.resolve('server'), (file) => file.endsWith('jar-with-dependencies.jar'));
+ copy(path.join(serverDir, 'com.microsoft.java.test.plugin.site/target/repository/plugins'), path.resolve('server'), (file) => {
+@@ -85,7 +91,9 @@ function updateVersion() {
+ 
+ function downloadJacocoAgent() {
+     const version = "0.8.14";
+-    const jacocoAgentUrl = `https://repo1.maven.org/maven2/org/jacoco/org.jacoco.agent/${version}/org.jacoco.agent-${version}-runtime.jar`;
++    // repo1.maven.org does not resolve on the corporate network. repo.maven.apache.org is
++    // the canonical central host and is what Maven itself already resolves against here.
++    const jacocoAgentUrl = `https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.agent/${version}/org.jacoco.agent-${version}-runtime.jar`;
+     const jacocoAgentPath = path.resolve('server', 'jacocoagent.jar');
+     if (!fs.existsSync(jacocoAgentPath)) {
+         cp.execSync(`curl -L ${jacocoAgentUrl} -o ${jacocoAgentPath}`);
